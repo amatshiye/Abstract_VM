@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 12:49:49 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/23 13:24:34 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FILE_ENGINE
 
 #include <iostream>
+#include <string>
 #include <fstream>
 #include <vector>
 
@@ -31,7 +32,7 @@ class FileEngine
 
         std::string getFileName();
         void getData();
-        void removeComments();
+        std::string removeComment(std::string line);
         std::vector<std::string> getFileData();
 };
 

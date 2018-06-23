@@ -2,7 +2,7 @@
 ; exemple.avm -
 ; -------------
 
-push int32(42)
+push int32(42) ;interesting
 push int32(33)
 
 add
