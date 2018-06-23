@@ -6,7 +6,7 @@
 #    By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/23 07:33:09 by amatshiy          #+#    #+#              #
-#    Updated: 2018/06/23 10:37:15 by amatshiy         ###   ########.fr        #
+#    Updated: 2018/06/23 12:30:42 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = avm
 
 SRC = main.cpp FileEngine.cpp #Operand.cpp
 
-OBJ = main.o
+OBJ = main.o FileEngine.o
 
 CMP = clang++
 
