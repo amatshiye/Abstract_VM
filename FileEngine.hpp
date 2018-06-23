@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FileEngine.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/23 07:32:09 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 10:31:08 by amatshiy         ###   ########.fr       */
+/*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
+/*   Updated: 2018/06/23 10:45:02 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IOperand.hpp"
-#include "FileEngine.hpp"
+#ifndef FILE_ENGINE
+#define FILE_ENGINE
 
-int main(int ac, char **av)
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+class FileEngine
 {
-    if (ac != 1)
-    {
+    private:
+        std::string _fileName;
+        //create a vector array globally
 
-    }
+    public:
+        FileEngine();
+        FileEngine(std::string fileName);
+        ~FileEngine();
 
-    return (0);
-}
+        void getData();
+};
+
+#endif

@@ -6,13 +6,13 @@
 #    By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/23 07:33:09 by amatshiy          #+#    #+#              #
-#    Updated: 2018/06/23 08:53:14 by amatshiy         ###   ########.fr        #
+#    Updated: 2018/06/23 10:37:15 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = avm
 
-SRC = main.cpp
+SRC = main.cpp FileEngine.cpp #Operand.cpp
 
 OBJ = main.o
 

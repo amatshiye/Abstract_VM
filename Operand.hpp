@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 08:33:12 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 08:53:10 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/23 09:34:56 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 
 #include "IOperand.hpp"
 
+//subclass of IOperand
+
 class Operand : public IOperand
 {
     private:
 
     public:
         Operand();
-        Operand(const Operand & src);
         ~Operand();
         
         IOperand const * createOperand( eOperandType type, std::string const & value ) const;
