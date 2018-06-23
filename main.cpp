@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:32:09 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 14:17:21 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/23 17:11:52 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,11 @@ int main(int ac, char **av)
     }
     else
     {
-        std::cout << "Bug!!!!" << std::endl;
+        std::cout << "Enter your commands:" << std::endl;
+        while (true)
+        {
+            //implement a way to get data from stdin
+        }
     }
 
     return (0);
