@@ -18,7 +18,7 @@ OBJ = main.o FileEngine.o
 
 CMP = clang++
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -std=c++11
 
 all: to_obj
 	$(CMP) -o $(NAME) $(OBJ) $(FLAGS)
