@@ -6,12 +6,12 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:32:09 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 12:36:04 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:10:40 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "IOperand.hpp"
-#include "FileEngine.hpp"
+#include "includes/IOperand.hpp"
+#include "includes/FileEngine.hpp"
 
 int main(int ac, char **av)
 {
