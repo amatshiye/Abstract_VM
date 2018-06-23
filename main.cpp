@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:32:09 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 14:10:40 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:17:21 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int main(int ac, char **av)
         if (av[1])
         {
             FileEngine * data = new FileEngine(av[1]);
-
-            data->getData();
+            
             std::vector<std::string> vector_data = data->getFileData();
             std::vector<std::string>::iterator i;
 

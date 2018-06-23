@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 14:10:43 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/23 14:17:11 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ std::string FileEngine::removeComment(std::string line)
 
 std::vector<std::string> FileEngine::getFileData()
 {
+    this->getData();
     return  this->_fileData;
 }
