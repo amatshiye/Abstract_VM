@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 12:51:50 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/23 12:53:51 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void FileEngine::getData()
 
 void FileEngine::removeComments()
 {
-    
+    //remove everything from the index of ;
 }
 
 std::vector<std::string> FileEngine::getFileData()
