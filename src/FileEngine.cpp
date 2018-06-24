@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 14:34:05 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/24 10:49:28 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ FileEngine::~FileEngine() {}
 std::string FileEngine::getFileName()
 {
     return this->_fileName;
+}
+
+//copy constructor
+FileEngine::FileEngine(const FileEngine &src)
+{
+    *this = src;
+}
+
+FileEngine &FileEngine::operator=(const FileEngine &rhs)
+{
+    this->_fileData = rhs._fileData;
+    this->_fileName = rhs._fileName;
+    return *this;
 }
 
 void FileEngine::getData()
