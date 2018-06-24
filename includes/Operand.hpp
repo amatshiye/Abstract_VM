@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 08:33:12 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 11:21:57 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/24 11:55:25 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ template <typename T>
 class Operand : public IOperand
 {
     private:
+        std::string _value;
+
         IOperand const * createInt8( std::string const & value ) const;
         IOperand const * createInt16( std::string const & value ) const;
         IOperand const * createInt32( std::string const & value ) const;

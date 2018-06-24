@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:19:26 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 11:40:23 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/24 12:08:58 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 
 template <typename T>
 Operand<T>::Operand() {}
+
+template<typename T> 
+Operand<T>::Operand(const Operand<T> &src)
+{
+    //to be continued
+    *this = src;
+}
+
+template<typename T>
+Operand<T> &Operand<T>::operator=(const Operand<T> &rhs)
+{
+    return this;
+}
+
 
 template <typename T>
 Operand<T>::~Operand()
@@ -57,4 +71,43 @@ template <typename T>
 IOperand const *Operand<T>::createDouble( std::string const & value ) const
 {
     
+}
+
+//operators
+template<typename T>
+const IOperand *Operand<T>::operator+(const IOperand &rhs) const
+{
+    
+}
+
+template<typename T>
+const IOperand *Operand<T>::operator-(const IOperand &rhs) const
+{
+    
+}
+
+template<typename T>
+const IOperand *Operand<T>::operator*(const IOperand &rhs) const
+{
+    
+}
+
+template<typename T>
+const IOperand *Operand<T>::operator/(const IOperand &rhs) const
+{
+    
+}
+
+template<typename T>
+const IOperand *Operand<T>::operator%(const IOperand &rhs) const
+{
+    
+}
+
+
+//toString() member function
+template<typename T>
+const std::string &Operand<T>::toString() const
+{
+    return this->_value;
 }
