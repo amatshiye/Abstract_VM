@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:19:26 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 12:08:58 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/24 12:15:36 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Operand<T> &Operand<T>::operator=(const Operand<T> &rhs)
     return this;
 }
 
-
+//destructor
 template <typename T>
 Operand<T>::~Operand()
 {
@@ -40,6 +40,12 @@ template <typename T>
 IOperand const *Operand<T>::createOperand(eOperandType type, std::string const & value ) const
 {
 
+}
+
+template<typename T>
+int Operand<T>::getPrecision() const
+{
+    return this->_precision;
 }
 
 //data types
