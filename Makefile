@@ -6,7 +6,7 @@
 #    By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/23 07:33:09 by amatshiy          #+#    #+#              #
-#    Updated: 2018/06/23 14:11:02 by amatshiy         ###   ########.fr        #
+#    Updated: 2018/06/24 12:22:23 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = avm
 
 SRC = main.cpp src/FileEngine.cpp #Operand.cpp
 
-OBJ = main.o FileEngine.o
+OBJ = bin/main.o bin/FileEngine.o
 
 CMP = clang++
 
@@ -25,6 +25,7 @@ all: to_obj
 
 to_obj:
 	$(CMP) -c $(SRC) $(FLAGS)
+	@mv *.o bin/
 
 clean:
 	rm -rf $(OBJ)

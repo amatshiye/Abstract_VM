@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 08:33:12 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 11:55:25 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/24 12:19:32 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Operand : public IOperand
 {
     private:
         std::string _value;
+        int _precision;
 
         IOperand const * createInt8( std::string const & value ) const;
         IOperand const * createInt16( std::string const & value ) const;
