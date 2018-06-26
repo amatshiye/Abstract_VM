@@ -6,14 +6,14 @@
 /*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 14:25:55 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:39:18 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_ENGINE_HPP
 #define ERROR_ENGINE_HPP
 
-#include "Operand.hpp"
+#include "IOperand.hpp"
 #include <vector>
 #include <exception>
 

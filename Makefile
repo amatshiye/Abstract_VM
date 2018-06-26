@@ -6,13 +6,13 @@
 #    By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/23 07:33:09 by amatshiy          #+#    #+#              #
-#    Updated: 2018/06/26 14:05:04 by amatshiy         ###   ########.fr        #
+#    Updated: 2018/06/26 14:36:40 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = avm
 
-SRC = main.cpp src/FileEngine.cpp src/ErrorEngine.cpp #Operand.cpp
+SRC = main.cpp src/FileEngine.cpp src/ErrorEngine.cpp
 
 OBJ = bin/main.o bin/FileEngine.o bin/ErrorEngine.o
 

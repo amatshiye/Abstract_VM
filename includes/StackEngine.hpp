@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   StackEngine.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 12:36:04 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:39:03 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_ENGINE_HPP
 #define STACK_ENGINE_HPP
 
-#include "Operand.hpp"
 
 #endif

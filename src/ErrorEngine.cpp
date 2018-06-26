@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 14:27:38 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:34:07 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ ErrorEngine::ErrorEngine(const ErrorEngine &src)
     *this = src;
 }
 
-ErrorEngine::~ErrorEngine(void)
+ErrorEngine::~ErrorEngine(void) throw()
 {
     std::cout << "ErrorEngine destructor called" << std::endl;
 }

@@ -3,11 +3,11 @@
 /*                                                        :::      ::::::::   */
 /*   StackEngine.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 12:35:01 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:38:04 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/StackEngine.hpp"
+#include "StackEngine.hpp"
