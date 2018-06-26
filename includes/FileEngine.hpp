@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FileEngine.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 10:45:53 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:03:31 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 #include <fstream>
 #include <vector>
 #include <exception>
+#include "ErrorEngine.hpp"
 
 class FileEngine : public std::exception
 {
     private:
-        std::string _error_msg;
-        std::string _fileName;
+        std::string     _error_msg;
+        std::string     _fileName;
         std::vector<std::string>    _fileData;
         bool        _exit_found;
         //create a vector array globally

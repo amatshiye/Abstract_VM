@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+         #
+#    By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/23 07:33:09 by amatshiy          #+#    #+#              #
-#    Updated: 2018/06/24 12:26:31 by amatshiy         ###   ########.fr        #
+#    Updated: 2018/06/26 14:05:04 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = avm
 
-SRC = main.cpp src/FileEngine.cpp #Operand.cpp
+SRC = main.cpp src/FileEngine.cpp src/ErrorEngine.cpp #Operand.cpp
 
-OBJ = bin/main.o bin/FileEngine.o
+OBJ = bin/main.o bin/FileEngine.o bin/ErrorEngine.o
 
 CMP = clang++
 

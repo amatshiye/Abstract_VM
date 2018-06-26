@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FileEngine.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.FR>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/24 10:49:28 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:04:15 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void FileEngine::getData()
                 this->_fileData.push_back(line);
             
        }
+       ErrorEngine(this->_fileData);
        file.close();
    }
    else
