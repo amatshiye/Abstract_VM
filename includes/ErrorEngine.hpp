@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 14:53:44 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 16:27:17 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,22 @@ class ErrorEngine : public std::exception
 {
     private:
         std::string _error_message;
-        std::string _exit_found;
         std::vector<std::string> _fileData;
 
     public:
         ErrorEngine(void);
         ErrorEngine(std::vector<std::string> fileData);
         ErrorEngine(ErrorEngine const &src);
-        ~ErrorEngine() throw();
+        ~ErrorEngine();
 
         //Error check functions
-        void    check_exit();
-        void    check_stack();
-        void    is_stack_empty();
+        void    exception_core() throw();
+        bool    check_exit();
+        bool    check_stack();
+        bool    is_stack_empty();
+
+        //exception details
+        virtual const char * what() const throw();
         
 };
 

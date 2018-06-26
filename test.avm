@@ -19,4 +19,3 @@ dump
 pop
 
 assert double(42.42)
-

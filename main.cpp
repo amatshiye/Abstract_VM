@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:32:09 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 21:38:15 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 16:33:48 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,21 @@ int main(int ac, char **av)
     {
         if (av[1])
         {
-            FileEngine * data = new FileEngine(av[1]);
-            
-            std::vector<std::string> vector_data = data->getFileData();
-            std::vector<std::string>::iterator i;
+            try
+            {
+                throw ErrorEngine::what();
+                FileEngine * data = new FileEngine(av[1]);
+                
+                std::vector<std::string> vector_data = data->getFileData();
+                std::vector<std::string>::iterator i;
 
-            for (i = vector_data.begin(); i != vector_data.end(); i++)
-                std::cout << "Line: " << *i << std::endl;
+                for (i = vector_data.begin(); i != vector_data.end(); i++)
+                    std::cout << "Line: " << *i << std::endl;
+            }
+            catch (std::exception &e)
+            {
+                std::cout << e.what() << std::endl;
+            }
         }
         else
         {
