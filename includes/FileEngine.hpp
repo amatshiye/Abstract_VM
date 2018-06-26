@@ -17,12 +17,15 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <exception>
 
-class FileEngine
+class FileEngine : public std::exception
 {
     private:
+        std::string _error_msg;
         std::string _fileName;
         std::vector<std::string>    _fileData;
+        bool        _exit_found;
         //create a vector array globally
 
     public:

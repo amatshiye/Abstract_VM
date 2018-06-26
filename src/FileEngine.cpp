@@ -17,9 +17,12 @@ FileEngine::FileEngine () {}
 FileEngine::FileEngine (std::string fileName)
 {
     this->_fileName = fileName;
+    this->_exit_found = false;
 }
 
-FileEngine::~FileEngine() {}
+FileEngine::~FileEngine()
+{
+}
 
 std::string FileEngine::getFileName()
 {
@@ -51,6 +54,7 @@ void FileEngine::getData()
            line = removeComment(line);
            if (line != "")
                 this->_fileData.push_back(line);
+            
        }
        file.close();
    }
@@ -58,6 +62,7 @@ void FileEngine::getData()
    {
        //better error imp. needed.
        std::cout << "Error: Unable to open file." << std::endl;
+       exit(1);
    }
 }
 
@@ -82,5 +87,9 @@ std::string FileEngine::removeComment(std::string line)
 std::vector<std::string> FileEngine::getFileData()
 {
     this->getData();
+    if (!this->_exit_found)
+    {
+        this->_error_msg = "Error: Missing an exit";
+    }
     return  this->_fileData;
 }
