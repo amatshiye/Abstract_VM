@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 14:39:18 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/26 14:53:44 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class ErrorEngine : public std::exception
         void    check_exit();
         void    check_stack();
         void    is_stack_empty();
-
+        
 };
 
 #endif
