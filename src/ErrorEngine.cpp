@@ -37,7 +37,7 @@ void    ErrorEngine::exception_core() throw()
 {
     //call other error handling functions
     if (!check_exit())
-        throw what();
+        this->_error_message = "";
 }
 
 bool   ErrorEngine::check_exit()
@@ -64,7 +64,15 @@ bool    ErrorEngine::is_stack_empty()
     return false;
 }
 
-const char *ErrorEngine::what() const throw()
+std::string ErrorEngine::getErrorMessage()
 {
-    return "Error: No exit found";
+    return this->_error_message;
+}
+
+//Exception details class
+
+ErrorEngine::ErrorDetails::ErrorDetails()
+{
+    
+    this->_errorMsg = "";
 }

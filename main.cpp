@@ -21,7 +21,7 @@ int main(int ac, char **av)
         {
             try
             {
-                throw ErrorEngine::what();
+                // throw ErrorEngine::what();
                 FileEngine * data = new FileEngine(av[1]);
                 
                 std::vector<std::string> vector_data = data->getFileData();

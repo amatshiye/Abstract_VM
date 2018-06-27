@@ -17,7 +17,7 @@
 #include <vector>
 #include <exception>
 
-class ErrorEngine : public std::exception
+class ErrorEngine
 {
     private:
         std::string _error_message;
@@ -36,8 +36,20 @@ class ErrorEngine : public std::exception
         bool    is_stack_empty();
 
         //exception details
-        virtual const char * what() const throw();
-        
-};
+        std::string getErrorMessage();
 
+        class ErrorDetails : std::exception
+        {
+            private:
+                std::string _errorMsg;
+
+            public:
+                ErrorDetails(void);
+                ErrorDetails(ErrorDetails const &src);
+                ~ErrorDetails(void) throw();
+
+                ErrorDetails & operator=(ErrorDetails const &rhs);
+                virtual const char * what() const throw();
+        };
+};
 #endif
