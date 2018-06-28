@@ -2,12 +2,12 @@
 ; exemple.avm -
 ; -------------
 
-push int32(42) ;interesting
-push int32(33)
+push       int32(42) ;interesting
+push                                          int32(33)
 
 add
 
-push float(44.55)
+push float(44.55) boom              paw
 
 mul
 
@@ -19,3 +19,4 @@ dump
 pop
 
 assert double(42.42)
+                                        exit

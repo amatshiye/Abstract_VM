@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ErrorEngine.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 16:31:09 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/27 23:14:53 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ ErrorEngine::ErrorEngine(void)
 
 ErrorEngine::ErrorEngine(std::vector<std::string> fileData)
 {
+    std::cout << "Error Engine called" << std::endl;
     this->_fileData = fileData;
     exception_core();
 }
@@ -36,8 +37,9 @@ ErrorEngine::~ErrorEngine(void)
 void    ErrorEngine::exception_core() throw()
 {
     //call other error handling functions
-    if (!check_exit())
-        this->_error_message = "";
+    if (check_exit() == false)
+        std::cout << this->getErrorMessage() << std::endl;
+    std::cout << check_exit() << std::endl;
 }
 
 bool   ErrorEngine::check_exit()
@@ -47,11 +49,15 @@ bool   ErrorEngine::check_exit()
     for (x = this->_fileData.begin(); x != this->_fileData.end(); x++)
     {
         if (*x == "exit")
+        {
             return true;
+        }
     }
+    this->_error_message = "Error_: Missing exit command.";
     return false;
 }
 
+//deal with the fucken spaces man
 bool    ErrorEngine::check_stack()
 {
     //check if stack is not greater than 2;
@@ -70,9 +76,9 @@ std::string ErrorEngine::getErrorMessage()
 }
 
 //Exception details class
-
+/*
 ErrorEngine::ErrorDetails::ErrorDetails()
 {
     
     this->_errorMsg = "";
-}
+}*/

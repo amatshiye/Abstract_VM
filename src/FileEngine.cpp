@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FileEngine.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 14:04:15 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/28 02:40:09 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void FileEngine::getData()
        {
            getline(file, line);
            line = removeComment(line);
+           line = removeSpace(line);
            if (line != "")
                 this->_fileData.push_back(line);
             
@@ -83,6 +84,52 @@ std::string FileEngine::removeComment(std::string line)
             return "";
     }
         return line;
+}
+
+std::string FileEngine::removeSpace(std::string line)
+{
+    //function to remove space at the beg and end.
+    unsigned long beg_x = 0;
+
+    if (line.length())
+    {
+        while (line.length() > beg_x)
+        {
+            if (isspace(line[beg_x]))
+                beg_x++;
+            else
+                break;
+        }
+        line = line.substr(beg_x, line.length());
+
+        unsigned long end_x = line.length();
+        while (end_x > 0)
+        {
+            if (isspace(line[end_x]))
+                end_x--;
+            else
+                break;
+        }
+        line = line.substr(0, end_x);
+
+        //check spaces in the middle
+        unsigned long x = 0;
+        while (line.length() > x)
+        {
+            if (!isspace(line[x]))
+                x++;
+            else
+            {
+                while ((line[x + 1] != 0) && isspace(line[x + 1]))
+                {
+                    line.erase(x, 1);
+                    x++;
+                }
+                break;
+            }
+        }
+    }
+    return line;
 }
 
 std::vector<std::string> FileEngine::getFileData()

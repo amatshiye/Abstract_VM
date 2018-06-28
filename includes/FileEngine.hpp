@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FileEngine.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 14:03:31 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/27 23:54:59 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <exception>
+#include <cctype>
 #include "ErrorEngine.hpp"
 
-class FileEngine : public std::exception
+class FileEngine
 {
     private:
         std::string     _error_msg;
@@ -39,6 +39,7 @@ class FileEngine : public std::exception
         std::string getFileName();
         void getData();
         std::string removeComment(std::string line);
+        std::string removeSpace(std::string line);
         std::vector<std::string> getFileData();
 };
 
