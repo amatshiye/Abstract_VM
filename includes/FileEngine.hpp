@@ -40,6 +40,7 @@ class FileEngine
         void getData();
         std::string removeComment(std::string line);
         std::string removeSpace(std::string line);
+        void    getNumWords(std::string line);
         std::vector<std::string> getFileData();
 };
 

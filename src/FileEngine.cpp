@@ -89,8 +89,9 @@ std::string FileEngine::removeComment(std::string line)
 std::string FileEngine::removeSpace(std::string line)
 {
     //function to remove space at the beg and end.
-    unsigned long beg_x = 0;
 
+    //removing spaces at the beg
+    unsigned long beg_x = 0;
     if (line.length())
     {
         while (line.length() > beg_x)
@@ -102,6 +103,7 @@ std::string FileEngine::removeSpace(std::string line)
         }
         line = line.substr(beg_x, line.length());
 
+        //removing spaces at the end
         unsigned long end_x = line.length();
         while (end_x > 0)
         {
@@ -116,20 +118,47 @@ std::string FileEngine::removeSpace(std::string line)
         unsigned long x = 0;
         while (line.length() > x)
         {
-            if (!isspace(line[x]))
-                x++;
-            else
+            x++;
+            while ((line[x + 1] != 0) && isspace(line[x + 1]))
             {
-                while ((line[x + 1] != 0) && isspace(line[x + 1]))
-                {
-                    line.erase(x, 1);
-                    x++;
-                }
-                break;
+                line.erase(x, 1);
+                x++;
             }
         }
+        this->getNumWords(line);
     }
     return line;
+}
+
+void    FileEngine::getNumWords(std::string line)
+{
+    std::cout << "getNumWords called" << std::endl;
+    //get the line
+    //cut off mid spaces
+    //get the number of words
+    unsigned long x = 0;
+    while (line.length() > x)
+    {
+        if (!isspace(line[x]))
+            x++;
+        else
+        {
+            if (isspace(line[x]) && line[x + 1] != '\0' && isspace(line[x + 1]))
+                line.erase(x, 1);
+            x++;
+        }
+        x++;
+        // if ((isspace(line[x])) && (line[x + 1] != '\0' && isspace(line[x])))
+        // {
+        //     line.erase(x, 1);
+        //     x++;
+        // }
+    }
+
+    std::cout << "About to print:\n" << std::endl;
+    while (line.c_str())
+        std::cout << line << std::endl;
+    // return (0);
 }
 
 std::vector<std::string> FileEngine::getFileData()
