@@ -83,6 +83,7 @@ std::string FileEngine::removeComment(std::string line)
         }
         else
         {
+
             return "";
         }
     }
@@ -165,20 +166,24 @@ void    FileEngine::checkInstruction(std::string line)
         if (this->getNumWords(line) == 1)
         {
             temp = removeSpace(line);
-            if (in_array(line, opCodes_single, 9))
-                std::cout << line << ": " << "Opcode is valid" << std::endl;
-            else
-                std::cout << line << ": " << "Invalid Opcode" << std::endl;
+            if (temp.length() > 1)
+            {
+                if (in_array(line, opCodes_single, 9))
+                    std::cout << line << ": " << "Opcode is valid" << std::endl;
+                else
+                    std::cout << line << ": " << "Invalid Opcode" << std::endl;
+            }
         }
         else if (this->getNumWords(line) == 2)
         {
             temp = removeSpace(line);
-            if (in_array(line, opCodes_single, 2))
+            std::vector<std::string> tokens = this->ft_strplit(line, " ");
+
+            if (in_array(tokens.at(0), opCode_multi, 2))
                 std::cout << line << ": " << "Opcode is valid" << std::endl;
             else
                 std::cout << line << ": " << "Invalid Opcode" << std::endl;
         }
-        else
             std::cout << "Error: Too many instructions in one line" << std::endl;
     }
 }
