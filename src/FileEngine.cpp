@@ -53,6 +53,7 @@ void FileEngine::getData()
            getline(file, line);
            line = removeComment(line);
            line = removeSpace(line);
+           checkInstruction(line);
            if (line != "")
                 this->_fileData.push_back(line);
             
@@ -81,9 +82,11 @@ std::string FileEngine::removeComment(std::string line)
             return line;
         }
         else
+        {
             return "";
+        }
     }
-        return line;
+    return line;
 }
 
 std::string FileEngine::removeSpace(std::string line)
@@ -113,54 +116,99 @@ std::string FileEngine::removeSpace(std::string line)
                 break;
         }
         line = line.substr(0, end_x);
-
-        //check spaces in the middle
-        unsigned long x = 0;
-        while (line.length() > x)
-        {
-            x++;
-            while ((line[x + 1] != 0) && isspace(line[x + 1]))
-            {
-                line.erase(x, 1);
-                x++;
-            }
-        }
-        this->getNumWords(line);
     }
     return line;
 }
 
-void    FileEngine::getNumWords(std::string line)
+int    FileEngine::getNumWords(std::string line)
 {
-    std::cout << "getNumWords called" << std::endl;
-    //get the line
-    //cut off mid spaces
-    //get the number of words
+    //this is to get the number of words in a line
+    bool space_found = false;
+    int words_ = 1;
+
     unsigned long x = 0;
     while (line.length() > x)
     {
-        if (!isspace(line[x]))
-            x++;
-        else
+        if (isspace(line[x]))
+            space_found = true;
+        if (space_found)
         {
-            if (isspace(line[x]) && line[x + 1] != '\0' && isspace(line[x + 1]))
-                line.erase(x, 1);
-            x++;
+            space_found = false;
+            for (unsigned long i = x; line.length() > i; i++)
+            {
+                if (!isspace(line[i]))
+                {
+                    words_++;
+                    x = i;
+                    break;
+                }
+            }
         }
         x++;
-        // if ((isspace(line[x])) && (line[x + 1] != '\0' && isspace(line[x])))
-        // {
-        //     line.erase(x, 1);
-        //     x++;
-        // }
     }
-
-    std::cout << "About to print:\n" << std::endl;
-    while (line.c_str())
-        std::cout << line << std::endl;
-    // return (0);
+    return (words_);
 }
 
+//checking instructions 
+void    FileEngine::checkInstruction(std::string line)
+{
+    //validating instructions
+    //get the line
+    //check how many words the line has
+    //split it if it has two
+    std::string opCodes_single[9] = {"pop", "dump", "add", "sub", "mul", "div", "mod", "print", "exit"};
+    std::string opCode_multi[2] = {"push", "assert"};
+    std::string temp;
+
+    if (line.c_str())
+    {
+        if (this->getNumWords(line) == 1)
+        {
+            temp = removeSpace(line);
+            if (in_array(line, opCodes_single, 9))
+                std::cout << line << ": " << "Opcode is valid" << std::endl;
+            else
+                std::cout << line << ": " << "Invalid Opcode" << std::endl;
+        }
+        else if (this->getNumWords(line) == 2)
+        {
+            temp = removeSpace(line);
+            if (in_array(line, opCodes_single, 2))
+                std::cout << line << ": " << "Opcode is valid" << std::endl;
+            else
+                std::cout << line << ": " << "Invalid Opcode" << std::endl;
+        }
+        else
+            std::cout << "Error: Too many instructions in one line" << std::endl;
+    }
+}
+
+//in_array function
+bool    FileEngine::in_array(std::string value, std::string *array, int length)
+{
+    for (int x = 0; x < length; x++)
+    {
+        if (value.compare(array[x]) == 0)
+            return true;
+    }
+    return false;
+}
+
+//string split in c++
+std::vector<std::string> FileEngine::ft_strplit(std::string str, std::string delimiter)
+{
+    size_t pos;
+    std::vector<std::string> tokens;
+
+    while ((pos = str.find(delimiter)) != std::string::npos)
+    {
+        tokens.push_back(str.substr(0, pos));
+        str.erase(0, pos + delimiter.length());
+    }
+    return tokens;
+}
+
+//getting file data
 std::vector<std::string> FileEngine::getFileData()
 {
     this->getData();
