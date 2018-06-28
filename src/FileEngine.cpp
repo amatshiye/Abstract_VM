@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/28 16:31:54 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/28 23:24:46 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,20 @@ void FileEngine::getData()
    std::string  line;
    if (file.is_open())
    {
+       int x = 1;
        while (!file.eof())
        {
            getline(file, line);
            line = removeComment(line);
            line = removeSpace(line);
            checkInstruction(line);
+           if (charParser(line))
+           {
+               std::cout << "Line: " << x << " :Syntax error" << std::endl;
+           }
            if (line != "")
                 this->_fileData.push_back(line);
-            
+            x++;
        }
        ErrorEngine(this->_fileData);
        file.close();
@@ -214,6 +219,30 @@ std::vector<std::string> FileEngine::ft_strplit(std::string str, std::string del
         str.erase(0, pos + delimiter.length());
     }
     return tokens;
+}
+
+//searches for unwanted chars in the instructions
+bool    FileEngine::charParser(std::string line)
+{
+    if (line.c_str())
+    {
+        for (size_t x = 0; x < line.length(); x++)
+        {
+            if (line[x] == '.')
+                continue;
+            if (line[x] >= '!' && line[x] <= static_cast<char>(39))
+                return true;
+            else if (line[x] >= '*' && line[x] <= '/')
+                return true;
+            else if (line[x] >= ':' && line[x] <= '@')
+                return true;
+            else if (line[x] >= '[' && line[x] <= '`')
+                return true;
+            else if (line[x] >= '{' && line[x] <= '~')
+                return true;
+        }
+    }
+    return false;
 }
 
 //getting file data

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/27 23:54:59 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/28 22:05:20 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ class FileEngine
         void    checkInstruction(std::string line);
         bool    in_array(std::string value, std::string *array, int length);
         std::vector<std::string> ft_strplit(std::string str, std::string delimiter);
+        bool    charParser(std::string line);
         std::vector<std::string> getFileData();
 };
 
