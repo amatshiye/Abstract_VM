@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/28 02:40:09 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/28 16:31:54 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,10 @@ void    FileEngine::checkInstruction(std::string line)
             else
                 std::cout << line << ": " << "Invalid Opcode" << std::endl;
         }
-            std::cout << "Error: Too many instructions in one line" << std::endl;
+        else
+        {
+            std::cout << "Error line: " << line  << std::endl;
+        }
     }
 }
 
