@@ -27,6 +27,7 @@ int main(int ac, char **av)
                 std::vector<std::string> vector_data = data->getFileData();
                 std::vector<std::string>::iterator i;
 
+                std::cout << "Main print out: " << std::endl;
                 for (i = vector_data.begin(); i != vector_data.end(); i++)
                     std::cout << "Line: " << *i << std::endl;
             }

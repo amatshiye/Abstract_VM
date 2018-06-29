@@ -22,10 +22,11 @@ class ErrorEngine
     private:
         std::string _error_message;
         std::vector<std::string> _fileData;
+        int     _words;
 
     public:
         ErrorEngine(void);
-        ErrorEngine(std::vector<std::string> fileData);
+        ErrorEngine(std::vector<std::string> fileData, int words);
         ErrorEngine(ErrorEngine const &src);
         ~ErrorEngine();
 
@@ -34,6 +35,7 @@ class ErrorEngine
         bool    check_exit();
         bool    check_stack();
         bool    is_stack_empty();
+        std::vector<std::vector<std::string>> ISplit(std::string line, int words);
 
         //exception details
         std::string getErrorMessage();

@@ -43,7 +43,7 @@ class FileEngine
         int    getNumWords(std::string line);
         void    checkInstruction(std::string line);
         bool    in_array(std::string value, std::string *array, int length);
-        std::vector<std::string> ft_strplit(std::string str, std::string delimiter);
+        static std::vector<std::string> ft_strplit(std::string str, std::string delimiter);
         bool    charParser(std::string line);
         std::vector<std::string> getFileData();
 };

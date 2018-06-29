@@ -14,13 +14,22 @@
 
 ErrorEngine::ErrorEngine(void)
 {
-    this->_error_message = nullptr;
+    this->_error_message = "";
+    this->_words = 0;
 }
 
-ErrorEngine::ErrorEngine(std::vector<std::string> fileData)
+ErrorEngine::ErrorEngine(std::vector<std::string> fileData, int words)
 {
     std::cout << "Error Engine called" << std::endl;
     this->_fileData = fileData;
+    this->_words = words;
+
+    std::vector<std::string>::iterator x;
+
+    std::cout << "=============Error Engine=========================" << std::endl;
+    for (x = this->_fileData.begin(); x != this->_fileData.end(); x++)
+        std::cout << *x << std::endl;
+    std::cout << "======================================" << std::endl;
     exception_core();
 }
 
@@ -39,7 +48,6 @@ void    ErrorEngine::exception_core() throw()
     //call other error handling functions
     if (check_exit() == false)
         std::cout << this->getErrorMessage() << std::endl;
-    std::cout << check_exit() << std::endl;
 }
 
 bool   ErrorEngine::check_exit()
@@ -82,3 +90,22 @@ ErrorEngine::ErrorDetails::ErrorDetails()
     
     this->_errorMsg = "";
 }*/
+
+//Function to split the instruction per line
+std::vector<std::vector<std::string>> ErrorEngine::ISplit(std::string line, int words)
+{
+    //get the line
+    //get the number of words in a line
+    //words should be 1 or 2 per line
+    //if words = 2 use strsplit
+    //if 1 put it in the vector
+    //vector size
+
+    std::vector<std::vector<std::string>> v_vectors;
+    std::vector<std::string> tokens;
+
+    if (words == 1)
+    {
+
+    }
+}

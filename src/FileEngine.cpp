@@ -63,7 +63,7 @@ void FileEngine::getData()
                 this->_fileData.push_back(line);
             x++;
        }
-       ErrorEngine(this->_fileData);
+       ErrorEngine(this->_fileData, this->getNumWords(line));
        file.close();
    }
    else
