@@ -11,26 +11,25 @@
 /* ************************************************************************** */
 
 #include "../includes/ErrorEngine.hpp"
+#include "../includes/FileEngine.hpp"
 
 ErrorEngine::ErrorEngine(void)
 {
     this->_error_message = "";
+    this->_line = "";
+    this->_exit = false;
     this->_words = 0;
 }
 
-ErrorEngine::ErrorEngine(std::vector<std::string> fileData, int words)
+ErrorEngine::ErrorEngine(std::string line, int words)
 {
     std::cout << "Error Engine called" << std::endl;
-    this->_fileData = fileData;
+    this->_line = line;
+    this->_exit = false;
     this->_words = words;
 
-    std::vector<std::string>::iterator x;
-
-    std::cout << "=============Error Engine=========================" << std::endl;
-    for (x = this->_fileData.begin(); x != this->_fileData.end(); x++)
-        std::cout << *x << std::endl;
-    std::cout << "======================================" << std::endl;
-    exception_core();
+    this->ISplit(this->_line, this->_words);
+    this->exception_core();
 }
 
 ErrorEngine::ErrorEngine(const ErrorEngine &src)
@@ -46,23 +45,16 @@ ErrorEngine::~ErrorEngine(void)
 void    ErrorEngine::exception_core() throw()
 {
     //call other error handling functions
-    if (check_exit() == false)
+    if (this->_exit)
         std::cout << this->getErrorMessage() << std::endl;
 }
 
-bool   ErrorEngine::check_exit()
+void   ErrorEngine::check_exit()
 {
-    std::vector<std::string>::iterator x;
-
-    for (x = this->_fileData.begin(); x != this->_fileData.end(); x++)
+    if (this->_line == "exit")
     {
-        if (*x == "exit")
-        {
-            return true;
-        }
+        this->_exit = true;
     }
-    this->_error_message = "Error_: Missing exit command.";
-    return false;
 }
 
 //deal with the fucken spaces man
@@ -92,7 +84,7 @@ ErrorEngine::ErrorDetails::ErrorDetails()
 }*/
 
 //Function to split the instruction per line
-std::vector<std::vector<std::string>> ErrorEngine::ISplit(std::string line, int words)
+std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
 {
     //get the line
     //get the number of words in a line
@@ -101,11 +93,25 @@ std::vector<std::vector<std::string>> ErrorEngine::ISplit(std::string line, int 
     //if 1 put it in the vector
     //vector size
 
-    std::vector<std::vector<std::string>> v_vectors;
     std::vector<std::string> tokens;
+    FileEngine f_engine;
+
+    std::string opCode;
+    std::string dataType;
+    std::string value;
 
     if (words == 1)
     {
-
+        std::cout << "One word found" << std::endl;
     }
+    else if (words == 2)
+    {
+        tokens = f_engine.ft_strplit(line, " ");
+        //
+        for (size_t i = 0; tokens.size() > i; i++)
+        {
+            std::cout << "Token " << i << ": " << tokens.at(i) << std::endl; 
+        }
+    }
+    return tokens;
 }

@@ -40,7 +40,7 @@ class FileEngine
         void getData();
         std::string removeComment(std::string line);
         std::string removeSpace(std::string line);
-        int    getNumWords(std::string line);
+        static  int    getNumWords(std::string line);
         void    checkInstruction(std::string line);
         bool    in_array(std::string value, std::string *array, int length);
         static std::vector<std::string> ft_strplit(std::string str, std::string delimiter);

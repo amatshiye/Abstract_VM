@@ -21,21 +21,22 @@ class ErrorEngine
 {
     private:
         std::string _error_message;
-        std::vector<std::string> _fileData;
+        std::string _line;
+        bool    _exit;
         int     _words;
 
     public:
         ErrorEngine(void);
-        ErrorEngine(std::vector<std::string> fileData, int words);
+        ErrorEngine(std::string line, int words);
         ErrorEngine(ErrorEngine const &src);
         ~ErrorEngine();
 
         //Error check functions
         void    exception_core() throw();
-        bool    check_exit();
+        void    check_exit();
         bool    check_stack();
         bool    is_stack_empty();
-        std::vector<std::vector<std::string>> ISplit(std::string line, int words);
+        std::vector<std::string> ISplit(std::string line, int words);
 
         //exception details
         std::string getErrorMessage();
