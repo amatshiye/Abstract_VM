@@ -94,6 +94,7 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
     //vector size
 
     std::vector<std::string> tokens;
+    std::vector<std::string> instruction;
     FileEngine f_engine;
 
     std::string opCode;
@@ -106,12 +107,28 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
     }
     else if (words == 2)
     {
+        //getting opcode
         tokens = f_engine.ft_strplit(line, " ");
-        //
-        for (size_t i = 0; tokens.size() > i; i++)
-        {
-            std::cout << "Token " << i << ": " << tokens.at(i) << std::endl; 
-        }
+        std::cout << "Token size: " << tokens.size() << std::endl;
+        std::cout << "Token data: " << tokens.at(1) << std::endl;
+        opCode = f_engine.removeSpace(tokens.at(0));
+        instruction.push_back(opCode);
+        std::cout << "Opcode: " << opCode << std::endl;
+
+        //getting data type
+        tokens = f_engine.ft_strplit(tokens.at(1), ")");
+        std::cout << "Token size: " << tokens.size() << std::endl;
+        std::cout << "Token data: " << tokens.at(1) << std::endl;
+
+
+        dataType = f_engine.removeSpace(tokens.at(0));
+        instruction.push_back(dataType);
+        std::cout << "Datatype: " << dataType << std::endl;
+
+        //getting value
+        std::cout << "Token size: " << tokens.size() << std::endl;
+        std::cout << "Value: " << tokens.at(1) << std::endl;
     }
-    return tokens;
+    std::cout << "ISplit functional" << std::endl;
+    return instruction;
 }
