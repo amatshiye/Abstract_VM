@@ -120,6 +120,9 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
         std::cout << "Token size: " << tokens.size() << std::endl;
         std::cout << "Token data: " << tokens.at(1) << std::endl;
 
+        //use find to get the position of the bracket
+        //use substr
+
 
         dataType = f_engine.removeSpace(tokens.at(0));
         instruction.push_back(dataType);
