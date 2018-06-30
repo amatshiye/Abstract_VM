@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/27 23:14:53 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/30 23:02:15 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,46 +92,53 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
     //if words = 2 use strsplit
     //if 1 put it in the vector
     //vector size
-
+    std::cout << "==================================" << std::endl;
+    std::cout << "Line Value: " << line << std::endl;
+    std::cout << "==================================" << std::endl;
     std::vector<std::string> tokens;
     std::vector<std::string> instruction;
-    FileEngine f_engine;
 
+    FileEngine f_engine;
     std::string opCode;
     std::string dataType;
     std::string value;
 
-    if (words == 1)
+    if (words == 1 && line.length() != 0)
     {
-        std::cout << "One word found" << std::endl;
+        std::cout << "===========One word found==============" << std::endl;
+        std::cout << "Line Word 1 Test: " << line << std::endl;
+        opCode = f_engine.removeSpace(line);
+        instruction.push_back(opCode);
+        std::cout << "opCode: " << opCode << std::endl;
+        std::cout << "================END====================" << std::endl;
     }
     else if (words == 2)
     {
+
         //getting opcode
+        std::cout << "================1st Code====================" << std::endl;
         tokens = f_engine.ft_strplit(line, " ");
-        std::cout << "Token size: " << tokens.size() << std::endl;
-        std::cout << "Token data: " << tokens.at(1) << std::endl;
+        std::string temp = tokens.at(1);
         opCode = f_engine.removeSpace(tokens.at(0));
         instruction.push_back(opCode);
         std::cout << "Opcode: " << opCode << std::endl;
 
+        std::cout << "================2nd Code====================" << std::endl;
         //getting data type
-        tokens = f_engine.ft_strplit(tokens.at(1), ")");
-        std::cout << "Token size: " << tokens.size() << std::endl;
-        std::cout << "Token data: " << tokens.at(1) << std::endl;
+        tokens = f_engine.ft_strplit(tokens.at(1), "(");
+        dataType = f_engine.removeSpace(tokens.at(0));
+        instruction.push_back(dataType);
+        std::cout << "Token dataType: " << dataType << std::endl;
 
         //use find to get the position of the bracket
         //use substr
 
-
-        dataType = f_engine.removeSpace(tokens.at(0));
-        instruction.push_back(dataType);
-        std::cout << "Datatype: " << dataType << std::endl;
-
+        std::cout << "================3rd Code====================" << std::endl;
         //getting value
-        std::cout << "Token size: " << tokens.size() << std::endl;
-        std::cout << "Value: " << tokens.at(1) << std::endl;
+        temp = temp.substr(dataType.length() + 1, temp.length());
+        tokens = f_engine.ft_strplit(temp, ")");
+        value = tokens.at(0);
+        std::cout << "Value: " << value << std::endl;
     }
-    std::cout << "ISplit functional" << std::endl;
     return instruction;
 }

@@ -1,5 +1,5 @@
 push int32(42) ;interesting
-push int32(33)
+push int32(33) ;interesting
 
 add
 

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/28 23:24:46 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/06/30 22:38:06 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ std::vector<std::string> FileEngine::ft_strplit(std::string str, std::string del
     size_t pos;
     std::vector<std::string> tokens;
 
+    str = str.append(" ");
     while ((pos = str.find(delimiter)) != std::string::npos)
     {
         tokens.push_back(str.substr(0, pos));
