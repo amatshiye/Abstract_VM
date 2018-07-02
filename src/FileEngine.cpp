@@ -187,7 +187,15 @@ void    FileEngine::checkInstruction(std::string line)
             if (in_array(tokens.at(0), opCode_multi, 2))
                 std::cout << line << ": " << "Opcode is valid" << std::endl;
             else
-                std::cout << line << ": " << "Invalid Opcode" << std::endl;
+            {
+                if (tokens.size() > 0)
+                {
+                    //throw an error and destroy the program
+                    std::cout << line << ": " << "Invalid Opcode" << std::endl;
+                }
+                else
+                    std::cout << "Vector is empty" << std::endl;
+            }
         }
         else
         {
@@ -204,6 +212,7 @@ bool    FileEngine::in_array(std::string value, std::string *array, int length)
         if (value.compare(array[x]) == 0)
             return true;
     }
+    std::cout << "Prog Compltete" << std::endl;
     return false;
 }
 

@@ -89,7 +89,6 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
     {
         opCode = f_engine.removeSpace(line);
         instruction.push_back(opCode);
-        std::cout << "opCode: " << opCode << std::endl;
     }
     else if (words == 2)
     {
@@ -98,19 +97,29 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
         std::string temp = tokens.at(1);
         opCode = f_engine.removeSpace(tokens.at(0));
         instruction.push_back(opCode);
-        std::cout << "Token Opcode: " << opCode << std::endl;
 
         //getting data type
         tokens = f_engine.ft_strplit(tokens.at(1), "(");
         dataType = f_engine.removeSpace(tokens.at(0));
         instruction.push_back(dataType);
-        std::cout << "Token datatype: " << dataType << std::endl;
 
         //getting value
         temp = temp.substr(dataType.length() + 1, temp.length());
         tokens = f_engine.ft_strplit(temp, ")");
         value = tokens.at(0);
-        std::cout << "Token value: " << value << std::endl;
+        instruction.push_back(value);
     }
+    this->parseInstruction(instruction);
     return instruction;
+}
+
+void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
+{
+    std::vector<std::string>::iterator x;
+
+    std::cout << "===================================" << std::endl;
+    for (x = instruction.begin(); x != instruction.end(); x++)
+    {
+        std::cout << "::" << *x << std::endl;
+    }
 }
