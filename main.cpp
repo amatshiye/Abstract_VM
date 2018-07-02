@@ -15,6 +15,8 @@
 
 int main(int ac, char **av)
 {
+    std::cout << "=============================================" << std::endl;
+
     if (ac != 1)
     {
         if (av[1])
