@@ -99,6 +99,7 @@ void    ErrorEngine::ISplit(std::string line, int words)
         instruction.push_back(opCode);
 
         //getting data type
+        //reason why the vector is funcking up ;)
         tokens = f_engine.ft_strplit(tokens.at(1), "(");
         dataType = f_engine.removeSpace(tokens.at(0));
         instruction.push_back(dataType);
