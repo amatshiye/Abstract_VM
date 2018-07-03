@@ -58,7 +58,7 @@ void FileEngine::getData()
            checkInstruction(line);
            if (charParser(line))
            {
-               std::cout << "Line: " << x << " :Syntax error" << std::endl;
+               std::cout << "Line: " << x << " :Syntax error: " << line << std::endl;
            }
            if (line != "")
                 this->_fileData.push_back(line);

@@ -90,7 +90,7 @@ void    ErrorEngine::ISplit(std::string line, int words)
         opCode = f_engine.removeSpace(line);
         instruction.push_back(opCode);
     }
-    else if (words == 1)
+    else if (words == 2)
     {
         //getting opcode
         tokens = f_engine.ft_strplit(line, " ");
@@ -113,22 +113,42 @@ void    ErrorEngine::ISplit(std::string line, int words)
     {
         // throw an exception if shit went down
         std::cout << "Error: Multiple instructions in one line" << std::endl;
-        exit(0);
     }
-    this->parseInstruction(instruction);
+
+    if (instruction.size() > 0)
+    {
+        std::cout << "Size from instruction: " << instruction.size() << std::endl;
+        this->parseInstruction(instruction);
+    }
     //return instruction;
 }
 
 void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 {
+    // //check if opcode is valid
+
+    std::cout << "Instruction size: " << instruction.size() << std::endl;
     if (instruction.size())
     {
-        std::vector<std::string>::iterator x;
+        FileEngine f_engine;
+        std::string opCodes[11] = {"pop", "dump", "add", "sub", "mul", "div", "mod", "print", "exit", "push", "assert"};
+        std::string dataTypes[5] = {"int8", "int16", "int32", "float", "double"};
 
-        std::cout << "===================================" << std::endl;
-        for (x = instruction.begin(); x != instruction.end(); x++)
+        if (!f_engine.in_array(instruction.at(0), opCodes, 11))
         {
-            std::cout << "::" << *x << std::endl;
+            std::cout << "********************************" << std::endl;
+            std::cout << "Error: Invalid Opcode: " << instruction.at(0) << std::endl;
+            //exit(1);
+        }
+        else if (instruction.size() == 3)
+        {
+            std::cout << "=================================" << std::endl;
+            std::cout << "Tested line: " << instruction.at(1) << std::endl;
+            if (!f_engine.in_array(instruction.at(1), dataTypes, 5))
+            {
+                std::cout << "Error: Invalid data type" << instruction.at(1) << std::endl;
+                //exit(0);
+            }
         }
     }
 }
