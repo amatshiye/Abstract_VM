@@ -9,6 +9,8 @@ mul
 
 this kamui
 
+l
+
 push double(42.42)
 push int32(42)
 

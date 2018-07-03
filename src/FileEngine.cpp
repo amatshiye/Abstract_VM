@@ -132,29 +132,20 @@ std::string FileEngine::removeSpace(std::string line)
 int    FileEngine::getNumWords(std::string line)
 {
     //this is to get the number of words in a line
-    bool space_found = false;
-    int words_ = 1;
 
-    unsigned long x = 0;
-    while (line.length() > x)
+    size_t  x;
+    size_t  words_ = 0;
+
+    for (x = 0; line.length() > x ; x++)
     {
-        if (isspace(line[x]))
-            space_found = true;
-        if (space_found)
-        {
-            space_found = false;
-            for (unsigned long i = x; line.length() > i; i++)
-            {
-                if (!isspace(line[i]))
-                {
-                    words_++;
-                    x = i;
-                    break;
-                }
-            }
-        }
-        x++;
+        if (line[x] != ' ')
+            words_++;
+        while (line[x] != ' ' && line[x + 1] != '\0')
+            x++;
     }
+
+    if (line.length() > 0 && words_ == 0)
+        words_ = 1;
     return (words_);
 }
 
@@ -174,7 +165,7 @@ void    FileEngine::checkInstruction(std::string line)
         if (this->getNumWords(line) == 1)
         {
             temp = removeSpace(line);
-            if (temp.length() > 1)
+            if (temp.length() > 0)
             {
                 if (in_array(line, opCodes_single, 9))
                     std::cout << line << ": " << "Opcode is valid" << std::endl;
@@ -202,7 +193,8 @@ void    FileEngine::checkInstruction(std::string line)
         }
         else
         {
-            std::cout << "Error line: " << line  << std::endl;
+            if (line.length())
+                std::cout << "Error line: " << line  << std::endl;
         }
     }
 }

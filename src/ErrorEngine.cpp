@@ -85,13 +85,12 @@ void    ErrorEngine::ISplit(std::string line, int words)
     std::string dataType;
     std::string value;
 
-    std::cout << "Words: " << std::endl;
     if (words == 1)
     {
         opCode = f_engine.removeSpace(line);
         instruction.push_back(opCode);
     }
-    else if (words == 2)
+    else if (words == 1)
     {
         //getting opcode
         tokens = f_engine.ft_strplit(line, " ");
@@ -110,7 +109,7 @@ void    ErrorEngine::ISplit(std::string line, int words)
         value = tokens.at(0);
         instruction.push_back(value);
     }
-    else
+    else if (words > 2)
     {
         // throw an exception if shit went down
         std::cout << "Error: Multiple instructions in one line" << std::endl;
