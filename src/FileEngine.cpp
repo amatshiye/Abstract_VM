@@ -46,6 +46,7 @@ void FileEngine::getData()
 {
    std::ifstream file(this->getFileName());
    std::string  line;
+
    if (file.is_open())
    {
        int x = 1;
@@ -77,19 +78,21 @@ void FileEngine::getData()
 std::string FileEngine::removeComment(std::string line)
 {
     //remove everything from the index of (;)
-    const unsigned long pos = line.find(';'); //searches for the ; char
-    
-    if (pos != std::string::npos)
+    if (line.length())
     {
-        if (pos != 0)
+        const unsigned long pos = line.find(';'); //searches for the ; char
+        
+        if (pos != std::string::npos)
         {
-            line = line.substr(0, pos);
-            return line;
-        }
-        else
-        {
-
-            return "";
+            if (pos != 0)
+            {
+                line = line.substr(0, pos);
+                return line;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
     return line;
@@ -184,17 +187,17 @@ void    FileEngine::checkInstruction(std::string line)
             temp = removeSpace(line);
             std::vector<std::string> tokens = this->ft_strplit(line, " ");
 
-            if (in_array(tokens.at(0), opCode_multi, 2))
-                std::cout << line << ": " << "Opcode is valid" << std::endl;
-            else
+            if (tokens.size() > 0)
             {
-                if (tokens.size() > 0)
+                if (in_array(tokens.at(0), opCode_multi, 2))
+                {
+                    std::cout << line << ": " << "Opcode is valid" << std::endl;
+                }
+                else
                 {
                     //throw an error and destroy the program
                     std::cout << line << ": " << "Invalid Opcode" << std::endl;
                 }
-                else
-                    std::cout << "Vector is empty" << std::endl;
             }
         }
         else
@@ -212,7 +215,6 @@ bool    FileEngine::in_array(std::string value, std::string *array, int length)
         if (value.compare(array[x]) == 0)
             return true;
     }
-    std::cout << "Prog Compltete" << std::endl;
     return false;
 }
 

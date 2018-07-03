@@ -36,7 +36,7 @@ class ErrorEngine
         void    check_exit();
         bool    check_stack();
         bool    is_stack_empty();
-        std::vector<std::string> ISplit(std::string line, int words);
+        void    ISplit(std::string line, int words);
         void    parseInstruction(std::vector<std::string> instruction);
 
         //exception details

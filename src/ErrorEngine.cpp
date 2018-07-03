@@ -74,7 +74,7 @@ std::string ErrorEngine::getErrorMessage()
 }
 
 //Function to split the instruction per line
-std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
+void    ErrorEngine::ISplit(std::string line, int words)
 {
     //vector size
     std::vector<std::string> tokens;
@@ -85,7 +85,8 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
     std::string dataType;
     std::string value;
 
-    if (words == 1 && line.length() != 0)
+    std::cout << "Words: " << std::endl;
+    if (words == 1)
     {
         opCode = f_engine.removeSpace(line);
         instruction.push_back(opCode);
@@ -109,17 +110,26 @@ std::vector<std::string> ErrorEngine::ISplit(std::string line, int words)
         value = tokens.at(0);
         instruction.push_back(value);
     }
+    else
+    {
+        // throw an exception if shit went down
+        std::cout << "Error: Multiple instructions in one line" << std::endl;
+        exit(0);
+    }
     this->parseInstruction(instruction);
-    return instruction;
+    //return instruction;
 }
 
 void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 {
-    std::vector<std::string>::iterator x;
-
-    std::cout << "===================================" << std::endl;
-    for (x = instruction.begin(); x != instruction.end(); x++)
+    if (instruction.size())
     {
-        std::cout << "::" << *x << std::endl;
+        std::vector<std::string>::iterator x;
+
+        std::cout << "===================================" << std::endl;
+        for (x = instruction.begin(); x != instruction.end(); x++)
+        {
+            std::cout << "::" << *x << std::endl;
+        }
     }
 }
