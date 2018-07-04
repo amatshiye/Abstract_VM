@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ErrorEngine.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiye@gmail.com>             +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/26 16:27:17 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/04 10:10:36 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,5 @@ class ErrorEngine
 
         //exception details
         std::string getErrorMessage();
-
-        class ErrorDetails : std::exception
-        {
-            private:
-                std::string _errorMsg;
-
-            public:
-                ErrorDetails(void);
-                ErrorDetails(ErrorDetails const &src);
-                ~ErrorDetails(void) throw();
-
-                ErrorDetails & operator=(ErrorDetails const &rhs);
-                virtual const char * what() const throw();
-        };
 };
 #endif
