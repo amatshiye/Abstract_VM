@@ -20,7 +20,7 @@ FileEngine::FileEngine (std::string fileName)
     this->_exit_found = false;
 }
 
-FileEngine::~FileEngine()
+FileEngine::~FileEngine() throw()
 {
 }
 
@@ -46,6 +46,7 @@ void FileEngine::getData()
 {
    std::ifstream file(this->getFileName());
    std::string  line;
+   ErrorDetails e;
 
    if (file.is_open())
    {
@@ -55,23 +56,31 @@ void FileEngine::getData()
            getline(file, line);
            line = removeComment(line);
            line = removeSpace(line);
-           checkInstruction(line);
+           checkInstruction(line, x);
            if (charParser(line))
            {
-               std::cout << "Line: " << x << " :Syntax error: " << line << std::endl;
+               e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error: " + line);
+               throw e;
            }
            if (line != "")
                 this->_fileData.push_back(line);
             x++;
-            ErrorEngine(line, this->getNumWords(line));
+            try
+            {
+                ErrorEngine(line, this->getNumWords(line));
+            }
+            catch(ErrorDetails e)
+            {
+                throw e;
+            }
        }
        file.close();
    }
    else
    {
        //better error imp. needed.
-       std::cout << "Error: Unable to open file." << std::endl;
-       exit(1);
+       e.setErrorMsg("Error: Unable to open file.");
+       throw e;
    }
 }
 
@@ -150,7 +159,7 @@ int    FileEngine::getNumWords(std::string line)
 }
 
 //checking instructions 
-void    FileEngine::checkInstruction(std::string line)
+void    FileEngine::checkInstruction(std::string line, int l_num)
 {
     //validating instructions
     //get the line
@@ -159,6 +168,7 @@ void    FileEngine::checkInstruction(std::string line)
     std::string opCodes_single[9] = {"pop", "dump", "add", "sub", "mul", "div", "mod", "print", "exit"};
     std::string opCode_multi[2] = {"push", "assert"};
     std::string temp;
+    ErrorDetails e;
 
     if (line.c_str())
     {
@@ -167,10 +177,11 @@ void    FileEngine::checkInstruction(std::string line)
             temp = removeSpace(line);
             if (temp.length() > 0)
             {
-                if (in_array(line, opCodes_single, 9))
-                    std::cout << line << ": " << "Opcode is valid" << std::endl;
-                else
-                    std::cout << line << ": " << "Invalid Opcode" << std::endl;
+                if (!in_array(line, opCodes_single, 9))
+                {
+                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": " + "Invalid Opcode");
+                    throw e;
+                }
             }
         }
         else if (this->getNumWords(line) == 2)
@@ -180,21 +191,21 @@ void    FileEngine::checkInstruction(std::string line)
 
             if (tokens.size() > 0)
             {
-                if (in_array(tokens.at(0), opCode_multi, 2))
-                {
-                    std::cout << line << ": " << "Opcode is valid" << std::endl;
-                }
-                else
+                if (!in_array(tokens.at(0), opCode_multi, 2))
                 {
                     //throw an error and destroy the program
-                    std::cout << line << ": " << "Invalid Opcode" << std::endl;
+                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": Invalid Opcode");
+                    throw e;
                 }
             }
         }
         else
         {
             if (line.length())
-                std::cout << "Error line: " << line  << std::endl;
+            {
+                e.setErrorMsg("Error line: " + line);
+                throw e;
+            }
         }
     }
 }
@@ -255,7 +266,8 @@ std::vector<std::string> FileEngine::getFileData()
     this->getData();
     if (!this->_exit_found)
     {
-        this->_error_msg = "Error: Missing an exit";
+        ErrorDetails e_details("Error: Missing an exit");
+        throw e_details;
     }
     return  this->_fileData;
 }

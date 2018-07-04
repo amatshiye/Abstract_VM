@@ -27,21 +27,12 @@ ErrorDetails::ErrorDetails(ErrorDetails const &src)
     *this = src;
 }
 
-ErrorDetails::~ErrorDetails(void) throw()
-{
-    std::cout << "ErrorDetails object destroyed." << std::endl;
-}
+ErrorDetails::~ErrorDetails(void) throw() {}
 
 ErrorDetails & ErrorDetails::operator=(const ErrorDetails &rhs)
 {
     this->_errorMsg = rhs._errorMsg;
     return *this;
-}
-
-const char  *ErrorDetails::what() const throw()
-{
-    const char * msg = this->getErrorMsg().c_str();
-    return msg;
 }
 
 std::string ErrorDetails::getErrorMsg() const
@@ -52,4 +43,10 @@ std::string ErrorDetails::getErrorMsg() const
 void    ErrorDetails::setErrorMsg(std::string errorMsg)
 {
     this->_errorMsg = errorMsg;
+}
+
+const char  *ErrorDetails::what() const throw()
+{
+    const char * msg = this->getErrorMsg().c_str();
+    return msg;
 }

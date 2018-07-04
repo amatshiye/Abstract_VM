@@ -16,6 +16,7 @@
 #include "IOperand.hpp"
 #include <vector>
 #include <exception>
+#include "../includes/ErrorDetails.hpp"
 
 class ErrorEngine
 {

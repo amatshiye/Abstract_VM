@@ -16,6 +16,8 @@
 int main(int ac, char **av)
 {
     std::cout << "=============================================" << std::endl;
+    std::cout << "                 Abstract VM" << std::endl;
+    std::cout << "=============================================" << std::endl;
 
     if (ac != 1)
     {
@@ -34,7 +36,7 @@ int main(int ac, char **av)
                 // for (i = vector_data.begin(); i != vector_data.end(); i++)
                 //     std::cout << "Line: " << *i << std::endl;
             }
-            catch (std::exception &e)
+            catch (ErrorDetails e)
             {
                 std::cout << e.what() << std::endl;
             }

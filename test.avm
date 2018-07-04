@@ -4,9 +4,7 @@ push int32(33) ;interesting
 add
 
 push float(44.55)
-
-mulshit
-
++
 push double(42.42)
 push int32(42)
 

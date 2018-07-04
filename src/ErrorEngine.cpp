@@ -81,6 +81,7 @@ void    ErrorEngine::ISplit(std::string line, int words)
     std::vector<std::string> instruction;
 
     FileEngine f_engine;
+    ErrorDetails e;
     std::string opCode;
     std::string dataType;
     std::string value;
@@ -113,12 +114,12 @@ void    ErrorEngine::ISplit(std::string line, int words)
     else if (words > 2)
     {
         // throw an exception if shit went down
-        std::cout << "Error: Multiple instructions in one line" << std::endl;
+        e.setErrorMsg("Error: Multiple instructions in one line");
+        throw e;
     }
 
     if (instruction.size() > 0)
     {
-        std::cout << "Size from instruction: " << instruction.size() << std::endl;
         this->parseInstruction(instruction);
     }
     //return instruction;
@@ -127,8 +128,8 @@ void    ErrorEngine::ISplit(std::string line, int words)
 void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 {
     // //check if opcode is valid
+    ErrorDetails e;
 
-    std::cout << "Instruction size: " << instruction.size() << std::endl;
     if (instruction.size())
     {
         FileEngine f_engine;
@@ -137,18 +138,15 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 
         if (!f_engine.in_array(instruction.at(0), opCodes, 11))
         {
-            std::cout << "********************************" << std::endl;
-            std::cout << "Error: Invalid Opcode: " << instruction.at(0) << std::endl;
-            //exit(1);
+            e.setErrorMsg("Error: Invalid Opcode: " + instruction.at(0));
+            throw e;
         }
         else if (instruction.size() == 3)
         {
-            std::cout << "=================================" << std::endl;
-            std::cout << "Tested line: " << instruction.at(1) << std::endl;
             if (!f_engine.in_array(instruction.at(1), dataTypes, 5))
             {
-                std::cout << "Error: Invalid data type" << instruction.at(1) << std::endl;
-                //exit(0);
+                e.setErrorMsg("Error: Invalid data type" + instruction.at(1));
+                throw e;
             }
         }
     }

@@ -23,7 +23,6 @@
 class FileEngine
 {
     private:
-        std::string     _error_msg;
         std::string     _fileName;
         std::vector<std::string>    _fileData;
         bool        _exit_found;
@@ -33,7 +32,7 @@ class FileEngine
         FileEngine();
         FileEngine(std::string fileName);
         FileEngine(FileEngine const &src);
-        ~FileEngine();
+        ~FileEngine() throw();
 
         FileEngine &operator=(FileEngine const &rhs);
         std::string getFileName();
@@ -41,7 +40,7 @@ class FileEngine
         std::string removeComment(std::string line);
         std::string removeSpace(std::string line);
         static  int    getNumWords(std::string line);
-        void    checkInstruction(std::string line);
+        void    checkInstruction(std::string line, int l_num);
         bool    in_array(std::string value, std::string *array, int length);
         static std::vector<std::string> ft_strplit(std::string str, std::string delimiter);
         bool    charParser(std::string line);
