@@ -59,7 +59,7 @@ void FileEngine::getData()
            checkInstruction(line, x);
            if (charParser(line))
            {
-               e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error: " + line);
+               e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error:\033[1;31m " + line + "\033[0m");
                throw e;
            }
            if (line != "")
@@ -79,7 +79,7 @@ void FileEngine::getData()
    else
    {
        //better error imp. needed.
-       e.setErrorMsg("Error: Unable to open file.");
+       e.setErrorMsg("\033[1;31mError\033[0m: Unable to open file.");
        throw e;
    }
 }
@@ -179,7 +179,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
             {
                 if (!in_array(line, opCodes_single, 9))
                 {
-                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": " + "Invalid Opcode");
+                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": " + "\033[1;31mInvalid Opcode\033[0m");
                     throw e;
                 }
             }
@@ -194,7 +194,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
                 if (!in_array(tokens.at(0), opCode_multi, 2))
                 {
                     //throw an error and destroy the program
-                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": Invalid Opcode");
+                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ":\033[1;31mInvalid Opcode\033[0m");
                     throw e;
                 }
             }
@@ -203,7 +203,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
         {
             if (line.length())
             {
-                e.setErrorMsg("Error line: " + line);
+                e.setErrorMsg("Error line:\033[1;31m " + line + "\033[0m");
                 throw e;
             }
         }
@@ -266,7 +266,7 @@ std::vector<std::string> FileEngine::getFileData()
     this->getData();
     if (!this->_exit_found)
     {
-        ErrorDetails e_details("Error: Missing an exit");
+        ErrorDetails e_details("Error: Missing an\033[1;31m exit\033[0m");
         throw e_details;
     }
     return  this->_fileData;

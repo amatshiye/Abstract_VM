@@ -114,7 +114,7 @@ void    ErrorEngine::ISplit(std::string line, int words)
     else if (words > 2)
     {
         // throw an exception if shit went down
-        e.setErrorMsg("Error: Multiple instructions in one line");
+        e.setErrorMsg("\033[1;31mError\033[0m: Multiple instructions in one line");
         throw e;
     }
 
@@ -138,14 +138,14 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 
         if (!f_engine.in_array(instruction.at(0), opCodes, 11))
         {
-            e.setErrorMsg("Error: Invalid Opcode: " + instruction.at(0));
+            e.setErrorMsg("\033[1;31mError\033[0m: Invalid Opcode: " + instruction.at(0));
             throw e;
         }
         else if (instruction.size() == 3)
         {
             if (!f_engine.in_array(instruction.at(1), dataTypes, 5))
             {
-                e.setErrorMsg("Error: Invalid data type" + instruction.at(1));
+                e.setErrorMsg("\033[1;31mError\033[0m: Invalid data type: " + instruction.at(1));
                 throw e;
             }
         }

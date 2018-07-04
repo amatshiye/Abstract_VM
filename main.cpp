@@ -27,23 +27,12 @@ int main(int ac, char **av)
             {
                 // throw ErrorEngine::what();
                 FileEngine * data = new FileEngine(av[1]);
-                
                 data->getFileData();
-                // std::vector<std::string> vector_data = data->getFileData();
-                // std::vector<std::string>::iterator i;
-
-                // std::cout << "Main print out: " << std::endl;
-                // for (i = vector_data.begin(); i != vector_data.end(); i++)
-                //     std::cout << "Line: " << *i << std::endl;
             }
             catch (ErrorDetails e)
             {
                 std::cout << e.what() << std::endl;
             }
-        }
-        else
-        {
-            std::cout << "Another Bug!!!" << std::endl;
         }
     }
     else
