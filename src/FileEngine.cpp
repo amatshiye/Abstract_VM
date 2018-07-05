@@ -243,8 +243,12 @@ bool    FileEngine::charParser(std::string line)
     {
         for (size_t x = 0; x < line.length(); x++)
         {
-            if (line[x] == '.')
-                continue;
+            size_t pos;
+            if ((pos = line.find("(")) != std::string::npos)
+            {
+                if ((line[pos + 1] != 0) && (line[pos + 1] == '+' || line[pos + 1] == '-'))
+                    continue;
+            }
             if (line[x] >= '!' && line[x] <= static_cast<char>(39))
                 return true;
             else if (line[x] >= '*' && line[x] <= '/')
