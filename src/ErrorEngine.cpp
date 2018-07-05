@@ -195,12 +195,12 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
     }
 }
 
+//checking if value is convertable 
+
 bool    ErrorEngine::isConvertable(std::string value, std::string dataType)
 {
     for (size_t x = 0; x != value.length(); x++)
-    {
-        std::cout << "Value passed: " << value << std::endl;
-        
+    { 
         if (value[0] == '+' || value[0] == '-')
             continue;
         if ((value[x] == '.') && (x == 0 || x == value.length()))
@@ -217,9 +217,28 @@ bool    ErrorEngine::isConvertable(std::string value, std::string dataType)
     return true;
 }
 
+//converting to int8
+
 int8_t  ErrorEngine::convertToINT8(std::string value)
 {
-    int c_value = std::stoi(value);
+    int c_value;
+
+    try
+    {
+        c_value = std::stoi(value);
+    }
+    catch(std::exception e)
+    {
+        e.what();
+        ErrorDetails e_;
+        if (value[0] == '-')
+            e_.setErrorMsg("Error: (" + value + ") is less than INT8_MIN");
+        else
+            e_.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
+        throw e_;
+    }
+
+
     int8_t r_value = static_cast<int8_t>(c_value);
     ErrorDetails e;
 
@@ -237,6 +256,8 @@ int8_t  ErrorEngine::convertToINT8(std::string value)
     return r_value;
 }
 
+//converting to int16
+
 int16_t ErrorEngine::convertToINT16(std::string value)
 {
     int c_value;
@@ -250,9 +271,9 @@ int16_t ErrorEngine::convertToINT16(std::string value)
         e.what();
         ErrorDetails e_;
         if (value[0] == '-')
-            e_.setErrorMsg("Error: (" + value + ") is less than INT16MIN");
+            e_.setErrorMsg("Error: (" + value + ") is less than INT16_MIN");
         else
-            e_.setErrorMsg("Error: (" + value + ") is greather than INT16MIN");
+            e_.setErrorMsg("Error: (" + value + ") is greather than INT16_MAX");
         throw e_;
     }
 
@@ -273,9 +294,28 @@ int16_t ErrorEngine::convertToINT16(std::string value)
     return r_value;
 }
 
+//converting to int32
+
 int32_t ErrorEngine::convertToINT32(std::string value)
 {
-    double c_value = std::stoi(value);
+    int c_value;
+
+    try
+    {
+        c_value = std::stoi(value);
+    }
+    catch(std::exception e)
+    {
+        e.what();
+        ErrorDetails e_;
+        if (value[0] == '-')
+            e_.setErrorMsg("Error: (" + value + ") is less than INT32_MIN");
+        else
+            e_.setErrorMsg("Error: (" + value + ") is greather than INT32_MAX");
+        throw e_;
+    }
+
+
     int r_value = static_cast<int32_t>(c_value);
     ErrorDetails e;
 
@@ -293,38 +333,74 @@ int32_t ErrorEngine::convertToINT32(std::string value)
     return r_value;
 }
 
+//converting to float
+
 float   ErrorEngine::convertToFLOAT(std::string value)
 {
-    float r_value = std::stof(value);
+    float r_value;
+
+    try
+    {
+        r_value = std::stof(value);
+    }
+    catch(std::exception e)
+    {
+        e.what();
+        ErrorDetails e_;
+        if (value[0] == '-')
+            e_.setErrorMsg("Error: (" + value + ") is less than FLOAT_MIN");
+        else
+            e_.setErrorMsg("Error: (" + value + ") is greather than FLOAT_MAX");
+        throw e_;
+    }
+
     ErrorDetails e;
 
     if (r_value > std::numeric_limits<float>::max())
     {
-        e.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
+        e.setErrorMsg("Error: (" + value + ") is greather than FLOAT_MAX");
         throw e;
     }
     else if (r_value < std::numeric_limits<float>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is less than INT8_MIN");
+        e.setErrorMsg("Error: (" + value + ") is less than FLOAT_MIN");
         throw e;
     }
 
     return r_value;
 }
 
+//converting to double
+
 double  ErrorEngine::convertToDOUBLE(std::string value)
 {
-    double  r_value = std::stod(value);
+    double  r_value;
+
+    try
+    {
+        r_value = std::stof(value);
+    }
+    catch(std::exception e)
+    {
+        e.what();
+        ErrorDetails e_;
+        if (value[0] == '-')
+            e_.setErrorMsg("Error: (" + value + ") is less than DOUBLE_MIN");
+        else
+            e_.setErrorMsg("Error: (" + value + ") is greather than DOUBLE_MAX");
+        throw e_;
+    }
+
     ErrorDetails e;
 
     if (r_value > std::numeric_limits<double>::max())
     {
-        e.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
+        e.setErrorMsg("Error: (" + value + ") is greather than DOUBLE_MAX");
         throw e;
     }
     else if (r_value < std::numeric_limits<double>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is less than INT8_MIN");
+        e.setErrorMsg("Error: (" + value + ") is less than DOUBLE_MIN");
         throw e;
     }
 
