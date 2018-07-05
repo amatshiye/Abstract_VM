@@ -16,6 +16,7 @@
 #include <vector>
 #include <exception>
 #include <stdint.h>
+#include <limits>
 #include "IOperand.hpp"
 #include "../includes/ErrorDetails.hpp"
 
