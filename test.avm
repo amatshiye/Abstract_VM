@@ -1,7 +1,7 @@
 push int8(127)
 push float(12)
 push int16(327)
-push int32(21474836478)
+push int32(2147483647)
 
 ;push double(.)
 ;push double()

@@ -158,31 +158,22 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                     if (dataType == "int8")
                     {
                         int8_t intValue = convertToINT8(value);
-                        std::cout << "Data Type: " << dataType << std::endl;
-                        std::cout << "Converted value: " << intValue << std::endl;
                     }
                     else if (dataType == "int16")
                     {
                         int16_t intValue = convertToINT16(value);
-                        std::cout << "Data Type: " << dataType << std::endl;
-                        std::cout << "Converted value: " << intValue << std::endl;
                     }
                     else if (dataType == "int32")
                     {
                         int32_t intValue = convertToINT32(value);
-                        std::cout << "Data Type: " << dataType << std::endl;
-                        std::cout << "Converted value: " << intValue << std::endl;
                     }
                     else if (dataType == "float")
                     {
                         float   floatValue = convertToFLOAT(value);
-                        std::cout << "Data Type: " << dataType << std::endl;
-                        std::cout << "Converted value: " << floatValue << std::endl;
                     }
                     else if (dataType == "double")
                     {
                         double  doubleValue = convertToDOUBLE(value);
-                        std::cout << "Converted value: " << doubleValue << std::endl;
                     }
                     else
                     {
