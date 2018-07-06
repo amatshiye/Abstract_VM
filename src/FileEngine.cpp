@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 14:15:00 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/06 14:25:27 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,7 @@ void FileEngine::getData()
            getline(file, line);
            line = removeComment(line);
            line = removeSpace(line);
-           std::cout << "Current line: " << line << std::endl;
            line = patchSpace(line);
-           std::cout << "Patch: " << line << std::endl;
            checkInstruction(line, x);
            if (charParser(line))
            {
@@ -292,15 +290,10 @@ std::string FileEngine::patchSpace(std::string line)
 {
     size_t pos;
 
-    std::cout << "Line now: " << line << std::endl;
     if ((pos = line.find("(")) != std::string::npos)
     {
         size_t space = pos;
-        std::cout << "Pos: " << space << std::endl;
-        std::cout << "Char at pos - 1: " << space << ":" << std::endl;
         line.replace(space - 1, 1, "");
-        std::cout << "Char at pos - 1_: " << space << ":" << std::endl;
     }
-    std::cout << "Edited line: " << std::endl;    
     return line;
 }
