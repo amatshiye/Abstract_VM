@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 14:25:27 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/06 17:00:48 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,25 @@ void FileEngine::getData()
 std::string FileEngine::removeComment(std::string line)
 {
     //remove everything from the index of (;)
+
     if (line.length())
     {
         const unsigned long pos = line.find(';'); //searches for the ; char
         
         if (pos != std::string::npos)
         {
+
             if (pos != 0)
             {
                 line = line.substr(0, pos);
+                size_t op_b = line.find("(");
+                size_t cl_b = line.find(")");
+
+                if (op_b == std::string::npos || cl_b == std::string::npos)
+                {
+                    ErrorDetails e_details("Error: Unable to process instruction ::" + line);
+                    throw e_details;
+                }
                 return line;
             }
             else
@@ -112,6 +122,7 @@ std::string FileEngine::removeComment(std::string line)
                 return "";
             }
         }
+
     }
     return line;
 }
@@ -124,7 +135,7 @@ std::string FileEngine::removeSpace(std::string line)
     unsigned long beg_x = 0;
     if (line.length())
     {
-        while (line.length() > beg_x)
+        while (line.length() != beg_x)
         {
             if (isspace(line[beg_x]))
                 beg_x++;
@@ -134,15 +145,8 @@ std::string FileEngine::removeSpace(std::string line)
         line = line.substr(beg_x, line.length());
 
         //removing spaces at the end
-        unsigned long end_x = line.length();
-        while (end_x > 0)
-        {
-            if (isspace(line[end_x]))
-                end_x--;
-            else
-                break;
-        }
-        line = line.substr(0, end_x);
+        while (line[line.length() - 1] == ' ')
+            line.erase(line.length() - 1, 1);
     }
     return line;
 }
@@ -186,9 +190,9 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
             temp = removeSpace(line);
             if (temp.length() > 0)
             {
-                if (!in_array(line, opCodes_single, 9))
+                if (!in_array(temp, opCodes_single, 9))
                 {
-                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": " + "\033[1;31mInvalid Opcode\033[0m");
+                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": " + "\033[1;31mInvalid Instruction\033[0m");
                     throw e;
                 }
             }
@@ -203,7 +207,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
                 if (!in_array(tokens.at(0), opCode_multi, 2))
                 {
                     //throw an error and destroy the program
-                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ":\033[1;31mInvalid Opcode\033[0m");
+                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ":\033[1;31mInvalid Instruction\033[0m");
                     throw e;
                 }
             }
@@ -248,35 +252,61 @@ std::vector<std::string> FileEngine::ft_strplit(std::string str, std::string del
 //searches for unwanted chars in the instructions
 bool    FileEngine::charParser(std::string line)
 {
-    if (line.c_str())
+    try
     {
-        for (size_t x = 0; x < line.length(); x++)
+        if (line.c_str())
         {
-            size_t pos;
-            if ((pos = line.find("(")) != std::string::npos)
+            for (size_t x = 0; x < line.length(); x++)
             {
-                if ((line[pos + 1] != 0) && (line[pos + 1] == '+' || line[pos + 1] == '-'))
-                    continue;
-                size_t _c_bracket = line.find(")");
-                size_t _dot = line.find(".");
+                size_t pos;
+                if ((pos = line.find("(")) != std::string::npos)
+                {
+                    if ((line[pos + 1] != 0) && (line[pos + 1] == '+' || line[pos + 1] == '-'))
+                        continue;
 
-                if (_dot > pos && _dot < _c_bracket)
-                    continue;
+                    size_t _c_bracket = line.find(")");
+                    size_t _dot = line.find(".");
+
+                    if (_dot > pos && _dot < _c_bracket)
+                        continue;                        
+                }
+                if (line[x] >= '!' && line[x] <= static_cast<char>(39))
+                    return true;
+                else if (line[x] >= '*' && line[x] <= '/')
+                    return true;
+                else if (line[x] >= ':' && line[x] <= '@')
+                    return true;
+                else if (line[x] >= '[' && line[x] <= '`')
+                    return true;
+                else if (line[x] >= '{' && line[x] <= '~')
+                    return true;
             }
-
-            if (line[x] >= '!' && line[x] <= static_cast<char>(39))
-                return true;
-            else if (line[x] >= '*' && line[x] <= '/')
-                return true;
-            else if (line[x] >= ':' && line[x] <= '@')
-                return true;
-            else if (line[x] >= '[' && line[x] <= '`')
-                return true;
-            else if (line[x] >= '{' && line[x] <= '~')
-                return true;
         }
     }
+    catch (std::exception e)
+    {
+        e.what();
+        ErrorDetails e_details("Error: Unable to process instruction");
+        throw e_details;
+    }
     return false;
+}
+
+bool    FileEngine::char_occurrence(std::string line, char c)
+{
+    int oc = 0;
+
+    if (line.length())
+    {
+        for (size_t x = 0; x != line.length(); x++)
+        {
+            if (line[x] == c)
+                oc++;
+        }
+    }
+    if (oc > 0)
+        return false;
+    return true;
 }
 
 //getting file data
