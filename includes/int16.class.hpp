@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StackEngine.cpp                                    :+:      :+:    :+:   */
+/*   int16.class.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 13:30:21 by amatshiy         ###   ########.fr       */
+/*   Created: 2018/07/06 07:13:21 by amatshiy          #+#    #+#             */
+/*   Updated: 2018/07/06 07:14:45 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/StackEngine.hpp"
+#ifndef INT16_CLASS_HPP
+#define INT16_CLASS_HPP
 
-StackEngine::StackEngine(void)
-{
-    this->_dataType = "";
-    this->_value = "";
-}
+#include "IOperand.hpp"
 
-StackEngine::StackEngine(std::string dataType, std::string value)
+class Int16_Class : public IOperand
 {
-    this->_dataType = dataType;
-    this->_value = value;
-}
 
-StackEngine::~StackEngine()
-{
-    std::cout << "StackEngine destroyed" << std::endl;
-}
+};
+
+#endif

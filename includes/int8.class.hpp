@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   StackEngine.cpp                                    :+:      :+:    :+:   */
+/*   int8.class.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 13:30:21 by amatshiy         ###   ########.fr       */
+/*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
+/*   Updated: 2018/07/06 07:16:07 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/StackEngine.hpp"
+#ifndef INT8_CLASS_HPP
+#define INT8_CLASS_HPP
 
-StackEngine::StackEngine(void)
-{
-    this->_dataType = "";
-    this->_value = "";
-}
+#include "IOperand.hpp"
 
-StackEngine::StackEngine(std::string dataType, std::string value)
+class Int8_Class : public IOperand
 {
-    this->_dataType = dataType;
-    this->_value = value;
-}
 
-StackEngine::~StackEngine()
-{
-    std::cout << "StackEngine destroyed" << std::endl;
-}
+};
+
+#endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FileEngine.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/28 22:05:20 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/06 13:39:59 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <vector>
 #include <cctype>
 #include "ErrorEngine.hpp"
+#include "StackEngine.hpp"
 
 class FileEngine
 {
@@ -36,15 +37,16 @@ class FileEngine
 
         FileEngine &operator=(FileEngine const &rhs);
         std::string getFileName();
-        void getData();
         std::string removeComment(std::string line);
         std::string removeSpace(std::string line);
-        static  int    getNumWords(std::string line);
-        void    checkInstruction(std::string line, int l_num);
-        bool    in_array(std::string value, std::string *array, int length);
-        static std::vector<std::string> ft_strplit(std::string str, std::string delimiter);
-        bool    charParser(std::string line);
+        std::string patchSpace(std::string line);
         std::vector<std::string> getFileData();
+        void getData();
+        void    checkInstruction(std::string line, int l_num);
+        static  int    getNumWords(std::string line);
+        static std::vector<std::string> ft_strplit(std::string str, std::string delimiter);
+        bool    in_array(std::string value, std::string *array, int length);
+        bool    charParser(std::string line);
 };
 
 #endif

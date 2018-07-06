@@ -1,19 +1,12 @@
-push int8(127)
-push float(12)
-push int16(327)
-push int32(2147483647)
-
-;push double(.)
-;push double()
-
-add
-
-push double(42.42)
-push int32(42)
-
+push Int32 (42)
+push Int32 (33)
+add, pony
+push float (44.55)
+mul
+dual push (42.42)
+; comments of relief
+push Int32 (42)
 dump
-
 pop
-
-assert double(42.42)
+dual assert (42.42)
 exit

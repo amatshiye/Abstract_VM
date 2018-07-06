@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/04 10:10:36 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/06 14:19:02 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ class ErrorEngine
         void    parseInstruction(std::vector<std::string> instruction);
 
         //convertions to check underflow and overflow
-        bool    isConvertable(std::string value, std::string dataType);
+        bool    isConvertable(std::string value, std::string &dataType);
         int8_t  convertToINT8(std::string value);
         int16_t convertToINT16(std::string value);
         int32_t convertToINT32(std::string value);

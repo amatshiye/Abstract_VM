@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ErrorEngine.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/30 23:02:15 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/06 14:22:30 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,11 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
     if (instruction.size())
     {
         FileEngine f_engine;
-        std::string opCodes[11] = {"pop", "dump", "add", "sub", "mul", "div", "mod", "print", "exit", "push", "assert"};
-        std::string dataTypes[5] = {"int8", "int16", "int32", "float", "double"};
+        std::string opCodes[11] = {"pop", "dump", "add", "sub", "mul", "div", "mod", 
+                                    "print", "exit", "push", "assert"};
+
+        std::string dataTypes[10] = {"int8", "int16", "int32", "float", "double", 
+                                    "Int8", "Int16", "Int32", "Float", "Double"};
 
         if (!f_engine.in_array(instruction.at(0), opCodes, 11))
         {
@@ -143,7 +146,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
         }
         else if (instruction.size() == 3)
         {
-            if (!f_engine.in_array(instruction.at(1), dataTypes, 5))
+            if (!f_engine.in_array(instruction.at(1), dataTypes, 10))
             {
                 e.setErrorMsg("\033[1;31mError\033[0m: Invalid data type: " + instruction.at(1));
                 throw e;
@@ -158,22 +161,27 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                     if (dataType == "int8")
                     {
                         int8_t intValue = convertToINT8(value);
+                        std::cout << "Int8: " << sizeof(intValue) << std::endl;
                     }
                     else if (dataType == "int16")
                     {
                         int16_t intValue = convertToINT16(value);
+                        std::cout << "Int16: " << sizeof(intValue) << std::endl;
                     }
                     else if (dataType == "int32")
                     {
                         int32_t intValue = convertToINT32(value);
+                        std::cout << "Int32: " << sizeof(intValue) << std::endl;
                     }
                     else if (dataType == "float")
                     {
                         float   floatValue = convertToFLOAT(value);
+                        std::cout << "Float: " << sizeof(floatValue) << std::endl;
                     }
                     else if (dataType == "double")
                     {
                         double  doubleValue = convertToDOUBLE(value);
+                        std::cout << "Double: " << sizeof(doubleValue) << std::endl;
                     }
                     else
                     {
@@ -181,6 +189,9 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                         throw e_details;
                     }
                 }
+
+                //StackEngine() will be called here
+                StackEngine s_engine(dataType, value);
             }
         }
     }
@@ -188,8 +199,16 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 
 //checking if value is convertable 
 
-bool    ErrorEngine::isConvertable(std::string value, std::string dataType)
+bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
 {
+    for (size_t x = 0; x < dataType.length(); x++)
+    {
+        if (!isdigit(dataType[x]))
+        {
+            dataType[x] = tolower(dataType[x]);
+        }
+    }
+
     for (size_t x = 0; x != value.length(); x++)
     { 
         if (value[0] == '+' || value[0] == '-')

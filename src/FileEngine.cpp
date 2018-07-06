@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FileEngine.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/30 22:38:06 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/06 14:15:00 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,19 @@ void FileEngine::getData()
            getline(file, line);
            line = removeComment(line);
            line = removeSpace(line);
+           std::cout << "Current line: " << line << std::endl;
+           line = patchSpace(line);
+           std::cout << "Patch: " << line << std::endl;
            checkInstruction(line, x);
            if (charParser(line))
            {
                e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error:\033[1;31m " + line + "\033[0m");
                throw e;
            }
-           if (line != "")
+            if (line != "")
                 this->_fileData.push_back(line);
+            if (line.find("exit") != std::string::npos)
+                this->_exit_found = true;
             x++;
             try
             {
@@ -73,6 +78,12 @@ void FileEngine::getData()
             {
                 throw e;
             }
+       }
+
+       if (!this->_exit_found)
+       {
+           e.setErrorMsg("Error: Missing an\033[1;31m exit\033[0m");
+           throw e;
        }
        file.close();
    }
@@ -248,7 +259,13 @@ bool    FileEngine::charParser(std::string line)
             {
                 if ((line[pos + 1] != 0) && (line[pos + 1] == '+' || line[pos + 1] == '-'))
                     continue;
+                size_t _c_bracket = line.find(")");
+                size_t _dot = line.find(".");
+
+                if (_dot > pos && _dot < _c_bracket)
+                    continue;
             }
+
             if (line[x] >= '!' && line[x] <= static_cast<char>(39))
                 return true;
             else if (line[x] >= '*' && line[x] <= '/')
@@ -268,10 +285,22 @@ bool    FileEngine::charParser(std::string line)
 std::vector<std::string> FileEngine::getFileData()
 {
     this->getData();
-    if (!this->_exit_found)
-    {
-        ErrorDetails e_details("Error: Missing an\033[1;31m exit\033[0m");
-        throw e_details;
-    }
     return  this->_fileData;
+}
+
+std::string FileEngine::patchSpace(std::string line)
+{
+    size_t pos;
+
+    std::cout << "Line now: " << line << std::endl;
+    if ((pos = line.find("(")) != std::string::npos)
+    {
+        size_t space = pos;
+        std::cout << "Pos: " << space << std::endl;
+        std::cout << "Char at pos - 1: " << space << ":" << std::endl;
+        line.replace(space - 1, 1, "");
+        std::cout << "Char at pos - 1_: " << space << ":" << std::endl;
+    }
+    std::cout << "Edited line: " << std::endl;    
+    return line;
 }
