@@ -28,6 +28,7 @@ int main(int ac, char **av)
                 // throw ErrorEngine::what();
                 FileEngine * data = new FileEngine(av[1]);
                 data->getFileData();
+		delete data;
             }
             catch (ErrorDetails e)
             {
