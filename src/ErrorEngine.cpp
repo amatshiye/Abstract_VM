@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 15:25:28 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 14:01:10 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,42 +156,55 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 std::string dataType = instruction.at(1);
                 std::string value = instruction.at(2);
 
-                if (isConvertable(value, dataType))
+                if (value.length())
                 {
-                    if (dataType == "int8")
+                    if (isConvertable(value, dataType))
                     {
-                        int8_t intValue = convertToINT8(value);
-                        std::cout << "Int8: " << sizeof(intValue) << std::endl;
-                    }
-                    else if (dataType == "int16")
-                    {
-                        int16_t intValue = convertToINT16(value);
-                        std::cout << "Int16: " << sizeof(intValue) << std::endl;
-                    }
-                    else if (dataType == "int32")
-                    {
-                        int32_t intValue = convertToINT32(value);
-                        std::cout << "Int32: " << sizeof(intValue) << std::endl;
-                    }
-                    else if (dataType == "float")
-                    {
-                        float   floatValue = convertToFLOAT(value);
-                        std::cout << "Float: " << sizeof(floatValue) << std::endl;
-                    }
-                    else if (dataType == "double")
-                    {
-                        double  doubleValue = convertToDOUBLE(value);
-                        std::cout << "Double: " << sizeof(doubleValue) << std::endl;
+                        if (dataType == "int8")
+                        {
+                            int8_t intValue = convertToINT8(value);
+                            std::cout << "Int8: " << sizeof(intValue) << std::endl;
+                        }
+                        else if (dataType == "int16")
+                        {
+                            int16_t intValue = convertToINT16(value);
+                            std::cout << "Int16: " << sizeof(intValue) << std::endl;
+                        }
+                        else if (dataType == "int32")
+                        {
+                            int32_t intValue = convertToINT32(value);
+                            std::cout << "Int32: " << sizeof(intValue) << std::endl;
+                        }
+                        else if (dataType == "float")
+                        {
+                            float   floatValue = convertToFLOAT(value);
+                            std::cout << "Float: " << sizeof(floatValue) << std::endl;
+                        }
+                        else if (dataType == "double")
+                        {
+                            double  doubleValue = convertToDOUBLE(value);
+                            std::cout << "Double: " << sizeof(doubleValue) << std::endl;
+                        }
+                        else
+                        {
+                            ErrorDetails e_details("Error: Unknown Data type (" + dataType + ")");
+                            throw e_details;
+                        }
                     }
                     else
                     {
-                        ErrorDetails e_details("Error: Unknown Data type (" + dataType + ")");
+                        //std::cout << "We found the bug" << std::endl;
+                        ErrorDetails e_details("Error: Unable to convert value.");
                         throw e_details;
                     }
+                    //StackEngine() will be called here
+                    StackEngine s_engine(dataType, value);
                 }
-
-                //StackEngine() will be called here
-                StackEngine s_engine(dataType, value);
+                else
+                {
+                    ErrorDetails e_details("Error: No value found");
+                    throw e_details;
+                }
             }
         }
     }
@@ -201,30 +214,70 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 
 bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
 {
-    for (size_t x = 0; x < dataType.length(); x++)
+    if (dataType == "int8" || dataType == "int16" || dataType == "int32")
     {
-        if (!isdigit(dataType[x]))
+        try
         {
-            dataType[x] = tolower(dataType[x]);
+            int x = std::stoi(value);
+            if (x)
+                return true;
+        }
+        catch(std::exception e)
+        {
+            return false;
         }
     }
+    else if (dataType == "float")
+    {
+        try
+        {
+            int x = std::stof(value);
+            if (x)
+                return true;
+        }
+        catch(std::exception e)
+        {
+            std::cout << "skidfgksdgf" << std::endl;
+            return false;
+        }
+    }
+    else if (dataType == "double")
+    {
+        try
+        {
+            int x = std::stod(value);
+            if (x)
+                return true;
+        }
+        catch(std::exception e)
+        {
+            return false;
+        }
+    }
+    // for (size_t x = 0; x < dataType.length(); x++)
+    // {
+    //     if (!isdigit(dataType[x]))
+    //     {
+    //         dataType[x] = tolower(dataType[x]);
+    //     }
+    // }
 
-    for (size_t x = 0; x != value.length(); x++)
-    { 
-        if (value[0] == '+' || value[0] == '-')
-            continue;
-        if ((value[x] == '.') && (x == 0 || x == value.length()))
-        {
-            ErrorDetails e_details("Error: (" + value + ") not convertable. Must contain numbers only");
-            throw e_details;
-        }
-        else if ((dataType != "float" || dataType != "double") && (value[x] != '.') && (!isdigit(value[x])))
-        {
-            ErrorDetails e_details("Error: (" + value + ") not convertable. Must contain numbers only");
-            throw e_details;
-        }
-    }
-    return true;
+    // for (size_t x = 0; x != value.length(); x++)
+    // { 
+    //     if (value[0] == '+' || value[0] == '-')
+    //         continue;
+    //     if ((value[x] == '.') && (x == 0 || x == value.length()))
+    //     {
+    //         ErrorDetails e_details("Error: (" + value + ") not convertable. Must contain numbers only");
+    //         throw e_details;
+    //     }
+    //     else if ((dataType != "float" || dataType != "double") && (value[x] != '.') && (!isdigit(value[x])))
+    //     {
+    //         ErrorDetails e_details("Error: (" + value + ") not convertable. Must contain numbers only");
+    //         throw e_details;
+    //     }
+    // }
+    return false;
 }
 
 //converting to int8

@@ -6,13 +6,12 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 09:43:27 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 13:38:13 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_ENGINE_HPP
 #define STACK_ENGINE_HPP
-
 #include "FileEngine.hpp"
 #include "int8.class.hpp"
 #include "int16.class.hpp"

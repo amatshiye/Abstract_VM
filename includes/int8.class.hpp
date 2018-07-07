@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 08:40:00 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 13:59:57 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 class Int8_Class : public IOperand
 {
     private:
+        std::string _value;
         IOperand const * createInt8( std::string const & value ) const;
 
     public:
