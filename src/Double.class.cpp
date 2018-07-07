@@ -6,7 +6,8 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:02:49 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 07:43:17 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 09:55:03 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/Double.class.hpp"
