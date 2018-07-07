@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:26:31 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 11:42:38 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 15:24:21 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #define IOPERAND_HPP
 
 #include <iostream>
-
 
 enum eOperandType {Int8, Int16, Int32, Float, Double};
 

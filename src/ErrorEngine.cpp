@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 14:01:10 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 14:42:22 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,29 +254,6 @@ bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
             return false;
         }
     }
-    // for (size_t x = 0; x < dataType.length(); x++)
-    // {
-    //     if (!isdigit(dataType[x]))
-    //     {
-    //         dataType[x] = tolower(dataType[x]);
-    //     }
-    // }
-
-    // for (size_t x = 0; x != value.length(); x++)
-    // { 
-    //     if (value[0] == '+' || value[0] == '-')
-    //         continue;
-    //     if ((value[x] == '.') && (x == 0 || x == value.length()))
-    //     {
-    //         ErrorDetails e_details("Error: (" + value + ") not convertable. Must contain numbers only");
-    //         throw e_details;
-    //     }
-    //     else if ((dataType != "float" || dataType != "double") && (value[x] != '.') && (!isdigit(value[x])))
-    //     {
-    //         ErrorDetails e_details("Error: (" + value + ") not convertable. Must contain numbers only");
-    //         throw e_details;
-    //     }
-    // }
     return false;
 }
 

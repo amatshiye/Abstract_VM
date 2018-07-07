@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 13:59:57 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 17:42:23 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ class Int8_Class : public IOperand
 {
     private:
         std::string _value;
+        int8_t  int_8_value;
         IOperand const * createInt8( std::string const & value ) const;
 
     public:
         Int8_Class(void);
         Int8_Class(const Int8_Class &src);
+        Int8_Class(std::string value);
         ~Int8_Class(void);
 
         int getPrecision(void) const;                         // Precision of the type of the instance
@@ -35,6 +37,7 @@ class Int8_Class : public IOperand
         IOperand const *operator/(IOperand const &rhs) const; // Quotient
         IOperand const *operator%(IOperand const &rhs) const; // Modulo
 
+        int8_t  getValue();
         std::string const &toString(void) const;    // String representation of the instance
 };
 

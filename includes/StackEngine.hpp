@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 13:38:13 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 17:35:06 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 class StackEngine
 {
     private:
-        std::vector<std::string>    _Stack;
+        std::vector<std::vector<std::string> >    _Stack;
         std::string _dataType;
         std::string _value;
         eOperandType _type;
