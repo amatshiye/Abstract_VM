@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 12:54:54 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 08:03:32 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ class StackEngine
     public:
         StackEngine(void);
         StackEngine(std::string dataType, std::string value);
+        StackEngine(StackEngine const &src);
+        StackEngine &operator=(StackEngine const &rhs);
         ~StackEngine(void);
+
+        IOperand const * createOperand( eOperandType type, std::string const & value ) const;
 };
 
 #endif
