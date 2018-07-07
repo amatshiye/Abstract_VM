@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   IOperand.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amatshiy <amatshiy@42.fr>                  +#+  +:+       +#+        */
+/*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:26:31 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/06/23 21:14:28 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/07 09:43:30 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define IOPERAND_HPP
 
 #include <iostream>
+
 
 enum eOperandType {Int8, Int16, Int32, Float, Double};
 
