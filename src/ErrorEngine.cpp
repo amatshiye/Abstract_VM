@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 12:39:11 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:44:25 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
             }
             else
             {
+                std::string opCode = instruction.at(0);
                 std::string dataType = instruction.at(1);
                 std::string value = instruction.at(2);
 
@@ -198,9 +199,12 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                         throw e_details;
                     }
                     //store var will be called here
-                    this->_store.push_back(dataType);
-                    this->_store.push_back(value);
-                    
+                    if (instruction.size() == 3)
+                    {
+                        this->_store.push_back(opCode);
+                        this->_store.push_back(dataType);
+                        this->_store.push_back(value);
+                    }
                 }
                 else
                 {
@@ -210,7 +214,10 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
             }
         }
         //add the opcode here
-        this->_store.push_back(instruction.at(0));
+        if (instruction.size() == 1)
+        {
+            this->_store.push_back(instruction.at(0));
+        }
     }
 }
 

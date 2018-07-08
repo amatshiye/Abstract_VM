@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 14:58:02 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:53:49 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,59 @@ StackEngine::StackEngine(void)
     this->_value = "";
 }
 
-StackEngine::StackEngine(std::vector<std::string> line)
+StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
 {
     std::cout << "Stack Engine custom constructor called bro" << std::endl;
     this->_line = line;
     this->_line_size = line.size();
-    if (line.size() == 3)
-    {
-        this->_value = line.at(1);
-        this->_dataType = line.at(0);
-        this->opCode = line.at(2);
-    }
-    else if (line.size() == 1)
-    {
-        this->opCode = line.at(0);
-    }
 
-    //generating type
-    this->_type = this->createEnumValue(this->_dataType);
-    createOperand(this->_type, this->_value);
+    Stack_Brain(line);
+}
 
-    IOperand const *operand;
-    if (this->_dataType.length())
+void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
+{
+    std::cout << "Stack_Brain called: " << line.size() << std::endl;
+    std::cout << "Is it opcode: " << line.at(3).size() << std::endl;
+
+    std::cout << "Line opcode: " << line[2].at(0) << std::endl;
+    for (size_t x = 0; x != this->_line_size; x++)
     {
-        operand = createOperand(this->_type, this->_value);
-        Stack_Data data;
-        data.push_back(operand);
-        data.dump();
+        if (line[x].size() == 3)
+        {
+            std::cout << "Line size: " << line[x].size() << std::endl;
+            std::cout << "Stack_Brain datatype: " << line[x].at(0) + " " + line[x].at(1) + " " + line[x].at(2) << std::endl;
+            std::cout << line[x].at(0) << std::endl;
+        }
+        else if (line[x].size() == 1)
+        {
+            std::cout << "Line size: " << line[x].size() << std::endl;
+            std::cout << "Stack_Brain opcode: " << line[x].at(0) << std::endl;
+            std::cout << line[x].at(0) << std::endl;
+        }
     }
+    // if (line.size() == 3)
+    // {
+    //     this->_value = line.at(1);
+    //     this->_dataType = line.at(0);
+    //     this->opCode = line.at(2);
+    // }
+    // else if (line.size() == 1)
+    // {
+    //     this->opCode = line.at(0);
+    // }
+
+    // //generating type
+    // this->_type = this->createEnumValue(this->_dataType);
+    // createOperand(this->_type, this->_value);
+
+    // IOperand const *operand;
+    // if (this->_dataType.length())
+    // {
+    //     operand = createOperand(this->_type, this->_value);
+    //     Stack_Data data;
+    //     data.push_back(operand);
+    //     data.dump();
+    // }
 }
 
 StackEngine::~StackEngine()

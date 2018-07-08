@@ -2,5 +2,4 @@ push int8 (108); the
 push int8 (112); p
 print
 pop
-
 exit

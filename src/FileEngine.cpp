@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 14:42:52 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 17:02:39 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void FileEngine::getData()
        while (!file.eof())
        {
            getline(file, line);
+           if (line == "")
+                continue;
            line = removeComment(line);
            line = removeSpace(line);
            line = patchSpace(line);
@@ -82,11 +84,14 @@ void FileEngine::getData()
             }
        }
 
-       for (size_t v = 0; v != data.size(); v++)
+       try
        {
-           StackEngine e(data[v]);
+            StackEngine s(data);
        }
-
+       catch(std::exception e)
+       {
+           e.what();
+       }
        if (!this->_exit_found)
        {
            e.setErrorMsg("Error: Missing an\033[1;31m exit\033[0m");
