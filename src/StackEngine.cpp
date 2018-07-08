@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 18:18:19 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:26:40 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
 
 void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
 {
-    this->counter++;
 
     std::cout << "Is it opcode: " << line.at(3).size() << std::endl;
-    std::cout << "Times: " << this->counter << std::endl;
 
 
     std::cout << "Line opcode: " << line[2].at(0) << std::endl;
     for (size_t x = 0; x < this->_line_size; x++)
     {
+        std::cout << "Times: " << this->counter << std::endl;
+        this->counter++;
         std::cout << "Line size: " + std::to_string(this->_line_size) << std::endl;
         if (line[x].size() == 3)
         {
