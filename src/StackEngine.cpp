@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 18:12:21 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:18:19 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,12 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
         std::cout << "Line size: " + std::to_string(this->_line_size) << std::endl;
         if (line[x].size() == 3)
         {
-            // std::cout << "Line size: " << line[x].size() << std::endl;
-            // std::cout << "Stack_Brain datatype: " << line[x].at(0) + " " + line[x].at(1) + " " + line[x].at(2) << std::endl;
-            // std::cout << line[x].at(0) << std::endl;
-
             this->_value = line[x].at(2);
             this->_dataType = line[x].at(1);
             this->opCode = line[x].at(0);
         }
         else if (line[x].size() == 1)
-        {
-            // std::cout << "Line size: " << line[x].size() << std::endl;
-            // std::cout << "Stack_Brain opcode: " << line[x].at(0) << std::endl;
-            // std::cout << line[x].at(0) << std::endl;
-            
+        {   
             this->opCode = line[x].at(0);
         }
         
