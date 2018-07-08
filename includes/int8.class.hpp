@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 17:42:23 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 14:54:08 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ class Int8_Class : public IOperand
         IOperand const *operator/(IOperand const &rhs) const; // Quotient
         IOperand const *operator%(IOperand const &rhs) const; // Modulo
 
-        int8_t  getValue();
         std::string const &toString(void) const;    // String representation of the instance
 };
 

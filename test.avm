@@ -1,14 +1,6 @@
-push float (+999999999999999999999)
 push int8 (108); the
 push int8 (112); p
 print
 pop
-print
-pop
-print
-pop
-print
-pop
-print
-pop
+
 exit

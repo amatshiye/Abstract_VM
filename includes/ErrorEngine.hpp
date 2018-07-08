@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 14:19:02 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 12:23:58 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class ErrorEngine
         std::string _line;
         bool    _exit;
         int     _words;
+        std::vector<std::string> _store;
 
     public:
         ErrorEngine(void);
@@ -41,6 +42,7 @@ class ErrorEngine
         bool    is_stack_empty();
         void    ISplit(std::string line, int words);
         void    parseInstruction(std::vector<std::string> instruction);
+        std::vector<std::string>    getIns();
 
         //convertions to check underflow and overflow
         bool    isConvertable(std::string value, std::string &dataType);

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 17:42:00 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 14:58:02 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,34 @@ StackEngine::StackEngine(void)
     this->_value = "";
 }
 
-StackEngine::StackEngine(std::string dataType, std::string value)
+StackEngine::StackEngine(std::vector<std::string> line)
 {
-    std::cout << "Stack Engine custom constructor called" << std::endl;
-    this->_dataType = dataType;
-    this->_value = value;
+    std::cout << "Stack Engine custom constructor called bro" << std::endl;
+    this->_line = line;
+    this->_line_size = line.size();
+    if (line.size() == 3)
+    {
+        this->_value = line.at(1);
+        this->_dataType = line.at(0);
+        this->opCode = line.at(2);
+    }
+    else if (line.size() == 1)
+    {
+        this->opCode = line.at(0);
+    }
 
     //generating type
-    this->_type = this->createEnumValue(dataType);
+    this->_type = this->createEnumValue(this->_dataType);
     createOperand(this->_type, this->_value);
 
-    IOperand const *operand = createOperand(this->_type, this->_value);
-    operand->toString();
-    std::vector<std::string> data;
-    data.push_back(dataType);
-    data.push_back(value);
-    this->_Stack.insert(this->_Stack.begin(), data);
-
-    std::cout << "Stack is alive: " << this->_Stack.at(0).at(0) << std::endl;
+    IOperand const *operand;
+    if (this->_dataType.length())
+    {
+        operand = createOperand(this->_type, this->_value);
+        Stack_Data data;
+        data.push_back(operand);
+        data.dump();
+    }
 }
 
 StackEngine::~StackEngine()
@@ -62,9 +72,15 @@ eOperandType    StackEngine::createEnumValue(std::string dataType)
     return this->_type;
 }
 
+size_t  StackEngine::getLineSize()
+{
+    return this->_line_size;
+}
+
 IOperand const * StackEngine::createOperand(eOperandType type, std::string const & value) const
 {
     //Implement the factory here
+    std::cout << "CreateOperand() called" << std::endl;
     IOperand * operand = NULL;
 
     if (value.length())
@@ -92,4 +108,63 @@ IOperand const * StackEngine::createOperand(eOperandType type, std::string const
         }
     }
     return operand;
+}
+
+//stack core/brain
+StackEngine::Stack_Data::Stack_Data()
+{
+    std::cout << "Stack_Data() called" << std::endl;
+    head = NULL;
+    tail = NULL;
+}
+
+StackEngine::Stack_Data::Stack_Data(StackEngine::Stack_Data const &src)
+{
+    *this = src;
+}
+
+StackEngine::Stack_Data::~Stack_Data(void)
+{
+    std::cout << "Stack_Data destroyed" << std::endl;
+}
+
+void    StackEngine::Stack_Data::push_back(IOperand const *operand)
+{
+    //inserting data at the back
+    std::cout << "Push back() function called" << std::endl;
+    StackEngine s_engine;
+    s_engine._stack = new Stack();
+
+    s_engine._stack->data = operand;
+    s_engine._stack->next = NULL;
+    if (this->head == NULL)
+    {
+        this->head = s_engine._stack;
+        this->tail = s_engine._stack;
+        s_engine._stack = NULL;
+    }
+    else
+    {
+        s_engine._stack->next = s_engine._stack;
+        this->tail = s_engine._stack;
+    }
+}
+
+void    StackEngine::Stack_Data::dump()
+{
+    //dumping the data in the stack
+    std::cout << "dump() function called" << std::endl;
+    StackEngine s_engine;
+    s_engine._stack = new Stack();
+
+    s_engine._stack = this->head;
+    std::cout << "===========================" << std::endl;
+    while (s_engine._stack != NULL)
+    {
+        std::cout << "==========Loop of despair=================" << std::endl;
+
+        std::cout << "Line Size: " << s_engine.getLineSize() << std::endl;
+        std::cout << s_engine._stack->data->toString() << std::endl;
+        s_engine._stack = s_engine._stack->next;
+    }
 }

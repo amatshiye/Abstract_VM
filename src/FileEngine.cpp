@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/06 17:00:48 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 14:42:52 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ void FileEngine::getData()
    std::ifstream file(this->getFileName());
    std::string  line;
    ErrorDetails e;
+   std::vector<std::vector<std::string> > data;
+   std::string dataType;
+   std::string value;
 
    if (file.is_open())
    {
@@ -70,12 +73,18 @@ void FileEngine::getData()
             x++;
             try
             {
-                ErrorEngine(line, this->getNumWords(line));
+                ErrorEngine e_engine(line, this->getNumWords(line));
+                data.push_back(e_engine.getIns());
             }
             catch(ErrorDetails e)
             {
                 throw e;
             }
+       }
+
+       for (size_t v = 0; v != data.size(); v++)
+       {
+           StackEngine e(data[v]);
        }
 
        if (!this->_exit_found)

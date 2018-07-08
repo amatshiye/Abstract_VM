@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 14:42:22 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 12:39:11 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,8 +197,10 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                         ErrorDetails e_details("Error: Unable to convert value.");
                         throw e_details;
                     }
-                    //StackEngine() will be called here
-                    StackEngine s_engine(dataType, value);
+                    //store var will be called here
+                    this->_store.push_back(dataType);
+                    this->_store.push_back(value);
+                    
                 }
                 else
                 {
@@ -207,7 +209,14 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 }
             }
         }
+        //add the opcode here
+        this->_store.push_back(instruction.at(0));
     }
+}
+
+std::vector<std::string>    ErrorEngine::getIns()
+{
+    return this->_store;
 }
 
 //checking if value is convertable 

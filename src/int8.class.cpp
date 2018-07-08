@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 17:42:29 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 14:38:32 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ IOperand const * Int8_Class::createInt8( std::string const & value ) const
 {
     Int8_Class *op_obj = new Int8_Class();
 
-    std::cout << "CreateInt8() called" << std::endl;
+    std::cout << "CreateInt8() passed value: " + value << std::endl;
     int8_t val = static_cast<int8_t>(std::stoi(value));
     op_obj->int_8_value = val;
 
@@ -81,13 +81,7 @@ IOperand const *Int8_Class::operator%(IOperand const &rhs) const
     return &rhs;
 }
 
-int8_t  Int8_Class::getValue()
-{
-    return this->int_8_value;
-}
-
 const std::string   &Int8_Class::toString(void) const
 {
-    std::cout << "I have been called" << std::endl;
     return this->_value;
 }

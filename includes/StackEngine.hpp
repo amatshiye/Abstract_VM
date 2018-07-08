@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 17:35:06 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 14:57:31 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,46 @@
 class StackEngine
 {
     private:
-        std::vector<std::vector<std::string> >    _Stack;
+        struct Stack
+        {
+            IOperand const *data;
+            Stack *next;
+        };
+
+        Stack *_stack;
+        std::vector<std::string> _line;
+        std::string opCode;
         std::string _dataType;
         std::string _value;
+        size_t _line_size;
         eOperandType _type;
 
     public:
         StackEngine(void);
-        StackEngine(std::string dataType, std::string value);
+        StackEngine(std::vector<std::string> line);
         StackEngine(StackEngine const &src);
         StackEngine &operator=(StackEngine const &rhs);
         ~StackEngine(void);
 
+        size_t  getLineSize();
         eOperandType createEnumValue(std::string dataType);
         IOperand const * createOperand( eOperandType type, std::string const & value ) const;
+
+        class Stack_Data
+        {
+            private:
+                Stack   *head;
+                Stack   *tail;
+
+            public:
+                Stack_Data(void);
+                Stack_Data(Stack_Data const & src);
+                ~Stack_Data(void);
+
+                //void    push(IOperand const *operand);
+                void    push_back(IOperand const *operand);
+                void    dump();
+        };
 };
 
 #endif
