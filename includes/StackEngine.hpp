@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 16:28:26 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:11:02 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ class StackEngine
         std::string _dataType;
         std::string _value;
         size_t _line_size;
+        size_t counter;
         eOperandType _type;
 
     public:

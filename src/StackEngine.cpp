@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 17:53:49 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/08 18:12:21 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ StackEngine::StackEngine(void)
     std::cout << "Stack Engine default constructor called" << std::endl;
     this->_dataType = "";
     this->_value = "";
+    this->counter = 0;
 }
 
 StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
@@ -24,54 +25,59 @@ StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
     std::cout << "Stack Engine custom constructor called bro" << std::endl;
     this->_line = line;
     this->_line_size = line.size();
+    this->counter = 0;
 
     Stack_Brain(line);
 }
 
 void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
 {
-    std::cout << "Stack_Brain called: " << line.size() << std::endl;
+    this->counter++;
+
     std::cout << "Is it opcode: " << line.at(3).size() << std::endl;
+    std::cout << "Times: " << this->counter << std::endl;
+
 
     std::cout << "Line opcode: " << line[2].at(0) << std::endl;
-    for (size_t x = 0; x != this->_line_size; x++)
+    for (size_t x = 0; x < this->_line_size; x++)
     {
+        std::cout << "Line size: " + std::to_string(this->_line_size) << std::endl;
         if (line[x].size() == 3)
         {
-            std::cout << "Line size: " << line[x].size() << std::endl;
-            std::cout << "Stack_Brain datatype: " << line[x].at(0) + " " + line[x].at(1) + " " + line[x].at(2) << std::endl;
-            std::cout << line[x].at(0) << std::endl;
+            // std::cout << "Line size: " << line[x].size() << std::endl;
+            // std::cout << "Stack_Brain datatype: " << line[x].at(0) + " " + line[x].at(1) + " " + line[x].at(2) << std::endl;
+            // std::cout << line[x].at(0) << std::endl;
+
+            this->_value = line[x].at(2);
+            this->_dataType = line[x].at(1);
+            this->opCode = line[x].at(0);
         }
         else if (line[x].size() == 1)
         {
-            std::cout << "Line size: " << line[x].size() << std::endl;
-            std::cout << "Stack_Brain opcode: " << line[x].at(0) << std::endl;
-            std::cout << line[x].at(0) << std::endl;
+            // std::cout << "Line size: " << line[x].size() << std::endl;
+            // std::cout << "Stack_Brain opcode: " << line[x].at(0) << std::endl;
+            // std::cout << line[x].at(0) << std::endl;
+            
+            this->opCode = line[x].at(0);
+        }
+        
+        //generating type
+        this->_type = this->createEnumValue(this->_dataType);
+        createOperand(this->_type, this->_value);
+        
+        IOperand const *operand;
+        
+        operand = createOperand(this->_type, this->_value);
+        Stack_Data data;
+        if (this->opCode == "push")
+        {
+            data.push_back(operand);
+        }
+        else if (this->opCode == "dump")
+        {
+            data.dump();
         }
     }
-    // if (line.size() == 3)
-    // {
-    //     this->_value = line.at(1);
-    //     this->_dataType = line.at(0);
-    //     this->opCode = line.at(2);
-    // }
-    // else if (line.size() == 1)
-    // {
-    //     this->opCode = line.at(0);
-    // }
-
-    // //generating type
-    // this->_type = this->createEnumValue(this->_dataType);
-    // createOperand(this->_type, this->_value);
-
-    // IOperand const *operand;
-    // if (this->_dataType.length())
-    // {
-    //     operand = createOperand(this->_type, this->_value);
-    //     Stack_Data data;
-    //     data.push_back(operand);
-    //     data.dump();
-    // }
 }
 
 StackEngine::~StackEngine()
