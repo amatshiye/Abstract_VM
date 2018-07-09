@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 12:13:42 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 14:50:53 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,23 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
         {
             operand = createOperand(this->_type, this->_value);
             std::cout << "PUSH: " << operand->toString() << std::endl;
-            this->push_back(operand);
+            this->push(operand);
         }
         else if (this->opCode == "dump")
         {
             this->dump();
+        }
+        else if (this->opCode == "pop")
+        {
+            this->pop();
+        }
+        else if (this->opCode == "assert")
+        {
+            this->assert(this->_value);
+        }
+        else if (this->opCode == "print")
+        {
+            this->print();
         }
     }
     delete operand;
@@ -120,7 +132,7 @@ IOperand const * StackEngine::createOperand(eOperandType type, std::string const
                     operand = new Double_Class();
                     break;
                 default:
-                    ErrorDetails e_details("Error: Program died");
+                    ErrorDetails e_details("\033[1;31mError\033[0m: Program died");
                     throw e_details;
             }
         }
@@ -128,22 +140,108 @@ IOperand const * StackEngine::createOperand(eOperandType type, std::string const
     return operand;
 }
 
-void    StackEngine::push_back(IOperand const *operand)
+std::string StackEngine::getDataType(eOperandType type)
+{
+    std::string r_value;
+
+    switch (type)
+    {
+        case Int8:
+            r_value = "Int8";
+            break;
+        case Int16:
+            r_value = "Int16";
+            break;
+        case Int32:
+            r_value = "Int32";
+            break;
+        case Float:
+            r_value = "Float";
+            break;
+        case Double:
+            r_value = "Double";
+            break;
+    }
+    return r_value;
+}
+
+void    StackEngine::assert(std::string value)
+{
+    std::string type;
+
+    if (this->_Stack.size() > 0)
+    {
+        //getting top value data type
+        type = getDataType(this->_Stack[0]->getType());
+        //asserting top value
+        if (!(type == this->_dataType) && !(value == this->_Stack[0]->toString()))
+        {
+            ErrorDetails e("\033[1;31mError\033[0m: values are not the same");
+            throw e;
+        }
+    }
+    else
+    {
+        ErrorDetails e("\033[1;31mError\033[0m: Stack is empty");
+        throw e;
+    }
+}
+
+void    StackEngine::push(IOperand const *operand)
 {
     //inserting data at the back
-    this->_Stack.insert(this->_Stack.begin(), operand);
+    std::vector<const IOperand*>::iterator data;
+    data = this->_Stack.begin();
+
+    this->_Stack.insert(data, operand);
+}
+
+void    StackEngine::pop()
+{
+    std::vector<const IOperand*>::iterator pos;
+    pos = this->_Stack.begin();
+
+    if (this->_Stack.size() > 0)
+        this->_Stack.erase(pos);
+    else
+    {
+        ErrorDetails e("\033[1;31mError\033[0m: Unable to pop. Stack is empty");
+        throw e;
+    }
 }
 
 void    StackEngine::dump()
 {
     //dumping the data in the stack
     std::cout << "=========dump=========" << std::endl;
-    std::vector<IOperand>::iterator x;
 
-    for (size_t x = 0; this->_Stack.size(); x++)
+    for (size_t x = 0; x != this->_Stack.size(); x++)
     {
-        if (this->_Stack.at(x)->toString() != "")
-            std::cout << "DUMP: " << this->_Stack.at(x)->toString() << std::endl;
+        if (this->_Stack[x]->toString() != "")
+            std::cout << "DUMP: " << this->_Stack[x]->toString() << std::endl;
     }
     std::cout << "========dumpEnd=======" << std::endl;
+}
+
+void    StackEngine::print()
+{
+    if (this->_Stack.size() > 0)
+    {
+        if (this->_Stack[0]->getType() == 0)
+        {
+            int8_t v = static_cast<int8_t>(std::stoi(this->_Stack[0]->toString()));
+            if (isprint(v))
+                std::cout << "Print: " << v << std::endl;
+            else
+            {
+                ErrorDetails e("\033[1;31mError\033[0m: Unable to print value");
+                throw e;
+            }
+        }
+        else
+        {
+            ErrorDetails e("\033[1;31mError\033[0m: Value is not an int8");
+            throw e;
+        }
+    }
 }

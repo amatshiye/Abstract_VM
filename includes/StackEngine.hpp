@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 11:53:31 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 14:24:36 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,13 @@ class StackEngine
         void    Stack_Brain(std::vector<std::vector<std::string> > line);
 
         //Stack commands 
-        void    push_front(IOperand const *operand);
-        void    push_back(IOperand const *operand);
+        void    assert(std::string value);
+        void    push(IOperand const *operand);
+        void    pop();
         void    dump();
+        void    print();
 
+        std::string getDataType(eOperandType type);
         size_t  getLineSize();
         eOperandType createEnumValue(std::string dataType);
         IOperand const * createOperand( eOperandType type, std::string const & value ) const;

@@ -1,10 +1,8 @@
 
 push int8 (108); the
-push int8 (112); p
-push int8 (45); p
 push int8 (90); p
 
-print
-pop
 dump
+assert int8 (90)
+print
 exit
