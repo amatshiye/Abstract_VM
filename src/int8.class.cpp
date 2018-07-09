@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 14:38:32 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 08:26:47 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 Int8_Class::Int8_Class(void) 
 {
-    std::cout << "Int8 Class called" << std::endl;
     this->_value = "";
     this->int_8_value = 0;
 }
@@ -26,7 +25,6 @@ Int8_Class::Int8_Class(const Int8_Class &src)
 
 Int8_Class::Int8_Class(std::string value)
 {
-    std::cout << "Int8 value: " << value << std::endl;
     this->_value = value;
     createInt8(value);
 }
@@ -39,7 +37,6 @@ IOperand const * Int8_Class::createInt8( std::string const & value ) const
     int8_t val = static_cast<int8_t>(std::stoi(value));
     op_obj->int_8_value = val;
 
-    std::cout << "CreateInt8() complete" << std::endl;
     return op_obj;
 }
 

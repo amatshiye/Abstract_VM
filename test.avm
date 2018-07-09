@@ -1,5 +1,6 @@
 push int8 (108); the
 push int8 (112); p
+push int8 (45); p
 print
 pop
 dump

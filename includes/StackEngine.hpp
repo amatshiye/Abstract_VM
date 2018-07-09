@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 18:24:45 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 08:01:51 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ class StackEngine
             Stack *next;
         };
 
-        Stack *_stack;
+        Stack   *head;
+        Stack   *tail;
+
         std::vector<std::vector<std::string> > _line;
         std::string opCode;
         std::string _dataType;
@@ -45,25 +47,11 @@ class StackEngine
         ~StackEngine(void);
 
         void    Stack_Brain(std::vector<std::vector<std::string> > line);
+        void    push_back(IOperand const *operand);
+        void    dump();
         size_t  getLineSize();
         eOperandType createEnumValue(std::string dataType);
         IOperand const * createOperand( eOperandType type, std::string const & value ) const;
-
-        class Stack_Data
-        {
-            private:
-                Stack   *head;
-                Stack   *tail;
-
-            public:
-                Stack_Data(void);
-                Stack_Data(Stack_Data const & src);
-                ~Stack_Data(void);
-
-                //void    push(IOperand const *operand);
-                void    push_back(IOperand const *operand);
-                void    dump();
-        };
 };
 
 #endif
