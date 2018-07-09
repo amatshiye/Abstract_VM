@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 14:50:53 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 17:55:56 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
 {
     this->_line = line;
     this->_line_size = line.size();
+    //this->operands[0] = {&Int8_Class::createInt8};
+    
 
     Stack_Brain(line);
 }
@@ -30,7 +32,6 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
 {
     IOperand const *operand;
 
-    std::cout << "=========push=========" << std::endl;
     for (size_t x = 0; x < this->_line_size; x++)
     {
         if (line[x].size() == 3)
@@ -51,7 +52,6 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
         if (this->opCode == "push")
         {
             operand = createOperand(this->_type, this->_value);
-            std::cout << "PUSH: " << operand->toString() << std::endl;
             this->push(operand);
         }
         else if (this->opCode == "dump")

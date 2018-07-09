@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 14:24:36 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 17:49:18 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ class StackEngine
 {
     private:
         std::vector<const IOperand*>   _Stack;
-
         std::vector<std::vector<std::string> > _line;
         std::string opCode;
         std::string _dataType;
@@ -46,6 +45,8 @@ class StackEngine
         void    pop();
         void    dump();
         void    print();
+        //typedef IOperand const * (StackEngine::*Operand_Array)(std::string const & value) const;
+        //Operand_Array operands[5];
 
         std::string getDataType(eOperandType type);
         size_t  getLineSize();
