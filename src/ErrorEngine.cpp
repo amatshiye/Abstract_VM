@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 17:44:25 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 08:42:32 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,28 +163,23 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                     {
                         if (dataType == "int8")
                         {
-                            int8_t intValue = convertToINT8(value);
-                            std::cout << "Int8: " << sizeof(intValue) << std::endl;
+                            convertToINT8(value);
                         }
                         else if (dataType == "int16")
                         {
-                            int16_t intValue = convertToINT16(value);
-                            std::cout << "Int16: " << sizeof(intValue) << std::endl;
+                            convertToINT16(value);
                         }
                         else if (dataType == "int32")
                         {
-                            int32_t intValue = convertToINT32(value);
-                            std::cout << "Int32: " << sizeof(intValue) << std::endl;
+                            convertToINT32(value);
                         }
                         else if (dataType == "float")
                         {
-                            float   floatValue = convertToFLOAT(value);
-                            std::cout << "Float: " << sizeof(floatValue) << std::endl;
+                            convertToFLOAT(value);
                         }
                         else if (dataType == "double")
                         {
-                            double  doubleValue = convertToDOUBLE(value);
-                            std::cout << "Double: " << sizeof(doubleValue) << std::endl;
+                            convertToDOUBLE(value);
                         }
                         else
                         {
@@ -275,7 +270,7 @@ bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
 
 //converting to int8
 
-int8_t  ErrorEngine::convertToINT8(std::string value)
+void    ErrorEngine::convertToINT8(std::string value)
 {
     int c_value;
 
@@ -295,7 +290,6 @@ int8_t  ErrorEngine::convertToINT8(std::string value)
     }
 
 
-    int8_t r_value = static_cast<int8_t>(c_value);
     ErrorDetails e;
 
     if (c_value > std::numeric_limits<int8_t>::max())
@@ -308,13 +302,11 @@ int8_t  ErrorEngine::convertToINT8(std::string value)
         e.setErrorMsg("Error: (" + value + ") is less than INT8_MIN");
         throw e;
     }
-
-    return r_value;
 }
 
 //converting to int16
 
-int16_t ErrorEngine::convertToINT16(std::string value)
+void    ErrorEngine::convertToINT16(std::string value)
 {
     int c_value;
 
@@ -333,7 +325,6 @@ int16_t ErrorEngine::convertToINT16(std::string value)
         throw e_;
     }
 
-    int16_t r_value = static_cast<int16_t>(c_value);
     ErrorDetails e;
 
     if (c_value > std::numeric_limits<int16_t>::max())
@@ -346,15 +337,13 @@ int16_t ErrorEngine::convertToINT16(std::string value)
         e.setErrorMsg("Error: (" + value + ") is less than INT16_MIN");
         throw e;
     }
-
-    return r_value;
 }
 
 //converting to int32
 
-int32_t ErrorEngine::convertToINT32(std::string value)
+void    ErrorEngine::convertToINT32(std::string value)
 {
-    int c_value;
+    int32_t c_value;
 
     try
     {
@@ -372,7 +361,6 @@ int32_t ErrorEngine::convertToINT32(std::string value)
     }
 
 
-    int r_value = static_cast<int32_t>(c_value);
     ErrorDetails e;
 
     if (c_value > std::numeric_limits<int32_t>::max())
@@ -385,13 +373,11 @@ int32_t ErrorEngine::convertToINT32(std::string value)
         e.setErrorMsg("Error: (" + value + ") is less than INT32_MIN");
         throw e;
     }
-
-    return r_value;
 }
 
 //converting to float
 
-float   ErrorEngine::convertToFLOAT(std::string value)
+void    ErrorEngine::convertToFLOAT(std::string value)
 {
     float r_value;
 
@@ -422,13 +408,11 @@ float   ErrorEngine::convertToFLOAT(std::string value)
         e.setErrorMsg("Error: (" + value + ") is less than FLOAT_MIN");
         throw e;
     }
-
-    return r_value;
 }
 
 //converting to double
 
-double  ErrorEngine::convertToDOUBLE(std::string value)
+void    ErrorEngine::convertToDOUBLE(std::string value)
 {
     double  r_value;
 
@@ -459,6 +443,4 @@ double  ErrorEngine::convertToDOUBLE(std::string value)
         e.setErrorMsg("Error: (" + value + ") is less than DOUBLE_MIN");
         throw e;
     }
-
-    return r_value;
 }

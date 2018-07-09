@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/08 12:23:58 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/09 08:35:37 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ class ErrorEngine
 
         //convertions to check underflow and overflow
         bool    isConvertable(std::string value, std::string &dataType);
-        int8_t  convertToINT8(std::string value);
-        int16_t convertToINT16(std::string value);
-        int32_t convertToINT32(std::string value);
-        float   convertToFLOAT(std::string value);
-        double  convertToDOUBLE(std::string value);
+        void    convertToINT8(std::string value);
+        void    convertToINT16(std::string value);
+        void    convertToINT32(std::string value);
+        void    convertToFLOAT(std::string value);
+        void    convertToDOUBLE(std::string value);
 
         //exception details
         std::string getErrorMessage();
