@@ -6,12 +6,13 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 17:49:18 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/10 09:10:49 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_ENGINE_HPP
 #define STACK_ENGINE_HPP
+#include <map>
 #include "FileEngine.hpp"
 #include "int8.class.hpp"
 #include "int16.class.hpp"
@@ -30,6 +31,8 @@ class StackEngine
         size_t _line_size;
         eOperandType _type;
 
+        IOperand const * createInt8( std::string const & value ) const;
+
     public:
         StackEngine(void);
         StackEngine(std::vector<std::vector<std::string> > line);
@@ -45,8 +48,7 @@ class StackEngine
         void    pop();
         void    dump();
         void    print();
-        //typedef IOperand const * (StackEngine::*Operand_Array)(std::string const & value) const;
-        //Operand_Array operands[5];
+        std::map<eOperandType, IOperand const *(StackEngine::*)(std::string const & value) const> create;
 
         std::string getDataType(eOperandType type);
         size_t  getLineSize();

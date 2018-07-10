@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 17:55:56 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/10 09:27:21 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
 {
     this->_line = line;
     this->_line_size = line.size();
-    //this->operands[0] = {&Int8_Class::createInt8};
-    
+    this->create[Int8] = &StackEngine::createInt8;
 
     Stack_Brain(line);
 }
@@ -108,36 +107,15 @@ size_t  StackEngine::getLineSize()
 IOperand const * StackEngine::createOperand(eOperandType type, std::string const & value) const
 {
     //Implement the factory here
-    IOperand * operand = NULL;
+    IOperand const * (StackEngine::*f)(std::string const & value) const;
+    f = create.at(type);
+    
+    return ((*this.*f)(value));
+}
 
-    if (this->opCode == "push")
-    {
-        if (value.length())
-        {
-            switch (type)
-            {
-                case Int8:
-                    operand = new Int8_Class(value);
-                    break;
-                case Int16:
-                    operand = new Int16_Class();
-                    break;
-                case Int32:
-                    operand = new Int32_Class(); 
-                    break;
-                case Float:
-                    operand = new Float_Class();
-                    break;
-                case Double:
-                    operand = new Double_Class();
-                    break;
-                default:
-                    ErrorDetails e_details("\033[1;31mError\033[0m: Program died");
-                    throw e_details;
-            }
-        }
-    }
-    return operand;
+IOperand const * StackEngine::createInt8(std::string const & value) const
+{
+    return (new Int8_Class(value));
 }
 
 std::string StackEngine::getDataType(eOperandType type)

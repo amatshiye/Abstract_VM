@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 16:56:00 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/10 09:28:17 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ class Int8_Class : public IOperand
 
     public:
         Int8_Class(void);
-        Int8_Class(const Int8_Class &src);
         Int8_Class(std::string value);
+        Int8_Class(const Int8_Class &src);
         ~Int8_Class(void);
 
         int getPrecision(void) const;                         // Precision of the type of the instance
