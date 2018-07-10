@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 12:11:58 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/10 13:28:01 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ IOperand const * Int8_Class::createInt8( std::string const & value ) const
     return op_obj;
 }
 
-Int8_Class::~Int8_Class(void) {}
+Int8_Class::~Int8_Class(void) 
+{
+    std::cout << "Class destroyed" << std::endl;
+}
 
 int Int8_Class::getPrecision() const
 {

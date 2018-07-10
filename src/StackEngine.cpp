@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/10 09:27:21 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/10 13:42:47 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
     this->_line = line;
     this->_line_size = line.size();
     this->create[Int8] = &StackEngine::createInt8;
+
+    //for getting data type
+    this->r_value[Int8] = "Int8";
+    this->r_value[Int16] = "Int16";
+    this->r_value[Int32] = "Int32";
+    this->r_value[Float] = "Float";
+    this->r_value[Double] = "Double";
+
+    //for getting enum value
+    this->enum_value["Int8"] = Int8;
+    this->enum_value["Int16"] = Int16;
+    this->enum_value["Int32"] = Int32;
+    this->enum_value["Float"] = Float;
+    this->enum_value["Double"] = Double;
 
     Stack_Brain(line);
 }
@@ -71,9 +85,6 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
         }
     }
     delete operand;
-    std::cout << "********************" << std::endl;
-    std::cout << "STACK BRAIN COMPLETE" << std::endl;
-    std::cout << "********************" << std::endl;
 }
 
 StackEngine::~StackEngine()
@@ -83,19 +94,8 @@ StackEngine::~StackEngine()
 
 eOperandType    StackEngine::createEnumValue(std::string dataType)
 {
-    if (dataType.length())
-    {
-        if (dataType == "int8")
-            return Int8;
-        else if (dataType == "int16")
-            return Int16;
-        else if (dataType == "int32")
-            return Int32;
-        else if (dataType == "float")
-            return Float;
-        else if (dataType == "double")
-            return Double;
-    }
+    //returns enum value Int8, Int16, Int32, Float or Double
+    this->_type = this->enum_value[dataType];
     return this->_type;
 }
 
@@ -120,27 +120,7 @@ IOperand const * StackEngine::createInt8(std::string const & value) const
 
 std::string StackEngine::getDataType(eOperandType type)
 {
-    std::string r_value;
-
-    switch (type)
-    {
-        case Int8:
-            r_value = "Int8";
-            break;
-        case Int16:
-            r_value = "Int16";
-            break;
-        case Int32:
-            r_value = "Int32";
-            break;
-        case Float:
-            r_value = "Float";
-            break;
-        case Double:
-            r_value = "Double";
-            break;
-    }
-    return r_value;
+    return this->r_value[type];
 }
 
 void    StackEngine::assert(std::string value)
@@ -191,14 +171,11 @@ void    StackEngine::pop()
 void    StackEngine::dump()
 {
     //dumping the data in the stack
-    std::cout << "=========dump=========" << std::endl;
-
     for (size_t x = 0; x != this->_Stack.size(); x++)
     {
         if (this->_Stack[x]->toString() != "")
             std::cout << "DUMP: " << this->_Stack[x]->toString() << std::endl;
     }
-    std::cout << "========dumpEnd=======" << std::endl;
 }
 
 void    StackEngine::print()
