@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 08:04:21 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 08:28:59 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void FileEngine::getData()
             x++;
             try
             {
-                ErrorEngine e_engine(line, this->getNumWords(line));
+                ErrorEngine e_engine(line, this->getNumWords(line), x);
                 data.push_back(e_engine.getIns());
             }
             catch(ErrorDetails e)
@@ -221,7 +221,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
                 if (!in_array(tokens.at(0), opCode_multi, 2))
                 {
                     //throw an error and destroy the program
-                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ":\033[1;31mInvalid Instruction\033[0m");
+                    e.setErrorMsg("Line " + std::to_string(l_num) + ": (" + line + "):\033[1;31mInvalid Instruction\033[0m");
                     throw e;
                 }
             }
@@ -230,7 +230,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
         {
             if (line.length())
             {
-                e.setErrorMsg("Error line:\033[1;31m " + line + "\033[0m");
+                e.setErrorMsg("Error:\033[1;31m " + line + "\033[0m" + " ERROR NO: " + std::to_string(l_num));
                 throw e;
             }
         }

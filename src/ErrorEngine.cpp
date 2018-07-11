@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 08:04:35 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 08:30:21 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@ ErrorEngine::ErrorEngine(void)
     this->_words = 0;
 }
 
-ErrorEngine::ErrorEngine(std::string line, int words)
+ErrorEngine::ErrorEngine(std::string line, int words, int l_num)
 {
     this->_line = line;
     this->_exit = false;
     this->_words = words;
+    this->_l_num = l_num - 1;
 
     this->ISplit(this->_line, this->_words);
     this->exception_core();
@@ -148,7 +149,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
         {
             if (!f_engine.in_array(instruction.at(1), dataTypes, 10))
             {
-                e.setErrorMsg("\033[1;31mError\033[0m: Invalid data type: " + instruction.at(1));
+                e.setErrorMsg("\033[1;31mError\033[0m: Invalid data type: (" + instruction.at(1) + ") ERROR NO: " + std::to_string(this->_l_num));
                 throw e;
             }
             else

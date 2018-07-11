@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/09 08:35:37 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 08:24:46 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ class ErrorEngine
         std::string _line;
         bool    _exit;
         int     _words;
+        int     _l_num;
         std::vector<std::string> _store;
 
     public:
         ErrorEngine(void);
-        ErrorEngine(std::string line, int words);
+        ErrorEngine(std::string line, int words, int l_num);
         ErrorEngine(ErrorEngine const &src);
         ~ErrorEngine();
 
