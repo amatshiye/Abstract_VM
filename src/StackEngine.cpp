@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/10 13:42:47 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 06:39:00 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,23 +65,23 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
         if (this->opCode == "push")
         {
             operand = createOperand(this->_type, this->_value);
-            this->push(operand);
+            this->ft_push(operand);
         }
         else if (this->opCode == "dump")
         {
-            this->dump();
+            this->ft_dump();
         }
         else if (this->opCode == "pop")
         {
-            this->pop();
+            this->ft_pop();
         }
         else if (this->opCode == "assert")
         {
-            this->assert(this->_value);
+            this->ft_assert(this->_value);
         }
         else if (this->opCode == "print")
         {
-            this->print();
+            this->ft_print();
         }
     }
     delete operand;
@@ -123,7 +123,7 @@ std::string StackEngine::getDataType(eOperandType type)
     return this->r_value[type];
 }
 
-void    StackEngine::assert(std::string value)
+void    StackEngine::ft_assert(std::string value)
 {
     std::string type;
 
@@ -145,7 +145,7 @@ void    StackEngine::assert(std::string value)
     }
 }
 
-void    StackEngine::push(IOperand const *operand)
+void    StackEngine::ft_push(IOperand const *operand)
 {
     //inserting data at the back
     std::vector<const IOperand*>::iterator data;
@@ -154,7 +154,7 @@ void    StackEngine::push(IOperand const *operand)
     this->_Stack.insert(data, operand);
 }
 
-void    StackEngine::pop()
+void    StackEngine::ft_pop()
 {
     std::vector<const IOperand*>::iterator pos;
     pos = this->_Stack.begin();
@@ -168,7 +168,7 @@ void    StackEngine::pop()
     }
 }
 
-void    StackEngine::dump()
+void    StackEngine::ft_dump()
 {
     //dumping the data in the stack
     for (size_t x = 0; x != this->_Stack.size(); x++)
@@ -178,7 +178,7 @@ void    StackEngine::dump()
     }
 }
 
-void    StackEngine::print()
+void    StackEngine::ft_print()
 {
     if (this->_Stack.size() > 0)
     {

@@ -3,7 +3,6 @@ push int8 (112); p
 push int8 (111); o
 push int8 (108); the
 push int8 (112); p
-dump
 print
 pop
 print

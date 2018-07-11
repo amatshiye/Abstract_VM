@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/10 13:28:01 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/10 17:37:55 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,18 @@ eOperandType    Int8_Class::getType(void) const
     return Int8;
 }
 
+void    Int8_Class::setValue(std::string value)
+{
+    Int8_Class *op_obj = new Int8_Class();
+    op_obj->_value = value;
+}
+
 IOperand const *Int8_Class::operator+(IOperand const &rhs) const
 {
+    int8_t val_1 = static_cast<int8_t>(std::stoi(this->_value));
+    int8_t val_2 = static_cast<int8_t>(std::stoi(rhs.toString()));
+    setValue(std::to_string(val_1 + val_2));
+
     return &rhs;
 }
 
