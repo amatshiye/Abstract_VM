@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 09:10:02 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:22:25 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void FileEngine::getData()
            getline(file, line);
            if (line == "")
                 continue;
-           line = removeComment(line);
-           line = removeSpace(line);
-           line = patchSpace(line);
-           checkInstruction(line, x);
+            line = removeComment(line);
+            line = removeSpace(line);
+            line = patchSpace(line);
+            checkInstruction(line, x);
            if (charParser(line))
            {
                e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error:\033[1;31m " + line + "\033[0m");
@@ -76,8 +76,16 @@ void FileEngine::getData()
             this->_line = x;
             try
             {
-                ErrorEngine e_engine(line, this->getNumWords(line), x);
-                data.push_back(e_engine.getIns());
+                try
+                {
+                    ErrorEngine e_engine(line, this->getNumWords(line), x);
+                    data.push_back(e_engine.getIns());
+                }
+                catch(std::out_of_range oor)
+                {
+                    ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction: ERROR LINE NO: " + std::to_string(this->_line - 1) );
+                    throw e_details;
+                }
             }
             catch(ErrorDetails e)
             {
@@ -111,35 +119,18 @@ void FileEngine::getData()
 std::string FileEngine::removeComment(std::string line)
 {
     //remove everything from the index of (;)
-
     if (line.length())
     {
-        const unsigned long pos = line.find(';'); //searches for the ; char
-        
+        size_t  pos = line.find(';'); //searches for the ; char
         if (pos != std::string::npos)
         {
-            if (pos != 0)
-            {
-                line = line.substr(0, pos);
-                size_t op_b = line.find("(");
-                size_t cl_b = line.find(")");
-
-                std::cout << "removeComment(): " + line << std::endl;
-                if (op_b == std::string::npos || cl_b == std::string::npos)
-                {
-                std::cout << "removeComment(): " + line << std::endl;
-
-                    ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction ::" + line + " ERROR LINE NO: " + std::to_string(this->_line));
-                    throw e_details;
-                }
-                return line;
-            }
-            else
-            {
-                return "";
-            }
+            //splitting the string using ;
+            line = line.substr(0, line.find(";", 0));
         }
-
+        else
+        {
+            return line;
+        }
     }
     return line;
 }

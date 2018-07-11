@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 08:56:11 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 17:19:50 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <vector>
 #include <cctype>
 #include <regex>
+#include <stdexcept>
 #include "ErrorEngine.hpp"
 #include "StackEngine.hpp"
 

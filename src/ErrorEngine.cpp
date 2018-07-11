@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 08:33:00 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:46:41 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,23 +162,23 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 {
                     if (isConvertable(value, dataType))
                     {
-                        if (dataType == "int8")
+                        if (dataType == "int8" || dataType == "Int8")
                         {
                             convertToINT8(value);
                         }
-                        else if (dataType == "int16")
+                        else if (dataType == "int16" || dataType == "Int16")
                         {
                             convertToINT16(value);
                         }
-                        else if (dataType == "int32")
+                        else if (dataType == "int32" || dataType == "int32")
                         {
                             convertToINT32(value);
                         }
-                        else if (dataType == "float")
+                        else if (dataType == "float" || dataType == "Float")
                         {
                             convertToFLOAT(value);
                         }
-                        else if (dataType == "double")
+                        else if (dataType == "double" || dataType == "Double")
                         {
                             convertToDOUBLE(value);
                         }
@@ -226,38 +226,44 @@ std::vector<std::string>    ErrorEngine::getIns()
 
 bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
 {
-    if (dataType == "int8" || dataType == "int16" || dataType == "int32")
-    {
-        try
-        {
-            int x = std::stoi(value);
-            if (x)
-                return true;
-        }
-        catch(std::exception e)
-        {
-            return false;
-        }
-    }
-    else if (dataType == "float")
-    {
-        try
-        {
-            int x = std::stof(value);
-            if (x)
-                return true;
-        }
-        catch(std::exception e)
-        {
-            std::cout << "skidfgksdgf" << std::endl;
-            return false;
-        }
-    }
-    else if (dataType == "double")
+    if ((dataType == "int8" || dataType == "Int8") || (dataType == "int16" || dataType == "Int16") 
+        || (dataType == "int32" || dataType == "Int32"))
     {
         try
         {
             int x = std::stod(value);
+            if (x == 0)
+                x++;
+            if (x)
+                return true;
+        }
+        catch(std::exception e)
+        {
+            return false;
+        }
+    }
+    else if (dataType == "float" || dataType == "Float")
+    {
+        try
+        {
+            int x = std::stof(value);
+            if (x == 0)
+                x++;
+            if (x)
+                return true;
+        }
+        catch(std::exception e)
+        {
+            return false;
+        }
+    }
+    else if (dataType == "double" || dataType == "Double")
+    {
+        try
+        {
+            int x = std::stod(value);
+            if (x == 0)
+                x++;
             if (x)
                 return true;
         }
@@ -298,9 +304,9 @@ void    ErrorEngine::convertToINT8(std::string value)
         e.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
         throw e;
     }
-    else if (c_value < std::numeric_limits<float>::min())
+    else if (c_value < std::numeric_limits<int8_t>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is less than INT8_MIN");
+        e.setErrorMsg("Error: (" + value + ") is x less than INT8_MIN");
         throw e;
     }
 }

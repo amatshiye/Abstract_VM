@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 08:01:26 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 18:47:04 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,26 +52,27 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
             this->_value = line[x].at(2);
             this->_dataType = line[x].at(1);
             this->opCode = line[x].at(0);
+            
+            //generating type
+            this->_type = this->createEnumValue(this->_dataType);
+            createOperand(this->_type, this->_value);
         }
         else if (line[x].size() == 1)
         {   
             this->opCode = line[x].at(0);
         }
         
-        //generating type
-        this->_type = this->createEnumValue(this->_dataType);
-        createOperand(this->_type, this->_value);
                
         if (this->opCode == "push")
         {
             operand = createOperand(this->_type, this->_value);
             this->ft_push(operand);
         }
-        else if (this->opCode == "dump")
+        if (this->opCode == "dump")
         {
             this->ft_dump();
         }
-        else if (this->opCode == "pop")
+        if (this->opCode == "pop")
         {
             this->ft_pop();
         }
