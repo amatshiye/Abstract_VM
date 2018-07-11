@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 07:00:43 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 08:04:21 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -306,23 +306,6 @@ bool    FileEngine::charParser(std::string line)
     return false;
 }
 
-bool    FileEngine::char_occurrence(std::string line, char c)
-{
-    int oc = 0;
-
-    if (line.length())
-    {
-        for (size_t x = 0; x != line.length(); x++)
-        {
-            if (line[x] == c)
-                oc++;
-        }
-    }
-    if (oc > 0)
-        return false;
-    return true;
-}
-
 //getting file data
 std::vector<std::string> FileEngine::getFileData()
 {
@@ -334,6 +317,7 @@ std::string FileEngine::patchSpace(std::string line)
 {
     size_t pos;
 
+    line = std::regex_replace(line, std::regex(" +"), " ");
     if ((pos = line.find("(")) != std::string::npos)
     {
         if (line[pos - 1] == ' ')
@@ -342,5 +326,6 @@ std::string FileEngine::patchSpace(std::string line)
             line.replace(space - 1, 1, "");
         }
     }
+
     return line;
 }
