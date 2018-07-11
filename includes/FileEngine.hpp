@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 07:40:37 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 08:56:11 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@
 class FileEngine
 {
     private:
-        std::string     _fileName;
+        std::string                 _fileName;
         std::vector<std::string>    _fileData;
         bool        _exit_found;
+        int         _line;
         //create a vector array globally
 
     public:

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 08:28:59 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/11 09:10:02 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void FileEngine::getData()
             if (line.find("exit") != std::string::npos)
                 this->_exit_found = true;
             x++;
+            this->_line = x;
             try
             {
                 ErrorEngine e_engine(line, this->getNumWords(line), x);
@@ -117,16 +118,18 @@ std::string FileEngine::removeComment(std::string line)
         
         if (pos != std::string::npos)
         {
-
             if (pos != 0)
             {
                 line = line.substr(0, pos);
                 size_t op_b = line.find("(");
                 size_t cl_b = line.find(")");
 
+                std::cout << "removeComment(): " + line << std::endl;
                 if (op_b == std::string::npos || cl_b == std::string::npos)
                 {
-                    ErrorDetails e_details("Error: Unable to process instruction ::" + line);
+                std::cout << "removeComment(): " + line << std::endl;
+
+                    ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction ::" + line + " ERROR LINE NO: " + std::to_string(this->_line));
                     throw e_details;
                 }
                 return line;
@@ -300,7 +303,7 @@ bool    FileEngine::charParser(std::string line)
     catch (std::exception e)
     {
         e.what();
-        ErrorDetails e_details("Error: Unable to process instruction");
+        ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction: ERROR LINE NO: " + std::to_string(this->_line) );
         throw e_details;
     }
     return false;
