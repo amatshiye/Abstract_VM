@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 18:47:04 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 08:31:02 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
         else if (this->opCode == "print")
         {
             this->ft_print();
+        }
+        else if (this->opCode == "add")
+        {
+            this->ft_add();
         }
     }
     delete operand;
@@ -199,5 +203,28 @@ void    StackEngine::ft_print()
             ErrorDetails e("\033[1;31mError\033[0m: Value is not an int8");
             throw e;
         }
+    }
+}
+
+void    StackEngine::ft_add()
+{
+    if (this->_Stack.size() >= 2)
+    {
+        IOperand const *operand_1 = this->_Stack[0];
+        IOperand const *operand_2 = this->_Stack[1];
+
+        IOperand const *operand_sum = *operand_1 + *operand_2;
+
+        //removing the firts two values from the stack
+        this->ft_pop();
+        this->ft_pop();
+        this->ft_push(createOperand(operand_sum->getType(), operand_sum->toString()));
+
+
+    }
+    else
+    {
+        ErrorDetails e("\033[1;31mError\033[0m: Unable to add. Stack has less than 2 values");
+        throw e;
     }
 }

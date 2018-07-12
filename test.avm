@@ -1,9 +1,8 @@
-push int8(65)
+push Int8(20)
+push Int8(40)
+
 dump
-push double(4.5)
-mul
+add
+
 dump
-pop
-print
 exit
-;;

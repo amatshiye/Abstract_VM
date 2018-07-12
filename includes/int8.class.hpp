@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/10 17:34:16 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 07:24:09 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class Int8_Class : public IOperand
         eOperandType getType(void) const;
         static void    setValue(std::string value);
         
+        //IOperand const *operator=(IOperand const &rhs) const;
         IOperand const *operator+(IOperand const &rhs) const; // Sum
         IOperand const *operator-(IOperand const &rhs) const; // Difference
         IOperand const *operator*(IOperand const &rhs) const; // Product
