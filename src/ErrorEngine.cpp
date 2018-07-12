@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 10:39:55 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 15:18:51 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                         {
                             convertToINT16(value);
                         }
-                        else if (dataType == "int32" || dataType == "int32")
+                        else if (dataType == "int32" || dataType == "Int32")
                         {
                             convertToINT32(value);
                         }
