@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 16:39:29 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 17:56:09 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,15 @@ IOperand const *Int8_Class::operator*(IOperand const &rhs) const
 
 IOperand const *Int8_Class::operator/(IOperand const &rhs) const
 {
+    double val = static_cast<double>(std::stod(rhs.toString()));
+    double val_2 = static_cast<double>(std::stod(this->_value));
+    
+    if ((val == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
+    {
+        ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
+        throw e;
+    }
+
     return &rhs;
 }
 

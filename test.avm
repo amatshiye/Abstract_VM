@@ -1,10 +1,6 @@
-push Int8(20)
-push Int8(40)
-push Int32(10)
+push int32(0)
+push Int8(10)
 
-assert Int32(10)
-add
-dump
-sub
+div
 dump
 exit

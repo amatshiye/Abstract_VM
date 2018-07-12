@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 16:56:08 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 18:03:39 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,30 @@ void    CoreEngine::ft_sub()
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to add. Stack has less than 2 values");
+        ErrorDetails e("\033[1;31mError\033[0m: Unable to sub. Stack has less than 2 values");
+        throw e;
+    }
+}
+
+void    CoreEngine::ft_div()
+{
+    if (this->_Stack.size() >= 2)
+    {
+        IOperand const *operand_1 = this->_Stack[0];
+        IOperand const *operand_2 = this->_Stack[1];
+
+        IOperand const *operand_sum = *operand_1 / *operand_2;
+
+        //removing the firts two values from the stack
+        this->ft_pop();
+        this->ft_pop();
+
+        //add new operand to the stack
+        this->ft_push(createOperand(operand_sum->getType(), operand_sum->toString()));
+    }
+    else
+    {
+        ErrorDetails e("\033[1;31mError\033[0m: Unable to sub. Stack has less than 2 values");
         throw e;
     }
 }
