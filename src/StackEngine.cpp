@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 08:31:02 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 08:45:58 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,9 +218,9 @@ void    StackEngine::ft_add()
         //removing the firts two values from the stack
         this->ft_pop();
         this->ft_pop();
+
+        //add new operand to the stack
         this->ft_push(createOperand(operand_sum->getType(), operand_sum->toString()));
-
-
     }
     else
     {

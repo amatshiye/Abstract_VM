@@ -1,7 +1,6 @@
 push Int8(20)
 push Int8(40)
 
-dump
 add
 
 dump
