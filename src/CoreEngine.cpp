@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 12:54:15 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 13:50:17 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ CoreEngine::CoreEngine(std::vector<const IOperand *> &_Stack)
     this->r_value[Double] = "Double";
 }
 
-CoreEngine::~CoreEngine(void) 
-{
-    std::cout << "CoreEngine destroyed" << std::endl;
-}
+CoreEngine::~CoreEngine(void) {}
 
 CoreEngine::CoreEngine(CoreEngine const &src)
 {

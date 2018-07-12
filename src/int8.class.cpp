@@ -6,21 +6,15 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 08:50:41 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 13:55:29 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/int8.class.hpp"
 
-Int8_Class::Int8_Class(void) 
-{
-    this->int_8_value = 0;
-}
+Int8_Class::Int8_Class(void) { this->int_8_value = 0; }
 
-Int8_Class::Int8_Class(const Int8_Class &src)
-{
-    *this = src;
-}
+Int8_Class::Int8_Class(const Int8_Class &src) { *this = src;}
 
 Int8_Class::Int8_Class(std::string value)
 {
@@ -38,33 +32,17 @@ IOperand const * Int8_Class::createInt8( std::string const & value ) const
     return op_obj;
 }
 
-Int8_Class::~Int8_Class(void) 
-{
-    std::cout << "Class destroyed" << std::endl;
-}
+Int8_Class::~Int8_Class(void) {}
 
-int Int8_Class::getPrecision() const
-{
-    return 0;
-}
+int Int8_Class::getPrecision() const { return 0; }
 
-eOperandType    Int8_Class::getType(void) const
-{
-    //this is for precision shit
-    return Int8;
-}
+eOperandType    Int8_Class::getType(void) const { return Int8; }
 
 void    Int8_Class::setValue(std::string value)
 {
     Int8_Class *op_obj = new Int8_Class();
     op_obj->_value = value;
 }
-
-// IOperand const *Int8_Class::operator=(IOperand const &rhs) const
-// {
-//     *this = rhs;
-//     return (this);
-// }
 
 IOperand const *Int8_Class::operator+(IOperand const &rhs) const
 {
@@ -86,8 +64,8 @@ IOperand const *Int8_Class::operator-(IOperand const &rhs) const
     return int8_obj;
 }
 
-IOperand const *Int8_Class::operator*(IOperand const &rhs) const
-{
+IOperand const *Int8_Class::operator*(IOperand const &rhs) const 
+{ 
     return &rhs;
 }
 
@@ -101,7 +79,4 @@ IOperand const *Int8_Class::operator%(IOperand const &rhs) const
     return &rhs;
 }
 
-const std::string   &Int8_Class::toString(void) const
-{
-    return this->_value;
-}
+const std::string   &Int8_Class::toString(void) const { return this->_value; }

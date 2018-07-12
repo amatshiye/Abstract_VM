@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 13:00:18 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 13:52:51 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,41 +61,25 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
         if (this->opCode == "push")
         {
             operand = core_engine.createOperand(this->_type, this->_value);
-
             core_engine.ft_push(operand);
         }
         if (this->opCode == "dump")
-        {
             core_engine.ft_dump();
-        }
         if (this->opCode == "pop")
-        {
             core_engine.ft_pop();
-        }
         else if (this->opCode == "assert")
-        {
             core_engine.ft_assert(this->_value);
-        }
         else if (this->opCode == "print")
-        {
             core_engine.ft_print();
-        }
         else if (this->opCode == "add")
-        {
             core_engine.ft_add();
-        }
         else if (this->opCode == "sub")
-        {
             core_engine.ft_sub();
-        }
     }
     delete operand;
 }
 
-StackEngine::~StackEngine()
-{
-    std::cout << "StackEngine destroyed" << std::endl;
-}
+StackEngine::~StackEngine() {}
 
 eOperandType    StackEngine::createEnumValue(std::string dataType)
 {
