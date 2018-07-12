@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:02:18 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 14:02:31 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:24:25 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define CORE_ENGINE_HPP
 
 #include <map>
+#include <regex>
 #include "FileEngine.hpp"
 #include "int8.class.hpp"
 #include "int16.class.hpp"

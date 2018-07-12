@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 14:46:41 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:39:29 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ IOperand const *Int8_Class::operator-(IOperand const &rhs) const
     int8_t val_1 = static_cast<int8_t>(std::stoi(this->_value));
     int8_t val_2 = static_cast<int8_t>(std::stoi(rhs.toString()));
     int8_obj->_value = std::to_string(val_1 - val_2);
+    int8_obj->_value = std::to_string(val_1);
 
     return int8_obj;
 }

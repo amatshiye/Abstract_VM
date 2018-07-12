@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 14:46:40 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 16:56:08 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,9 @@ void    CoreEngine::ft_assert(std::string value)
     {
         //getting top value data type
         type = getDataType(this->_Stack[0]->getType());
+
         //asserting top value
-        if (!(type == this->_dataType) && !(value == this->_Stack[0]->toString()))
+        if (!(type == this->_dataType) || !(value == this->_Stack[0]->toString()))
         {
             ErrorDetails e("\033[1;31mError\033[0m: values are not the same");
             throw e;

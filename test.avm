@@ -1,7 +1,8 @@
 push Int8(20)
 push Int8(40)
-push Int8(10)
+push Int32(10)
 
+assert Int32(10)
 add
 dump
 sub
