@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 06:37:51 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 08:48:56 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ class StackEngine
         void    ft_dump();
         void    ft_print();
         void    ft_add();
+        void    ft_sub();
         std::map<eOperandType, IOperand const *(StackEngine::*)(std::string const & value) const> create;
         std::map<eOperandType, std::string> r_value;
         std::map<std::string, eOperandType> enum_value;
