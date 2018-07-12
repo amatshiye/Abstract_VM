@@ -6,7 +6,7 @@
 #    By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/23 07:33:09 by amatshiy          #+#    #+#              #
-#    Updated: 2018/07/07 11:56:44 by amatshiy         ###   ########.fr        #
+#    Updated: 2018/07/12 12:52:33 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = avm
 
 SRC = main.cpp src/FileEngine.cpp src/ErrorEngine.cpp src/ErrorDetails.cpp \
 	src/StackEngine.cpp src/int8.class.cpp src/int16.class.cpp src/int32.class.cpp \
-	src/Float.class.cpp src/Double.class.cpp
+	src/Float.class.cpp src/Double.class.cpp src/CoreEngine.cpp
 
 OBJ = bin/main.o bin/FileEngine.o bin/ErrorEngine.o bin/ErrorDetails.o \
 	bin/StackEngine.o bin/int8.class.o bin/int16.class.o bin/int32.class.o \
-	bin/Float.class.o bin/Double.class.o
+	bin/Float.class.o bin/Double.class.o bin/CoreEngine.o
 
 CMP = clang++
 
