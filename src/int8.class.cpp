@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 13:55:29 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:46:41 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ Int8_Class::~Int8_Class(void) {}
 int Int8_Class::getPrecision() const { return 0; }
 
 eOperandType    Int8_Class::getType(void) const { return Int8; }
-
-void    Int8_Class::setValue(std::string value)
-{
-    Int8_Class *op_obj = new Int8_Class();
-    op_obj->_value = value;
-}
 
 IOperand const *Int8_Class::operator+(IOperand const &rhs) const
 {

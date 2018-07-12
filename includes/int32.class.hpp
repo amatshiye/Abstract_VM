@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:10:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 07:32:53 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:14:20 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@
 class Int32_Class : public IOperand
 {
     private:
+        std::string _value;
+        int32_t  int_32_value;
         IOperand const * createInt32( std::string const & value ) const;
 
     public:
         Int32_Class(void);
+        Int32_Class(std::string value);
         Int32_Class(const Int32_Class &src);
         ~Int32_Class(void);
 

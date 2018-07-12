@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:02:18 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 12:43:23 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:02:31 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ class CoreEngine
         std::string _value;
         std::vector<const IOperand*>   _Stack;
         IOperand const * createInt8( std::string const & value ) const;
+        IOperand const * createInt16( std::string const & value ) const;
+        IOperand const * createInt32( std::string const & value ) const;
+        IOperand const * createFloat( std::string const & value ) const;
+        IOperand const * createDouble( std::string const & value ) const;
 
     public:
         CoreEngine(void);

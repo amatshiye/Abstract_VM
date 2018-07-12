@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:13:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 11:54:15 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:10:04 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@
 class Int16_Class : public IOperand
 {
     private:
+        std::string _value;
+        int16_t  int_16_value;
         IOperand const * createInt16( std::string const & value ) const;
 
     public:
         Int16_Class(void);
+        Int16_Class(std::string value);
         Int16_Class(const Int16_Class &src);
         ~Int16_Class(void);
 

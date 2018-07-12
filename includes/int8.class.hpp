@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 07:24:09 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:08:16 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ class Int8_Class : public IOperand
 
         int getPrecision(void) const;                         // Precision of the type of the instance
         eOperandType getType(void) const;
-        static void    setValue(std::string value);
         
         //IOperand const *operator=(IOperand const &rhs) const;
         IOperand const *operator+(IOperand const &rhs) const; // Sum

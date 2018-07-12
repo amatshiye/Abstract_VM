@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 13:50:17 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:46:40 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ CoreEngine::CoreEngine(std::vector<const IOperand *> &_Stack)
 
     //for the factory method
     this->create[Int8] = &CoreEngine::createInt8;
+    this->create[Int16] = &CoreEngine::createInt16;
+    this->create[Int32] = &CoreEngine::createInt32;
+    this->create[Float] = &CoreEngine::createFloat;
+    this->create[Double] = &CoreEngine::createDouble;
 
     //for getting data type
     this->r_value[Int8] = "Int8";
@@ -57,10 +61,15 @@ void    CoreEngine::setValues(std::vector<std::string> line)
     }
 }
 
-IOperand const * CoreEngine::createInt8(std::string const & value) const
-{
-    return (new Int8_Class(value));
-}
+IOperand const * CoreEngine::createInt8(std::string const & value) const { return (new Int8_Class(value)); }
+
+IOperand const * CoreEngine::createInt16(std::string const & value) const { return (new Int16_Class(value)); }
+
+IOperand const * CoreEngine::createInt32(std::string const & value) const { return (new Int32_Class(value)); }
+
+IOperand const * CoreEngine::createFloat(std::string const & value) const { return (new Float_Class(value)); }
+
+IOperand const * CoreEngine::createDouble(std::string const & value) const { return (new Double_Class(value)); }
 
 std::string CoreEngine::getDataType(eOperandType type)
 {

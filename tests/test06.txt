@@ -1,5 +1,6 @@
 push int32(42)
 
-assert int32(0)
+assert int32(42)
+dump
 
 exit

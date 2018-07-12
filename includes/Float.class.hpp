@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:09:28 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/07 07:32:47 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/12 14:26:39 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@
 class Float_Class : public IOperand
 {
     private:
+        std::string _value;
+        float  float_value;
         IOperand const * createFloat( std::string const & value ) const;
 
     public:
         Float_Class(void);
+        Float_Class(std::string value);
         Float_Class(const Float_Class &src);
         ~Float_Class(void);
 
