@@ -1,5 +1,5 @@
-push int8(10)
-push double(30)
+push      int16(10.54)
+push int32(30)
 
 dump
 add

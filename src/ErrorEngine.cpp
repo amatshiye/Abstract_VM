@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 15:18:51 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 17:08:16 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
         std::string opCodes[11] = {"pop", "dump", "add", "sub", "mul", "div", "mod", 
                                     "print", "exit", "push", "assert"};
 
-        std::string dataTypes[10] = {"int8", "int16", "int32", "float", "double", 
-                                    "Int8", "Int16", "Int32", "Float", "Double"};
+        std::string dataTypes[5] = {"int8", "int16", "int32", "float", "double"};
 
         if (!f_engine.in_array(instruction.at(0), opCodes, 11))
         {
@@ -162,23 +161,23 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 {
                     if (isConvertable(value, dataType))
                     {
-                        if (dataType == "int8" || dataType == "Int8")
+                        if (dataType == "int8")
                         {
                             convertToINT8(value);
                         }
-                        else if (dataType == "int16" || dataType == "Int16")
+                        else if (dataType == "int16")
                         {
                             convertToINT16(value);
                         }
-                        else if (dataType == "int32" || dataType == "Int32")
+                        else if (dataType == "int32")
                         {
                             convertToINT32(value);
                         }
-                        else if (dataType == "float" || dataType == "Float")
+                        else if (dataType == "float")
                         {
                             convertToFLOAT(value);
                         }
-                        else if (dataType == "double" || dataType == "Double")
+                        else if (dataType == "double")
                         {
                             convertToDOUBLE(value);
                         }
@@ -226,8 +225,8 @@ std::vector<std::string>    ErrorEngine::getIns()
 
 bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
 {
-    if ((dataType == "int8" || dataType == "Int8") || (dataType == "int16" || dataType == "Int16") 
-        || (dataType == "int32" || dataType == "Int32"))
+    if ((dataType == "int8") || (dataType == "int16") 
+        || (dataType == "int32"))
     {
         try
         {
@@ -242,7 +241,7 @@ bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
             return false;
         }
     }
-    else if (dataType == "float" || dataType == "Float")
+    else if (dataType == "float")
     {
         try
         {
@@ -257,7 +256,7 @@ bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
             return false;
         }
     }
-    else if (dataType == "double" || dataType == "Double")
+    else if (dataType == "double")
     {
         try
         {
