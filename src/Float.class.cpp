@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:52:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 09:34:17 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 16:07:39 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,14 @@ IOperand const *Float_Class::operator+(IOperand const &rhs) const
     double  val_1 = static_cast<double>(std::stod(this->_value));
     double  val_2 = static_cast<double>(std::stod(rhs.toString()));
 
-    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
-        core_engine.createOperand(this->getType(), std::to_string(val_1 + val_2)) : 
-            core_engine.createOperand(rhs.getType(), std::to_string(val_1 + val_2));
+    float val_3 = static_cast<float>(std::stof(this->_value));
+    float val_4 = static_cast<float>(std::stof(rhs.toString()));
 
+    IOperand const * operand_obj = (rhs.getPrecision() > 3) ?
+        core_engine.createOperand(this->getType(), std::to_string(val_3 + val_4)) : 
+            core_engine.createOperand(this->getType(), std::to_string((val_1 + val_2)));
+
+    core_engine.ft_push(operand_obj);
     return operand_obj;
 }
 
@@ -57,10 +61,14 @@ IOperand const *Float_Class::operator-(IOperand const &rhs) const
     double  val_1 = static_cast<double>(std::stod(this->_value));
     double  val_2 = static_cast<double>(std::stod(rhs.toString()));
 
-    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
-        core_engine.createOperand(this->getType(), std::to_string(val_1 - val_2)) : 
-            core_engine.createOperand(rhs.getType(), std::to_string(val_1 - val_2));
+    float val_3 = static_cast<float>(std::stof(this->_value));
+    float val_4 = static_cast<float>(std::stof(rhs.toString()));
 
+    IOperand const * operand_obj = (rhs.getPrecision() > 3) ?
+        core_engine.createOperand(this->getType(), std::to_string(val_3 - val_4)) : 
+            core_engine.createOperand(this->getType(), std::to_string((val_1 - val_2)));
+
+    core_engine.ft_push(operand_obj);
     return operand_obj;
 }
 
@@ -77,13 +85,14 @@ IOperand const *Float_Class::operator/(IOperand const &rhs) const
     }
 
     CoreEngine core_engine;
-    val_1 = static_cast<double>(std::stod(this->_value));
-    val_2 = static_cast<double>(std::stod(rhs.toString()));
+    float val_3 = static_cast<float>(std::stof(this->_value));
+    float val_4 = static_cast<float>(std::stof(rhs.toString()));
 
-    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
-        core_engine.createOperand(this->getType(), std::to_string(val_1 / val_2)) : 
-            core_engine.createOperand(rhs.getType(), std::to_string(val_1 / val_2));
+    IOperand const * operand_obj = (rhs.getPrecision() > 3) ?
+        core_engine.createOperand(this->getType(), std::to_string(val_3 / val_4)) : 
+            core_engine.createOperand(this->getType(), std::to_string((val_1 / val_2)));
 
+    core_engine.ft_push(operand_obj);
     return operand_obj;
 }
 
@@ -93,10 +102,14 @@ IOperand const *Float_Class::operator*(IOperand const &rhs) const
     double  val_1 = static_cast<double>(std::stod(this->_value));
     double  val_2 = static_cast<double>(std::stod(rhs.toString()));
 
-    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
-        core_engine.createOperand(this->getType(), std::to_string(val_1 * val_2)) : 
-            core_engine.createOperand(rhs.getType(), std::to_string(val_1 * val_2));
+    float val_3 = static_cast<float>(std::stof(this->_value));
+    float val_4 = static_cast<float>(std::stof(rhs.toString()));
 
+    IOperand const * operand_obj = (rhs.getPrecision() > 3) ?
+        core_engine.createOperand(this->getType(), std::to_string(val_3 * val_4)) : 
+            core_engine.createOperand(this->getType(), std::to_string((val_1 * val_2)));
+
+    core_engine.ft_push(operand_obj);
     return operand_obj;
 }
 
@@ -112,13 +125,14 @@ IOperand const *Float_Class::operator%(IOperand const &rhs) const
     }
 
     CoreEngine core_engine;
-    val_1 = static_cast<double>(std::stod(this->_value));
-    val_2 = static_cast<double>(std::stod(rhs.toString()));
+    float val_3 = static_cast<float>(std::stof(this->_value));
+    float val_4 = static_cast<float>(std::stof(rhs.toString()));
 
-    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
-        core_engine.createOperand(this->getType(), std::to_string(fmod(val_1, val_2))) : 
-            core_engine.createOperand(rhs.getType(), std::to_string(fmod(val_1, val_2)));
+    IOperand const * operand_obj = (rhs.getPrecision() > 3) ?
+        core_engine.createOperand(this->getType(), std::to_string(fmod(val_3, val_4))) : 
+            core_engine.createOperand(this->getType(), std::to_string(fmod(val_1, val_2)));
 
+    core_engine.ft_push(operand_obj);
     return operand_obj;
 }
 

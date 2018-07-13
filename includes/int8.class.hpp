@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 14:08:16 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 09:55:08 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define INT8_CLASS_HPP
 
 #include "IOperand.hpp"
+#include "CoreEngine.hpp"
 
 class Int8_Class : public IOperand
 {

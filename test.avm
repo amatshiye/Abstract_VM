@@ -1,6 +1,7 @@
-push int32(0)
-push Int8(10)
+push int8(10)
+push double(30)
 
-div
+dump
+add
 dump
 exit

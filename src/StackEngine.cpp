@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 17:59:45 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 15:09:41 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
 {
     this->_line = line;
     this->_line_size = line.size();
-
-    //for getting enum value
-    this->enum_value["Int8"] = Int8;
-    this->enum_value["Int16"] = Int16;
-    this->enum_value["Int32"] = Int32;
-    this->enum_value["Float"] = Float;
-    this->enum_value["Double"] = Double;
 
     Stack_Brain(line);
 }
@@ -86,6 +79,17 @@ StackEngine::~StackEngine() {}
 eOperandType    StackEngine::createEnumValue(std::string dataType)
 {
     //returns enum value Int8, Int16, Int32, Float or Double
-    this->_type = this->enum_value[dataType];
+    if (dataType == "int8")
+        this->_type = Int8;
+    else if (dataType == "int16")
+        this->_type = Int16;
+    else if (dataType == "int32")
+        this->_type = Int32;
+    else if (dataType == "int32")
+        this->_type = Int32;
+    else if (dataType == "float")
+        this->_type = Float;
+    else if (dataType == "double")
+        this->_type = Double;
     return this->_type;
 }

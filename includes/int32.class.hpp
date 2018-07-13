@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:10:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 14:14:20 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 09:55:33 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define INT32_CLASS_HPP
 
 #include "IOperand.hpp"
+#include "CoreEngine.hpp"
 
 class Int32_Class : public IOperand
 {

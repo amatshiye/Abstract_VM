@@ -6,13 +6,27 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 08:29:44 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 15:13:43 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/CoreEngine.hpp"
 
-CoreEngine::CoreEngine() {}
+CoreEngine::CoreEngine() 
+{
+    this->create[Int8] = &CoreEngine::createInt8;
+    this->create[Int16] = &CoreEngine::createInt16;
+    this->create[Int32] = &CoreEngine::createInt32;
+    this->create[Float] = &CoreEngine::createFloat;
+    this->create[Double] = &CoreEngine::createDouble;
+
+    //for getting data type
+    this->r_value[Int8] = "Int8";
+    this->r_value[Int16] = "Int16";
+    this->r_value[Int32] = "Int32";
+    this->r_value[Float] = "Float";
+    this->r_value[Double] = "Double";
+}
 
 CoreEngine::CoreEngine(std::vector<const IOperand *> &_Stack)
 {
@@ -81,7 +95,6 @@ IOperand const *CoreEngine::createOperand(eOperandType type, std::string const &
     //Implement the factory here
     IOperand const * (CoreEngine::*f)(std::string const & value) const;
     f = create.at(type);
-    
     return ((*this.*f)(value));
 }
 
@@ -170,11 +183,11 @@ void    CoreEngine::ft_add()
         IOperand const *operand_1 = this->_Stack[0];
         IOperand const *operand_2 = this->_Stack[1];
 
-        IOperand const *operand_sum = *operand_1 + *operand_2;
-
         //removing the firts two values from the stack
         this->ft_pop();
         this->ft_pop();
+
+        IOperand const *operand_sum = *operand_1 + *operand_2;
 
         //add new operand to the stack
         this->ft_push(createOperand(operand_sum->getType(), operand_sum->toString()));

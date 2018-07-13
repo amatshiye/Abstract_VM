@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 12:59:56 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 15:09:14 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ class StackEngine
         ~StackEngine(void);
 
         void    Stack_Brain(std::vector<std::vector<std::string> > line);
-        std::map<std::string, eOperandType> enum_value;
 
         eOperandType createEnumValue(std::string dataType);
 };

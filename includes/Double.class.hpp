@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:06:43 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 18:40:38 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 09:55:44 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define DOUBLE_CLASS_HPP
 
 #include "IOperand.hpp"
+#include "CoreEngine.hpp"
 
 class Double_Class : public IOperand
 {
