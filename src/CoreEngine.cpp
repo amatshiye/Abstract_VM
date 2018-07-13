@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 15:13:43 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 17:34:22 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ CoreEngine::CoreEngine()
     this->create[Double] = &CoreEngine::createDouble;
 
     //for getting data type
-    this->r_value[Int8] = "Int8";
-    this->r_value[Int16] = "Int16";
-    this->r_value[Int32] = "Int32";
-    this->r_value[Float] = "Float";
-    this->r_value[Double] = "Double";
+    this->r_value[Int8] = "int8";
+    this->r_value[Int16] = "int16";
+    this->r_value[Int32] = "int32";
+    this->r_value[Float] = "float";
+    this->r_value[Double] = "double";
 }
 
 CoreEngine::CoreEngine(std::vector<const IOperand *> &_Stack)
@@ -41,11 +41,11 @@ CoreEngine::CoreEngine(std::vector<const IOperand *> &_Stack)
     this->create[Double] = &CoreEngine::createDouble;
 
     //for getting data type
-    this->r_value[Int8] = "Int8";
-    this->r_value[Int16] = "Int16";
-    this->r_value[Int32] = "Int32";
-    this->r_value[Float] = "Float";
-    this->r_value[Double] = "Double";
+    this->r_value[Int8] = "int8";
+    this->r_value[Int16] = "int16";
+    this->r_value[Int32] = "int32";
+    this->r_value[Float] = "float";
+    this->r_value[Double] = "double";
 }
 
 CoreEngine::~CoreEngine(void) {}
@@ -149,7 +149,7 @@ void    CoreEngine::ft_dump()
     for (size_t x = 0; x != this->_Stack.size(); x++)
     {
         if (this->_Stack[x]->toString() != "")
-            std::cout << "DUMP: " << this->_Stack[x]->toString() << std::endl;
+            std::cout << this->_Stack[x]->toString() << std::endl;
     }
 }
 

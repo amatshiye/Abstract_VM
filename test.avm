@@ -1,7 +1,7 @@
-push      int16(10.54)
-push int32(30)
-
-dump
+push int32(2)
+push int32(3)
 add
+dump
+assert int32(5)
 dump
 exit
