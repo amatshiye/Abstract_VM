@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:52:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 17:55:32 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 09:34:17 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,51 +34,92 @@ IOperand const * Float_Class::createFloat( std::string const & value ) const
 
 Float_Class::~Float_Class(void) {}
 
-int Float_Class::getPrecision() const { return 7; }
+int Float_Class::getPrecision() const { return Float; }
 
 eOperandType    Float_Class::getType(void) const { return Float; }
 
 IOperand const *Float_Class::operator+(IOperand const &rhs) const
 {
-    Float_Class * float_obj = new Float_Class();
-    float val_1 = static_cast<float>(std::stof(this->_value));
-    float val_2 = static_cast<float>(std::stof(rhs.toString()));
-    float_obj->_value = std::to_string(val_1 + val_2);
+    CoreEngine core_engine;
+    double  val_1 = static_cast<double>(std::stod(this->_value));
+    double  val_2 = static_cast<double>(std::stod(rhs.toString()));
 
-    return float_obj;
+    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
+        core_engine.createOperand(this->getType(), std::to_string(val_1 + val_2)) : 
+            core_engine.createOperand(rhs.getType(), std::to_string(val_1 + val_2));
+
+    return operand_obj;
 }
 
 IOperand const *Float_Class::operator-(IOperand const &rhs) const
 {
-    Float_Class * float_obj = new Float_Class();
-    float val_1 = static_cast<float>(std::stoi(this->_value));
-    float val_2 = static_cast<float>(std::stoi(rhs.toString()));
-    float_obj->_value = std::to_string(val_1 - val_2);
+    CoreEngine core_engine;
+    double  val_1 = static_cast<double>(std::stod(this->_value));
+    double  val_2 = static_cast<double>(std::stod(rhs.toString()));
 
-    return float_obj;
+    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
+        core_engine.createOperand(this->getType(), std::to_string(val_1 - val_2)) : 
+            core_engine.createOperand(rhs.getType(), std::to_string(val_1 - val_2));
+
+    return operand_obj;
 }
 
-IOperand const *Float_Class::operator*(IOperand const &rhs) const
-{
-    return &rhs;
-}
 
 IOperand const *Float_Class::operator/(IOperand const &rhs) const
 {
-    double val = static_cast<double>(std::stod(rhs.toString()));
+    double val_1 = static_cast<double>(std::stod(rhs.toString()));
     double val_2 = static_cast<double>(std::stod(this->_value));
     
-    if ((val == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
+    if ((val_1 == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
     {
         ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
         throw e;
     }
-    return &rhs;
+
+    CoreEngine core_engine;
+    val_1 = static_cast<double>(std::stod(this->_value));
+    val_2 = static_cast<double>(std::stod(rhs.toString()));
+
+    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
+        core_engine.createOperand(this->getType(), std::to_string(val_1 / val_2)) : 
+            core_engine.createOperand(rhs.getType(), std::to_string(val_1 / val_2));
+
+    return operand_obj;
+}
+
+IOperand const *Float_Class::operator*(IOperand const &rhs) const
+{
+    CoreEngine core_engine;
+    double  val_1 = static_cast<double>(std::stod(this->_value));
+    double  val_2 = static_cast<double>(std::stod(rhs.toString()));
+
+    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
+        core_engine.createOperand(this->getType(), std::to_string(val_1 * val_2)) : 
+            core_engine.createOperand(rhs.getType(), std::to_string(val_1 * val_2));
+
+    return operand_obj;
 }
 
 IOperand const *Float_Class::operator%(IOperand const &rhs) const
 {
-    return &rhs;
+    double val_1 = static_cast<double>(std::stod(rhs.toString()));
+    double val_2 = static_cast<double>(std::stod(this->_value));
+    
+    if ((val_1 == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
+    {
+        ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
+        throw e;
+    }
+
+    CoreEngine core_engine;
+    val_1 = static_cast<double>(std::stod(this->_value));
+    val_2 = static_cast<double>(std::stod(rhs.toString()));
+
+    IOperand const * operand_obj = (this->getPrecision() > rhs.getPrecision()) ? 
+        core_engine.createOperand(this->getType(), std::to_string(fmod(val_1, val_2))) : 
+            core_engine.createOperand(rhs.getType(), std::to_string(fmod(val_1, val_2)));
+
+    return operand_obj;
 }
 
 const std::string   &Float_Class::toString(void) const { return this->_value; }

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:02:49 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 17:57:09 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 07:43:26 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ IOperand const * Double_Class::createDouble( std::string const & value ) const
 
 Double_Class::~Double_Class(void) {}
 
-int Double_Class::getPrecision() const { return 14; }
+int Double_Class::getPrecision() const { return Double; }
 
 eOperandType    Double_Class::getType(void) const
 {

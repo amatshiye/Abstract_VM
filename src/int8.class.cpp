@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 17:56:09 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 07:57:20 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ IOperand const * Int8_Class::createInt8( std::string const & value ) const
 
 Int8_Class::~Int8_Class(void) {}
 
-int Int8_Class::getPrecision() const { return 0; }
+int Int8_Class::getPrecision() const { return Int8; }
 
 eOperandType    Int8_Class::getType(void) const { return Int8; }
 

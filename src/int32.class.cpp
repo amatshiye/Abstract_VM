@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:52:03 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 17:56:39 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 07:43:03 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ IOperand const * Int32_Class::createInt32( std::string const & value ) const
 
 Int32_Class::~Int32_Class(void) {}
 
-int Int32_Class::getPrecision() const { return 0; }
+int Int32_Class::getPrecision() const { return Int32; }
 
 eOperandType    Int32_Class::getType(void) const { return Int32; }
 

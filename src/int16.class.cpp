@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:51:36 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 17:56:23 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/13 07:42:48 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ IOperand const * Int16_Class::createInt16( std::string const & value ) const
 
 Int16_Class::~Int16_Class(void) {}
 
-int Int16_Class::getPrecision() const { return 0; }
+int Int16_Class::getPrecision() const { return Int16; }
 
 eOperandType    Int16_Class::getType(void) const { return Int16; }
 
