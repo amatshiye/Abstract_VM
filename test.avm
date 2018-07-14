@@ -1,5 +1,0 @@
-push int8(11111111.1111111)
-push int8(3)
-add
-dump
-exit

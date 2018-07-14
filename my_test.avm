@@ -1,8 +1,0 @@
-; Awesome AVM TEST
-
-push int8(100)
-push int8(72)
-
-add
-assert int8(272)
-dump
