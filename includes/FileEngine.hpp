@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/11 17:19:50 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 08:26:12 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class FileEngine
         std::string patchSpace(std::string line);
         std::vector<std::string> getFileData();
         void getData();
+        void getData(std::vector<std::string> stdin_data);
         void    checkInstruction(std::string line, int l_num);
         static  int    getNumWords(std::string line);
         static std::vector<std::string> ft_strplit(std::string str, std::string delimiter);

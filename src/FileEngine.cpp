@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/12 10:39:31 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 09:18:16 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,88 @@ FileEngine &FileEngine::operator=(const FileEngine &rhs)
     this->_fileData = rhs._fileData;
     this->_fileName = rhs._fileName;
     return *this;
+}
+
+void FileEngine::getData(std::vector<std::string> stdin_data)
+{
+   std::string line;
+   ErrorDetails e;
+   std::vector<std::vector<std::string> > data;
+   std::string dataType;
+   std::string value;
+
+   if (stdin_data.size() > 0)
+   {
+       int x = 1;
+       std::vector<std::string>::iterator stdin_line;
+       for (stdin_line = stdin_data.begin(); stdin_line != stdin_data.end(); stdin_line++)
+       {
+           line = *stdin_line;
+           if (line == "")
+            {
+                continue;
+            }
+            else if (!(stdin_data.size() > 2))
+            {
+                if (stdin_data[0].find("exit") != std::string::npos)
+                {
+                    e.setErrorMsg("Only exit was found in the instruction list.");
+                    throw e;
+                }
+            }
+            line = removeComment(line);
+            line = removeSpace(line);
+            line = patchSpace(line);
+            checkInstruction(line, x);
+           if (charParser(line))
+           {
+               e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error:\033[1;31m " + line + "\033[0m");
+               throw e;
+           }
+            if (line != "")
+                this->_fileData.push_back(line);
+            if (line.find("exit") != std::string::npos)
+                this->_exit_found = true;
+            x++;
+            this->_line = x;
+            try
+            {
+                try
+                {
+                    ErrorEngine e_engine(line, this->getNumWords(line), x);
+                    data.push_back(e_engine.getIns());
+                }
+                catch(std::out_of_range oor)
+                {
+                    ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction: ERROR LINE NO: " + std::to_string(this->_line - 1) );
+                    throw e_details;
+                }
+            }
+            catch(ErrorDetails e)
+            {
+                throw e;
+            }
+       }
+       if (!this->_exit_found)
+       {
+           e.setErrorMsg("Error: Missing an\033[1;31m exit\033[0m");
+           throw e;
+       }
+       try
+       {
+            StackEngine s(data);
+       }
+       catch(std::exception e)
+       {
+           e.what();
+       }
+   }
+   else
+   {
+       //better error imp. needed.
+       e.setErrorMsg("\033[1;31mError\033[0m: Unable to open file.");
+       throw e;
+   }
 }
 
 void FileEngine::getData()

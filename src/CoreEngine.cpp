@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 17:34:22 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 09:22:12 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,13 +155,13 @@ void    CoreEngine::ft_dump()
 
 void    CoreEngine::ft_print()
 {
-    if (this->_Stack.size() > 0)
+    if (!this->_Stack.empty())
     {
-        if (this->_Stack[0]->getType() == 0)
+        if (!this->_Stack.empty() && this->_Stack[0]->getType() == 0)
         {
             int8_t v = static_cast<int8_t>(std::stoi(this->_Stack[0]->toString()));
             if (isprint(v))
-                std::cout << "Print: " << v << std::endl;
+                std::cout << v << std::endl;
             else
             {
                 ErrorDetails e("\033[1;31mError\033[0m: Unable to print value");
@@ -173,6 +173,11 @@ void    CoreEngine::ft_print()
             ErrorDetails e("\033[1;31mError\033[0m: Value is not an int8");
             throw e;
         }
+    }
+    else
+    {
+        ErrorDetails e("\033[1;31mError\033[0m: Unable to print. Stack is empty");
+        throw e;
     }
 }
 

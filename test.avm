@@ -1,7 +1,5 @@
-push int32(2)
-push int32(3)
+push int8(11111111.1111111)
+push int8(3)
 add
-dump
-assert int32(5)
 dump
 exit
