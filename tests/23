@@ -1,0 +1,7 @@
+push int8(30)
+
+push int8(30)
+
+add
+dump
+exit
