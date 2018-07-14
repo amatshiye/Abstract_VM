@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 14:10:49 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 18:20:31 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
             core_engine.ft_sub();
         else if (this->opCode == "div")
             core_engine.ft_div();
+        else if (this->opCode == "mul")
+            core_engine.ft_mul();
+        else if (this->opCode == "mod")
+            core_engine.ft_mod();
     }
     delete operand;
 }

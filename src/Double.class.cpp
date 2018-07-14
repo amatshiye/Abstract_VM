@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:02:49 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 16:22:44 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 18:17:39 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ IOperand const *Double_Class::operator+(IOperand const &rhs) const
 
     IOperand const * operand_obj = core_engine.createOperand(this->getType(), std::to_string((val_1 + val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 
@@ -61,7 +63,9 @@ IOperand const *Double_Class::operator-(IOperand const &rhs) const
 
     IOperand const * operand_obj = core_engine.createOperand(this->getType(), std::to_string((val_1 - val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 
@@ -73,7 +77,9 @@ IOperand const *Double_Class::operator*(IOperand const &rhs) const
 
     IOperand const * operand_obj = core_engine.createOperand(this->getType(), std::to_string((val_1 * val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 
@@ -82,7 +88,7 @@ IOperand const *Double_Class::operator/(IOperand const &rhs) const
     double val_1 = static_cast<double>(std::stod(rhs.toString()));
     double val_2 = static_cast<double>(std::stod(this->_value));
     
-    if ((val_1 == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
+    if (val_1 == static_cast<double>(0))
     {
         ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
         throw e;
@@ -99,7 +105,7 @@ IOperand const *Double_Class::operator%(IOperand const &rhs) const
     double val_1 = static_cast<double>(std::stod(rhs.toString()));
     double val_2 = static_cast<double>(std::stod(this->_value));
     
-    if ((val_1 == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
+    if (val_1 == static_cast<double>(0))
     {
         ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
         throw e;
@@ -107,7 +113,9 @@ IOperand const *Double_Class::operator%(IOperand const &rhs) const
     CoreEngine core_engine;
 
     IOperand const * operand_obj = core_engine.createOperand(this->getType(), std::to_string(fmod(val_1, val_2)));
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 

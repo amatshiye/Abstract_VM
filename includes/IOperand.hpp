@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:26:31 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 07:57:01 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 17:58:50 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include "ErrorDetails.hpp"
+// #include "CheckFlow.hpp"
 
 enum eOperandType {Int8, Int16, Int32, Float, Double};
 

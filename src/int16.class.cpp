@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:51:36 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 17:24:25 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 18:15:16 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ IOperand const *Int16_Class::operator+(IOperand const &rhs) const
         core_engine.createOperand(this->getType(), std::to_string(val_3 + val_4)) : 
             core_engine.createOperand(this->getType(), std::to_string((val_1 + val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 
@@ -68,7 +70,9 @@ IOperand const *Int16_Class::operator-(IOperand const &rhs) const
         core_engine.createOperand(this->getType(), std::to_string(val_3 - val_4)) : 
             core_engine.createOperand(this->getType(), std::to_string((val_1 - val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 
@@ -85,7 +89,9 @@ IOperand const *Int16_Class::operator*(IOperand const &rhs) const
         core_engine.createOperand(this->getType(), std::to_string(val_3 * val_4)) : 
             core_engine.createOperand(this->getType(), std::to_string((val_1 * val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 
@@ -94,7 +100,7 @@ IOperand const *Int16_Class::operator/(IOperand const &rhs) const
     double val_1 = static_cast<double>(std::stod(rhs.toString()));
     double val_2 = static_cast<double>(std::stod(this->_value));
     
-    if ((val_1 == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
+    if (val_1 == static_cast<double>(0))
     {
         ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
         throw e;
@@ -108,7 +114,9 @@ IOperand const *Int16_Class::operator/(IOperand const &rhs) const
         core_engine.createOperand(this->getType(), std::to_string(val_3 / val_4)) : 
             core_engine.createOperand(this->getType(), std::to_string((val_1 / val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 
@@ -117,7 +125,7 @@ IOperand const *Int16_Class::operator%(IOperand const &rhs) const
     double val_1 = static_cast<double>(std::stod(rhs.toString()));
     double val_2 = static_cast<double>(std::stod(this->_value));
     
-    if ((val_1 == static_cast<double>(0)) || (val_2 == static_cast<double>(0)))
+    if (val_1 == static_cast<double>(0))
     {
         ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
         throw e;
@@ -131,7 +139,9 @@ IOperand const *Int16_Class::operator%(IOperand const &rhs) const
         core_engine.createOperand(this->getType(), std::to_string(fmod(val_3, val_4))) : 
             core_engine.createOperand(this->getType(), std::to_string(fmod(val_1, val_2)));
 
+    CheckFlow *c_flow = new CheckFlow(operand_obj);
     core_engine.ft_push(operand_obj);
+    delete c_flow;
     return operand_obj;
 }
 

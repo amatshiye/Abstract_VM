@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:02:18 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 09:33:55 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 16:46:13 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ class CoreEngine
         void    ft_add();
         void    ft_sub();
         void    ft_div();
+        void    ft_mul();
+        void    ft_mod();
 
         //maps .
         std::map<eOperandType, IOperand const *(CoreEngine::*)(std::string const & value) const> create;
