@@ -1,5 +1,12 @@
-push int8(11111111.1111111)
+exit
+exit
+exit
+dump
+push int8(11)
+dump
+exit
 push int8(3)
+dump
 add
 dump
 exit

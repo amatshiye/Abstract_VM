@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 13:51:41 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 14:10:49 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
             operand = core_engine.createOperand(this->_type, this->_value);
             core_engine.ft_push(operand);
         }
+        if (this->opCode == "exit")
+            exit(0);
         if (this->opCode == "dump")
             core_engine.ft_dump();
         if (this->opCode == "pop")
@@ -70,8 +72,6 @@ void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)
             core_engine.ft_sub();
         else if (this->opCode == "div")
             core_engine.ft_div();
-        else if (this->opCode == "exit")
-            exit(0);
     }
     delete operand;
 }
