@@ -24,8 +24,8 @@ CMP = clang++
 
 FLAGS = -Wall -Werror -Wextra -std=c++11
 
-test: re
-	clear && ./avm test.avm
+#test: re
+#	clear && ./avm test.avm
 
 all: to_obj
 	$(CMP) -o $(NAME) $(OBJ) $(FLAGS)
