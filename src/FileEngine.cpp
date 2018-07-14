@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 09:18:16 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/14 10:05:14 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -396,6 +396,11 @@ std::string FileEngine::patchSpace(std::string line)
     line = std::regex_replace(line, std::regex(" +"), " ");
     if ((pos = line.find("(")) != std::string::npos)
     {
+        if (line[pos + 1] == ' ')
+        {
+            size_t space = pos;
+            line.replace(space + 1, 1, "");
+        }
         if (line[pos - 1] == ' ')
         {
             size_t space = pos;
