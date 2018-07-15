@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:21:22 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 18:13:44 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 07:25:52 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
             e.what();
             ErrorDetails e_;
             if (value[0] == '-')
-                e_.setErrorMsg("Error: (" + value + ") is less than INT8_MIN");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN");
             else
-                e_.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
             throw e_;
         }
 
         ErrorDetails e;
         if (c_value > std::numeric_limits<int8_t>::max())
         {
-            e.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
             throw e;
         }
         else if (c_value < std::numeric_limits<int8_t>::min())
         {
-            e.setErrorMsg("Error: (" + value + ") is x less than INT8_MIN");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is x less than INT8_MIN");
             throw e;
         }
     }
@@ -76,21 +76,21 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
             e.what();
             ErrorDetails e_;
             if (value[0] == '-')
-                e_.setErrorMsg("Error: (" + value + ") is less than INT16_MIN");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN");
             else
-                e_.setErrorMsg("Error: (" + value + ") is greather than INT16_MAX");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
             throw e_;
         }
 
         ErrorDetails e;
         if (c_value > std::numeric_limits<int16_t>::max())
         {
-            e.setErrorMsg("Error: (" + value + ") is greather than INT16_MAX");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
             throw e;
         }
         else if (c_value < std::numeric_limits<int16_t>::min())
         {
-            e.setErrorMsg("Error: (" + value + ") is less than INT16_MIN");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN");
             throw e;
         }
     }
@@ -107,9 +107,9 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
             e.what();
             ErrorDetails e_;
             if (value[0] == '-')
-                e_.setErrorMsg("Error: (" + value + ") is less than INT32_MIN");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN");
             else
-                e_.setErrorMsg("Error: (" + value + ") is greather than INT32_MAX");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
             throw e_;
         }
 
@@ -118,12 +118,12 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
 
         if (c_value > std::numeric_limits<int32_t>::max())
         {
-            e.setErrorMsg("Error: (" + value + ") is greather than INT32_MAX");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
             throw e;
         }
         else if (c_value < std::numeric_limits<int32_t>::min())
         {
-            e.setErrorMsg("Error: (" + value + ") is less than INT32_MIN");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN");
             throw e;
         }
     }
@@ -140,9 +140,9 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
             e.what();
             ErrorDetails e_;
             if (value[0] == '-')
-                e_.setErrorMsg("Error: (" + value + ") is less than FLOAT_MIN");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN");
             else
-                e_.setErrorMsg("Error: (" + value + ") is greather than FLOAT_MAX");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
             throw e_;
         }
 
@@ -150,12 +150,12 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
 
         if (r_value > std::numeric_limits<float>::max())
         {
-            e.setErrorMsg("Error: (" + value + ") is greather than FLOAT_MAX");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
             throw e;
         }
         else if (r_value < std::numeric_limits<float>::min())
         {
-            e.setErrorMsg("Error: (" + value + ") is less than FLOAT_MIN");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN");
             throw e;
         }
     }
@@ -172,9 +172,9 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
             e.what();
             ErrorDetails e_;
             if (value[0] == '-')
-                e_.setErrorMsg("Error: (" + value + ") is less than DOUBLE_MIN");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN");
             else
-                e_.setErrorMsg("Error: (" + value + ") is greather than DOUBLE_MAX");
+                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
             throw e_;
         }
 
@@ -182,12 +182,12 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
 
         if (r_value > std::numeric_limits<double>::max())
         {
-            e.setErrorMsg("Error: (" + value + ") is greather than DOUBLE_MAX");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
             throw e;
         }
         else if (r_value < std::numeric_limits<double>::min())
         {
-            e.setErrorMsg("Error: (" + value + ") is less than DOUBLE_MIN");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN");
             throw e;
         }
     }

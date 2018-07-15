@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 07:31:30 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 07:24:39 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,14 +183,14 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                         }
                         else
                         {
-                            ErrorDetails e_details("Error: Unknown Data type (" + dataType + ")");
+                            ErrorDetails e_details("\033[1;31mError\033[0m: Unknown Data type (" + dataType + ")");
                             throw e_details;
                         }
                     }
                     else
                     {
                         //std::cout << "We found the bug" << std::endl;
-                        ErrorDetails e_details("Error: Unable to convert value.");
+                        ErrorDetails e_details("\033[1;31mError\033[0m: Unable to convert value.");
                         throw e_details;
                     }
                     //store var will be called here
@@ -203,7 +203,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 }
                 else
                 {
-                    ErrorDetails e_details("Error: No value found");
+                    ErrorDetails e_details("\033[1;31mError\033[0m: No value found");
                     throw e_details;
                 }
             }
@@ -289,9 +289,9 @@ void    ErrorEngine::convertToINT8(std::string value)
         e.what();
         ErrorDetails e_;
         if (value[0] == '-')
-            e_.setErrorMsg("Error: (" + value + ") is less than INT8_MIN");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN");
         else
-            e_.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
         throw e_;
     }
 
@@ -300,12 +300,12 @@ void    ErrorEngine::convertToINT8(std::string value)
 
     if (c_value > std::numeric_limits<int8_t>::max())
     {
-        e.setErrorMsg("Error: (" + value + ") is greather than INT8_MAX");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
         throw e;
     }
     else if (c_value < std::numeric_limits<int8_t>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is x less than INT8_MIN");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is x less than INT8_MIN");
         throw e;
     }
 }
@@ -325,9 +325,9 @@ void    ErrorEngine::convertToINT16(std::string value)
         e.what();
         ErrorDetails e_;
         if (value[0] == '-')
-            e_.setErrorMsg("Error: (" + value + ") is less than INT16_MIN");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN");
         else
-            e_.setErrorMsg("Error: (" + value + ") is greather than INT16_MAX");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
         throw e_;
     }
 
@@ -335,12 +335,12 @@ void    ErrorEngine::convertToINT16(std::string value)
 
     if (c_value > std::numeric_limits<int16_t>::max())
     {
-        e.setErrorMsg("Error: (" + value + ") is greather than INT16_MAX");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
         throw e;
     }
     else if (c_value < std::numeric_limits<int16_t>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is less than INT16_MIN");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN");
         throw e;
     }
 }
@@ -360,9 +360,9 @@ void    ErrorEngine::convertToINT32(std::string value)
         e.what();
         ErrorDetails e_;
         if (value[0] == '-')
-            e_.setErrorMsg("Error: (" + value + ") is less than INT32_MIN");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN");
         else
-            e_.setErrorMsg("Error: (" + value + ") is greather than INT32_MAX");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
         throw e_;
     }
 
@@ -371,12 +371,12 @@ void    ErrorEngine::convertToINT32(std::string value)
 
     if (c_value > std::numeric_limits<int32_t>::max())
     {
-        e.setErrorMsg("Error: (" + value + ") is greather than INT32_MAX");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
         throw e;
     }
     else if (c_value < std::numeric_limits<int32_t>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is less than INT32_MIN");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN");
         throw e;
     }
 }
@@ -396,9 +396,9 @@ void    ErrorEngine::convertToFLOAT(std::string value)
         e.what();
         ErrorDetails e_;
         if (value[0] == '-')
-            e_.setErrorMsg("Error: (" + value + ") is less than FLOAT_MIN");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN");
         else
-            e_.setErrorMsg("Error: (" + value + ") is greather than FLOAT_MAX");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
         throw e_;
     }
 
@@ -406,12 +406,12 @@ void    ErrorEngine::convertToFLOAT(std::string value)
 
     if (r_value > std::numeric_limits<float>::max())
     {
-        e.setErrorMsg("Error: (" + value + ") is greather than FLOAT_MAX");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
         throw e;
     }
     else if (r_value < std::numeric_limits<float>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is less than FLOAT_MIN");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN");
         throw e;
     }
 }
@@ -431,9 +431,9 @@ void    ErrorEngine::convertToDOUBLE(std::string value)
         e.what();
         ErrorDetails e_;
         if (value[0] == '-')
-            e_.setErrorMsg("Error: (" + value + ") is less than DOUBLE_MIN");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN");
         else
-            e_.setErrorMsg("Error: (" + value + ") is greather than DOUBLE_MAX");
+            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
         throw e_;
     }
 
@@ -441,12 +441,12 @@ void    ErrorEngine::convertToDOUBLE(std::string value)
 
     if (r_value > std::numeric_limits<double>::max())
     {
-        e.setErrorMsg("Error: (" + value + ") is greather than DOUBLE_MAX");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
         throw e;
     }
     else if (r_value < std::numeric_limits<double>::min())
     {
-        e.setErrorMsg("Error: (" + value + ") is less than DOUBLE_MIN");
+        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN");
         throw e;
     }
 }
