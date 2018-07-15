@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:32:09 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 08:58:53 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 17:59:40 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int ac, char **av)
     std::cout << "=============================================" << std::endl;
     std::cout << "                 Abstract VM" << std::endl;
     std::cout << "=============================================" << std::endl;
-    
+
     try
     {
         if (ac != 1)
@@ -71,7 +71,7 @@ int main(int ac, char **av)
             }
         }
     }
-    catch(ErrorDetails e)
+    catch(std::exception & e)
     {
         std::cout << e.what() << std::endl;
     }

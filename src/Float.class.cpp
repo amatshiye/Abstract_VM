@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:52:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 18:16:21 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 17:28:15 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ IOperand const *Float_Class::operator/(IOperand const &rhs) const
     
     if (val_1 == static_cast<double>(0))
     {
-        ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
-        throw e;
+        throw ErrorDetails::DivideByZero();
     }
 
     CoreEngine core_engine;
@@ -128,8 +127,7 @@ IOperand const *Float_Class::operator%(IOperand const &rhs) const
     
     if (val_1 == static_cast<double>(0))
     {
-        ErrorDetails e("\033[1;31mError\033[0m: You can't divide by zero");
-        throw e;
+        throw ErrorDetails::DivideByZero();
     }
 
     CoreEngine core_engine;

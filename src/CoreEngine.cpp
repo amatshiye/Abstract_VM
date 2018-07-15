@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 17:50:10 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 17:31:24 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,14 +118,12 @@ void    CoreEngine::ft_assert(std::string value)
         //asserting top value
         if (!(type == this->_dataType) || !(value == this->_Stack[0]->toString()))
         {
-            ErrorDetails e("\033[1;31mError\033[0m: values are not the same");
-            throw e;
+            throw ErrorDetails::AssertIsFalse();
         }
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Stack is empty");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }
 
@@ -138,8 +136,7 @@ void    CoreEngine::ft_pop()
         this->_Stack.erase(pos);
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to pop. Stack is empty");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }
 
@@ -164,20 +161,17 @@ void    CoreEngine::ft_print()
                 std::cout << v << std::endl;
             else
             {
-                ErrorDetails e("\033[1;31mError\033[0m: Unable to print value");
-                throw e;
+                throw ErrorDetails::UnableToDisplay();
             }
         }
         else
         {
-            ErrorDetails e("\033[1;31mError\033[0m: Value is not an int8");
-            throw e;
+            throw ErrorDetails::NotAnInt8Type();
         }
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to print. Stack is empty");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }
 
@@ -199,8 +193,7 @@ void    CoreEngine::ft_add()
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to add. Stack has less than 2 values");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }
 
@@ -222,8 +215,7 @@ void    CoreEngine::ft_sub()
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to subtract. Stack has less than 2 values");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }
 
@@ -245,8 +237,7 @@ void    CoreEngine::ft_div()
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to divide. Stack has less than 2 values");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }
 
@@ -268,8 +259,7 @@ void    CoreEngine::ft_mul()
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to multiply. Stack has less than 2 values");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }
 
@@ -291,7 +281,6 @@ void    CoreEngine::ft_mod()
     }
     else
     {
-        ErrorDetails e("\033[1;31mError\033[0m: Unable to mod. Stack has less than 2 values");
-        throw e;
+        throw ErrorDetails::StackEmpty();
     }
 }

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 09:20:07 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 17:32:22 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void    ErrorEngine::ISplit(std::string line, int words)
     std::vector<std::string> instruction;
 
     FileEngine f_engine;
-    ErrorDetails e;
     std::string opCode;
     std::string dataType;
     std::string value;
@@ -115,8 +114,7 @@ void    ErrorEngine::ISplit(std::string line, int words)
     else if (words > 2)
     {
         // throw an exception if shit went down
-        e.setErrorMsg("\033[1;31mError\033[0m: Multiple instructions in one line");
-        throw e;
+        throw ErrorDetails::MultipleInstructions();
     }
 
     if (instruction.size() > 0)
@@ -129,8 +127,6 @@ void    ErrorEngine::ISplit(std::string line, int words)
 void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 {
     // //check if opcode is valid
-    ErrorDetails e;
-
     if (instruction.size())
     {
         FileEngine f_engine;
@@ -141,15 +137,13 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 
         if (!f_engine.in_array(instruction.at(0), opCodes, 11))
         {
-            e.setErrorMsg("\033[1;31mError\033[0m: Invalid Opcode: " + instruction.at(0));
-            throw e;
+            throw ErrorDetails::InvalidInstruction();
         }
         else if (instruction.size() == 3)
         {
             if (!f_engine.in_array(instruction.at(1), dataTypes, 10))
             {
-                e.setErrorMsg("\033[1;31mError\033[0m: Invalid data type: (" + instruction.at(1) + ") ERROR NO: " + std::to_string(this->_l_num));
-                throw e;
+                throw ErrorDetails::InvalidInstruction();
             }
             else
             {
@@ -183,15 +177,13 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                         }
                         else
                         {
-                            ErrorDetails e_details("\033[1;31mError\033[0m: Unknown Data type (" + dataType + ")");
-                            throw e_details;
+                            throw ErrorDetails::InvalidInstruction();
                         }
                     }
                     else
                     {
                         //std::cout << "We found the bug" << std::endl;
-                        ErrorDetails e_details("\033[1;31mError\033[0m: Unable to convert value.");
-                        throw e_details;
+                        throw ErrorDetails::UnableToConvert();
                     }
                     //store var will be called here
                     if (instruction.size() == 3)
@@ -203,8 +195,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 }
                 else
                 {
-                    ErrorDetails e_details("\033[1;31mError\033[0m: No value found");
-                    throw e_details;
+                    throw ErrorDetails::ValueNotFound();
                 }
             }
         }
@@ -287,24 +278,18 @@ void    ErrorEngine::convertToINT8(std::string value)
     catch(std::exception e)
     {
         e.what();
-        ErrorDetails e_;
-        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN") :
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
-        throw e_;
+        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
+            ErrorDetails::OverFlow();
     }
 
-
-    ErrorDetails e;
 
     if (c_value > std::numeric_limits<int8_t>::max())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
-        throw e;
+       throw ErrorDetails::OverFlow();
     }
     else if (c_value < std::numeric_limits<int8_t>::min())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is x less than INT8_MIN");
-        throw e;
+        throw ErrorDetails::UnderFlow();
     }
 }
 
@@ -321,23 +306,17 @@ void    ErrorEngine::convertToINT16(std::string value)
     catch(std::exception e)
     {
         e.what();
-        ErrorDetails e_;
-        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN") :
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
-        throw e_;
+        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
+            ErrorDetails::OverFlow();
     }
-
-    ErrorDetails e;
 
     if (c_value > std::numeric_limits<int16_t>::max())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
-        throw e;
+        throw ErrorDetails::OverFlow();
     }
     else if (c_value < std::numeric_limits<int16_t>::min())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN");
-        throw e;
+        throw ErrorDetails::UnderFlow();
     }
 }
 
@@ -354,24 +333,18 @@ void    ErrorEngine::convertToINT32(std::string value)
     catch(std::exception e)
     {
         e.what();
-        ErrorDetails e_;
-        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN") :
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
-        throw e_;
+        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
+            ErrorDetails::OverFlow();
     }
 
-
-    ErrorDetails e;
 
     if (c_value > std::numeric_limits<int32_t>::max())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
-        throw e;
+        throw ErrorDetails::OverFlow();
     }
     else if (c_value < std::numeric_limits<int32_t>::min())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN");
-        throw e;
+        throw ErrorDetails::UnderFlow();
     }
 }
 
@@ -388,23 +361,17 @@ void    ErrorEngine::convertToFLOAT(std::string value)
     catch(std::exception e)
     {
         e.what();
-        ErrorDetails e_;
-        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN") :
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
-        throw e_;
+        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
+            ErrorDetails::OverFlow();
     }
-
-    ErrorDetails e;
 
     if (r_value > std::numeric_limits<float>::max())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
-        throw e;
+        throw ErrorDetails::OverFlow();
     }
     else if (r_value < std::numeric_limits<float>::min())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN");
-        throw e;
+        throw ErrorDetails::UnderFlow();
     }
 }
 
@@ -421,22 +388,16 @@ void    ErrorEngine::convertToDOUBLE(std::string value)
     catch(std::exception e)
     {
         e.what();
-        ErrorDetails e_;
-        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN") :
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
-        throw e_;
+        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
+            ErrorDetails::OverFlow();
     }
-
-    ErrorDetails e;
 
     if (r_value > std::numeric_limits<double>::max())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
-        throw e;
+        throw ErrorDetails::OverFlow();
     }
     else if (r_value < std::numeric_limits<double>::min())
     {
-        e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN");
-        throw e;
+        throw ErrorDetails::UnderFlow();
     }
 }

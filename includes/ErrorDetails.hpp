@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 10:11:36 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/04 10:29:19 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 18:05:09 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 #define ERROR_EXCEPTION
 
 #include <exception>
-#include <iostream>
 
-class ErrorDetails : std::exception
+struct  ErrorDetails
 {
-    private:
-        std::string _errorMsg;
-
-    public:
-        ErrorDetails(void);
-        ErrorDetails(std::string errorMsg);
-        ErrorDetails(ErrorDetails const &src);
-        ~ErrorDetails(void) throw();
-
-        ErrorDetails & operator=(ErrorDetails const &rhs);
-        virtual const char * what() const throw();
-
-        std::string getErrorMsg() const;
-        void    setErrorMsg(std::string errorMsg);
+    struct  StackEmpty : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  DivideByZero : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  InvalidInstruction : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  OverFlow : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  UnderFlow : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  AssertIsFalse : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  NotAnInt8Type : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  MissingExit : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  UnkownSyntax : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  FileNotFound : public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  MultipleInstructions: public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  UnableToConvert: public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  ValueNotFound: public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  UnableToDisplay: public std::exception { char const * what(void) const _NOEXCEPT; };
+    struct  ZeroInstructions: public std::exception { char const * what(void) const _NOEXCEPT; };
 };
 
 #endif

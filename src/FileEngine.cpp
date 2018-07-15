@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 09:23:00 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 18:06:56 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ FileEngine &FileEngine::operator=(const FileEngine &rhs)
 void FileEngine::getData(std::vector<std::string> stdin_data)
 {
    std::string line;
-   ErrorDetails e;
    std::vector<std::vector<std::string> > data;
    std::string dataType;
    std::string value;
-
+   
    if (stdin_data.size() > 0)
    {
+       //Creating log to log errors?
        int x = 1;
        std::vector<std::string>::iterator stdin_line;
        for (stdin_line = stdin_data.begin(); stdin_line != stdin_data.end(); stdin_line++)
@@ -65,18 +65,16 @@ void FileEngine::getData(std::vector<std::string> stdin_data)
             {
                 if (stdin_data[0].find("exit") != std::string::npos)
                 {
-                    e.setErrorMsg("Only exit was found in the instruction list.");
-                    throw e;
+                    throw ErrorDetails::ZeroInstructions();
                 }
             }
             line = removeComment(line);
             line = removeSpace(line);
             line = patchSpace(line);
-            checkInstruction(line, x);
+            checkInstruction(line);
            if (charParser(line))
            {
-               e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error:\033[1;31m " + line + "\033[0m");
-               throw e;
+               throw ErrorDetails::UnkownSyntax();
            }
             if (line != "")
                 this->_fileData.push_back(line);
@@ -93,19 +91,18 @@ void FileEngine::getData(std::vector<std::string> stdin_data)
                 }
                 catch(std::out_of_range oor)
                 {
-                    ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction: ERROR LINE NO: " + std::to_string(this->_line - 1) );
-                    throw e_details;
+                    throw ErrorDetails::InvalidInstruction();
                 }
             }
-            catch(ErrorDetails e)
+            catch(std::exception e)
             {
-                throw e;
+                e.what();
+                throw ErrorDetails::InvalidInstruction();
             }
        }
        if (!this->_exit_found)
        {
-           e.setErrorMsg("Error: Missing an\033[1;31m exit\033[0m");
-           throw e;
+           throw ErrorDetails::MissingExit();
        }
        try
        {
@@ -119,8 +116,7 @@ void FileEngine::getData(std::vector<std::string> stdin_data)
    else
    {
        //better error imp. needed.
-       e.setErrorMsg("\033[1;31mError\033[0m: Unable to open file.");
-       throw e;
+       throw ErrorDetails::FileNotFound();
    }
 }
 
@@ -128,7 +124,6 @@ void FileEngine::getData()
 {
    std::ifstream file(this->getFileName());
    std::string  line;
-   ErrorDetails e;
    std::vector<std::vector<std::string> > data;
    std::string dataType;
    std::string value;
@@ -144,11 +139,10 @@ void FileEngine::getData()
             line = removeComment(line);
             line = removeSpace(line);
             line = patchSpace(line);
-            checkInstruction(line, x);
+            checkInstruction(line);
            if (charParser(line))
            {
-               e.setErrorMsg("Line " + std::to_string(x) + " :Syntax error:\033[1;31m " + line + "\033[0m");
-               throw e;
+               throw ErrorDetails::UnkownSyntax();
            }
             if (line != "")
                 this->_fileData.push_back(line);
@@ -165,13 +159,13 @@ void FileEngine::getData()
                 }
                 catch(std::out_of_range oor)
                 {
-                    ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction: ERROR LINE NO: " + std::to_string(this->_line - 1) );
-                    throw e_details;
+                    throw ErrorDetails::InvalidInstruction();
                 }
             }
-            catch(ErrorDetails e)
+            catch(std::exception e)
             {
-                throw e;
+                e.what();
+                throw ErrorDetails::InvalidInstruction();
             }
        }
 
@@ -185,16 +179,14 @@ void FileEngine::getData()
        }
        if (!this->_exit_found)
        {
-           e.setErrorMsg("Error: Missing an\033[1;31m exit\033[0m");
-           throw e;
+           throw ErrorDetails::MissingExit();
        }
        file.close();
    }
    else
    {
        //better error imp. needed.
-       e.setErrorMsg("\033[1;31mError\033[0m: Unable to open file.");
-       throw e;
+       throw ErrorDetails::FileNotFound();
    }
 }
 
@@ -262,7 +254,7 @@ int    FileEngine::getNumWords(std::string line)
 }
 
 //checking instructions 
-void    FileEngine::checkInstruction(std::string line, int l_num)
+void    FileEngine::checkInstruction(std::string line)
 {
     //validating instructions
     //get the line
@@ -271,7 +263,6 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
     std::string opCodes_single[9] = {"pop", "dump", "add", "sub", "mul", "div", "mod", "print", "exit"};
     std::string opCode_multi[2] = {"push", "assert"};
     std::string temp;
-    ErrorDetails e;
 
     if (line.c_str())
     {
@@ -282,8 +273,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
             {
                 if (!in_array(temp, opCodes_single, 9))
                 {
-                    e.setErrorMsg("Line " + std::to_string(l_num) + ": " + line + ": " + "\033[1;31mInvalid Instruction\033[0m");
-                    throw e;
+                    throw ErrorDetails::InvalidInstruction();
                 }
             }
         }
@@ -297,8 +287,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
                 if (!in_array(tokens.at(0), opCode_multi, 2))
                 {
                     //throw an error and destroy the program
-                    e.setErrorMsg("Line " + std::to_string(l_num) + ": (" + line + "):\033[1;31mInvalid Instruction\033[0m");
-                    throw e;
+                    throw ErrorDetails::InvalidInstruction();
                 }
             }
         }
@@ -306,8 +295,7 @@ void    FileEngine::checkInstruction(std::string line, int l_num)
         {
             if (line.length())
             {
-                e.setErrorMsg("Error:\033[1;31m " + line + "\033[0m" + " ERROR NO: " + std::to_string(l_num));
-                throw e;
+                throw ErrorDetails::InvalidInstruction();
             }
         }
     }
@@ -376,8 +364,7 @@ bool    FileEngine::charParser(std::string line)
     catch (std::exception e)
     {
         e.what();
-        ErrorDetails e_details("\033[1;31mError\033[0m: Unable to process instruction: ERROR LINE NO: " + std::to_string(this->_line) );
-        throw e_details;
+        throw ErrorDetails::InvalidInstruction();
     }
     return false;
 }
