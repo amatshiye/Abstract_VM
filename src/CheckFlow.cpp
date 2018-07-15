@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:21:22 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 07:25:52 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 09:12:00 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         {
             e.what();
             ErrorDetails e_;
-            if (value[0] == '-')
-                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN");
-            else
+            (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN") :
                 e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
             throw e_;
         }
@@ -59,7 +57,7 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         }
         else if (c_value < std::numeric_limits<int8_t>::min())
         {
-            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is x less than INT8_MIN");
+            e.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN");
             throw e;
         }
     }
@@ -75,9 +73,7 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         {
             e.what();
             ErrorDetails e_;
-            if (value[0] == '-')
-                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN");
-            else
+            (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN") :
                 e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
             throw e_;
         }
@@ -106,13 +102,10 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         {
             e.what();
             ErrorDetails e_;
-            if (value[0] == '-')
-                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN");
-            else
+            (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN") :
                 e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
             throw e_;
         }
-
 
         ErrorDetails e;
 
@@ -139,9 +132,7 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         {
             e.what();
             ErrorDetails e_;
-            if (value[0] == '-')
-                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN");
-            else
+            (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN") :
                 e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
             throw e_;
         }
@@ -171,9 +162,7 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         {
             e.what();
             ErrorDetails e_;
-            if (value[0] == '-')
-                e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN");
-            else
+            (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN") :
                 e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
             throw e_;
         }

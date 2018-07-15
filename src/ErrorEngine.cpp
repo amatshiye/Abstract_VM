@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 07:24:39 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/15 09:20:07 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,9 +288,7 @@ void    ErrorEngine::convertToINT8(std::string value)
     {
         e.what();
         ErrorDetails e_;
-        if (value[0] == '-')
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN");
-        else
+        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT8_MIN") :
             e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT8_MAX");
         throw e_;
     }
@@ -324,9 +322,7 @@ void    ErrorEngine::convertToINT16(std::string value)
     {
         e.what();
         ErrorDetails e_;
-        if (value[0] == '-')
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN");
-        else
+        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT16_MIN") :
             e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT16_MAX");
         throw e_;
     }
@@ -359,9 +355,7 @@ void    ErrorEngine::convertToINT32(std::string value)
     {
         e.what();
         ErrorDetails e_;
-        if (value[0] == '-')
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN");
-        else
+        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than INT32_MIN") :
             e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than INT32_MAX");
         throw e_;
     }
@@ -395,9 +389,7 @@ void    ErrorEngine::convertToFLOAT(std::string value)
     {
         e.what();
         ErrorDetails e_;
-        if (value[0] == '-')
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN");
-        else
+        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than FLOAT_MIN") :
             e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than FLOAT_MAX");
         throw e_;
     }
@@ -430,9 +422,7 @@ void    ErrorEngine::convertToDOUBLE(std::string value)
     {
         e.what();
         ErrorDetails e_;
-        if (value[0] == '-')
-            e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN");
-        else
+        (value[0] == '-') ? e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is less than DOUBLE_MIN") :
             e_.setErrorMsg("\033[1;31mError\033[0m: (" + value + ") is greather than DOUBLE_MAX");
         throw e_;
     }
