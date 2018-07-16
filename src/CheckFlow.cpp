@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:21:22 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 08:14:30 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 10:05:00 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void    CheckFlow::isFlow(std::string value, eOperandType type, int line_no)
             e.what();
             std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
-                throw ErrorDetails::UnderFlow();
+                throw ErrorDetails::OverFlow();
         }
 
         if (c_value > std::numeric_limits<int16_t>::max())

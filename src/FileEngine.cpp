@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 09:15:44 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 10:11:18 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,13 +136,13 @@ void FileEngine::getData()
             this->_line = x;
             try
             {
-                ErrorEngine e_engine(line, this->getNumWords(line), x);
+                ErrorEngine e_engine(line, this->getNumWords(line), x + 1);
                 data.push_back(e_engine.getIns());
             }
             catch(std::out_of_range oor)
             {
                 std::cout << "Line: (" << x <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
-                throw ErrorDetails::InvalidInstruction();
+                throw ErrorDetails::UnkownSyntax();
             }
             x++;
        }
