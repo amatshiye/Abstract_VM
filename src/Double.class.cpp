@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:02:49 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:27:52 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:17:24 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ Double_Class::Double_Class(std::string value)
 {
     this->_value = value;
     createDouble(value);
+}
+
+Double_Class const & Double_Class::operator=(Double_Class const & rhs)
+{
+    (void)rhs; 
+    return *this;
 }
 
 IOperand const * Double_Class::createDouble( std::string const & value ) const

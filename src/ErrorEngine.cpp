@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 08:14:22 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:17:34 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ ErrorEngine::ErrorEngine(std::string line, int words, int l_num)
 
     this->ISplit(this->_line, this->_words);
     this->exception_core();
+}
+
+ErrorEngine const & ErrorEngine::operator=(ErrorEngine const &rhs)
+{
+    (void)rhs; 
+    return *this;
 }
 
 ErrorEngine::ErrorEngine(const ErrorEngine &src)

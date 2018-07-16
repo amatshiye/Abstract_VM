@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:09:28 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 09:06:58 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 10:57:01 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Float_Class : public IOperand
         Float_Class(const Float_Class &src);
         ~Float_Class(void);
 
+        Float_Class const & operator=(Float_Class const & rhs);
         int getPrecision(void) const;                         // Precision of the type of the instance
         eOperandType getType(void) const;
         

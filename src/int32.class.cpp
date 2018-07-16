@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:52:03 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 08:26:21 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:18:00 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ IOperand const * Int32_Class::createInt32( std::string const & value ) const
     op_obj->int_32_value = val;
 
     return op_obj;
+}
+
+Int32_Class const & Int32_Class::operator=(Int32_Class const & rhs)
+{
+    (void)rhs;
+    return *this;
 }
 
 Int32_Class::~Int32_Class(void) {}

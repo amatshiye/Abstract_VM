@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 09:49:41 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 07:12:11 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:15:17 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ class FileEngine
         FileEngine(FileEngine const &src);
         ~FileEngine() throw();
 
-        FileEngine &operator=(FileEngine const &rhs);
+        FileEngine const & operator=(FileEngine const &rhs);
         std::string getFileName();
         std::string removeComment(std::string line);
         std::string removeSpace(std::string line);

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:10:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 09:55:33 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:13:51 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Int32_Class : public IOperand
         Int32_Class(const Int32_Class &src);
         ~Int32_Class(void);
 
+        Int32_Class const & operator=(Int32_Class const & rhs);
         int getPrecision(void) const;                         // Precision of the type of the instance
         eOperandType getType(void) const;
         

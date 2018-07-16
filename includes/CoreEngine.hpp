@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:02:18 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 16:46:13 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:14:42 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class CoreEngine
         ~CoreEngine(void);
 
         void    setValues(std::vector<std::string> line);
-        CoreEngine  &operator=(CoreEngine const &rhs);
+        CoreEngine const & operator=(CoreEngine const &rhs);
         std::string getDataType(eOperandType type);
         //Stack commands
         void    ft_push(IOperand const *operand);

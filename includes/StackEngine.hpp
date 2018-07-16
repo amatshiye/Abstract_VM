@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:33:29 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 15:09:14 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:15:49 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class StackEngine
         StackEngine(void);
         StackEngine(std::vector<std::vector<std::string> > line);
         StackEngine(StackEngine const &src);
-        StackEngine &operator=(StackEngine const &rhs);
+        StackEngine const & operator=(StackEngine const &rhs);
         ~StackEngine(void);
 
         void    Stack_Brain(std::vector<std::vector<std::string> > line);

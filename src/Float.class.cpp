@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:52:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:28:15 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:17:51 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ Float_Class::Float_Class(std::string value)
 {
     this->_value = value;
     createFloat(value);
+}
+
+Float_Class const & Float_Class::operator=(Float_Class const & rhs)
+{
+    (void)rhs;
+    return *this;    
 }
 
 IOperand const * Float_Class::createFloat( std::string const & value ) const

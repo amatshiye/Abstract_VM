@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:15:01 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 17:30:09 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 10:59:34 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class Int8_Class : public IOperand
         Int8_Class(const Int8_Class &src);
         ~Int8_Class(void);
 
+        Int8_Class const & operator=(Int8_Class const & src);
         int getPrecision(void) const;                         // Precision of the type of the instance
         eOperandType getType(void) const;
         

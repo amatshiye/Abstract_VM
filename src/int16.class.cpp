@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:51:36 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:28:51 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:19:47 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ IOperand const * Int16_Class::createInt16( std::string const & value ) const
     op_obj->int_16_value = val;
 
     return op_obj;
+}
+
+Int16_Class const & Int16_Class::operator=(Int16_Class const & rhs)
+{
+    (void)rhs;
+    return *this;
 }
 
 Int16_Class::~Int16_Class(void) {}

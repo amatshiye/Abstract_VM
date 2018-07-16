@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 09:19:55 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:16:14 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ CoreEngine::CoreEngine(CoreEngine const &src)
     *this = src;
 }
 
-CoreEngine  & CoreEngine::operator=(CoreEngine const & rhs)
+CoreEngine const & CoreEngine::operator=(CoreEngine const & rhs)
 {
     (void)rhs;
     return *this;

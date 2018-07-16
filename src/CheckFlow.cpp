@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:21:22 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 10:05:00 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:16:17 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ CheckFlow::~CheckFlow() {}
 
 CheckFlow::CheckFlow(CheckFlow const &rhs) { *this = rhs; }
 
-CheckFlow & CheckFlow::operator=(CheckFlow const &rhs)
+CheckFlow const & CheckFlow::operator=(CheckFlow const &rhs)
 {
     (void)rhs; 
     return *this; 

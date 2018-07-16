@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/24 12:34:21 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:30:20 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:19:01 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ StackEngine::StackEngine(std::vector<std::vector<std::string> > line)
     this->_line_size = line.size();
 
     Stack_Brain(line);
+}
+
+StackEngine const & StackEngine::operator=(StackEngine const & rhs)
+{
+    (void)rhs;
+    return *this;
 }
 
 void    StackEngine::Stack_Brain(std::vector<std::vector<std::string> > line)

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/07 09:49:57 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:28:31 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:17:54 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ Int8_Class::Int8_Class(std::string value)
 {
     this->_value = value;
     createInt8(value);
+}
+
+Int8_Class const & Int8_Class::operator=(Int8_Class const & rhs)
+{
+    (void)rhs;
+    return *this;
 }
 
 IOperand const * Int8_Class::createInt8( std::string const & value ) const

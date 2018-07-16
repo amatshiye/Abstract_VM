@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 10:11:18 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:17:46 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ FileEngine::FileEngine(const FileEngine &src)
     *this = src;
 }
 
-FileEngine &FileEngine::operator=(const FileEngine &rhs)
+FileEngine const &FileEngine::operator=(const FileEngine &rhs)
 {
     this->_fileData = rhs._fileData;
     this->_fileName = rhs._fileName;

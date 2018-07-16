@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/06 07:06:43 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/13 09:55:44 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:14:55 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class Double_Class : public IOperand
         Double_Class(const Double_Class &src);
         ~Double_Class(void);
 
+        Double_Class const & operator=(Double_Class const & rhs);
         int getPrecision(void) const;                         // Precision of the type of the instance
         eOperandType getType(void) const;
         

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:43:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 07:49:41 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 11:15:07 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class ErrorEngine
         ~ErrorEngine();
 
         //Error check functions
+        ErrorEngine const & operator=(ErrorEngine const &rhs);
         void    exception_core() throw();
         void    check_exit();
         bool    check_stack();
