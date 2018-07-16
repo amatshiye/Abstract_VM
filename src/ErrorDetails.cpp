@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/04 10:17:25 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 18:06:05 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 09:41:11 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,4 @@ char const * ErrorDetails::MultipleInstructions::what(void) const _NOEXCEPT { re
 char const * ErrorDetails::UnableToConvert::what(void) const _NOEXCEPT { return "\033[1;31mError\033[0m: Value is not convertable"; }
 char const * ErrorDetails::ValueNotFound::what(void) const _NOEXCEPT { return "\033[1;31mError\033[0m: No value found"; }
 char const * ErrorDetails::UnableToDisplay::what(void) const _NOEXCEPT { return "\033[1;31mError\033[0m: No a displayable character"; }
-char const * ErrorDetails::ZeroInstructions::what(void) const _NOEXCEPT { return "\033[1;31mError\033[0m: Only exit was found in the instruction list."; }
+char const * ErrorDetails::ZeroInstructions::what(void) const _NOEXCEPT { return "\033[1;31mWarning\033[0m: Only exit was found in the instruction list/The first line contains an exit."; }

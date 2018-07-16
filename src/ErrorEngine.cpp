@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/26 13:52:10 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:32:22 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 08:14:22 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void    ErrorEngine::ISplit(std::string line, int words)
     else if (words > 2)
     {
         // throw an exception if shit went down
+        std::cout << "Line: (" << this->_l_num <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
         throw ErrorDetails::MultipleInstructions();
     }
 
@@ -137,12 +138,14 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
 
         if (!f_engine.in_array(instruction.at(0), opCodes, 11))
         {
+            std::cout << "Line: (" << this->_l_num <<  "): " << "\033[1;31m(" << instruction.at(0) << ")\033[0m" <<  std::endl;
             throw ErrorDetails::InvalidInstruction();
         }
         else if (instruction.size() == 3)
         {
             if (!f_engine.in_array(instruction.at(1), dataTypes, 10))
             {
+                std::cout << "Line: (" << this->_l_num <<  "): " << "\033[1;31m(" << instruction.at(0) << ")\033[0m" <<  std::endl;
                 throw ErrorDetails::InvalidInstruction();
             }
             else
@@ -150,6 +153,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 std::string opCode = instruction.at(0);
                 std::string dataType = instruction.at(1);
                 std::string value = instruction.at(2);
+                CheckFlow flow;
 
                 if (value.length())
                 {
@@ -157,32 +161,34 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                     {
                         if (dataType == "int8")
                         {
-                            convertToINT8(value);
+                            flow.isFlow(value, Int8, this->_l_num);
                         }
                         else if (dataType == "int16")
                         {
-                            convertToINT16(value);
+                            flow.isFlow(value, Int16, this->_l_num);
                         }
                         else if (dataType == "int32")
                         {
-                            convertToINT32(value);
+                            flow.isFlow(value, Int32, this->_l_num);
                         }
                         else if (dataType == "float")
                         {
-                            convertToFLOAT(value);
+                            flow.isFlow(value, Float, this->_l_num);
                         }
                         else if (dataType == "double")
                         {
-                            convertToDOUBLE(value);
+                            flow.isFlow(value, Double, this->_l_num);
                         }
                         else
                         {
+                            std::cout << "Line: (" << this->_l_num <<  "): " << "\033[1;31m(" << dataType << ")\033[0m" <<  std::endl;
                             throw ErrorDetails::InvalidInstruction();
                         }
                     }
                     else
                     {
                         //std::cout << "We found the bug" << std::endl;
+                        std::cout << "Line: (" << this->_l_num <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
                         throw ErrorDetails::UnableToConvert();
                     }
                     //store var will be called here
@@ -195,6 +201,7 @@ void    ErrorEngine::parseInstruction(std::vector<std::string> instruction)
                 }
                 else
                 {
+                    std::cout << "Line: (" << this->_l_num <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
                     throw ErrorDetails::ValueNotFound();
                 }
             }
@@ -263,141 +270,4 @@ bool    ErrorEngine::isConvertable(std::string value, std::string &dataType)
         }
     }
     return false;
-}
-
-//converting to int8
-
-void    ErrorEngine::convertToINT8(std::string value)
-{
-    int c_value;
-
-    try
-    {
-        c_value = std::stoi(value);
-    }
-    catch(std::exception e)
-    {
-        e.what();
-        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
-            ErrorDetails::OverFlow();
-    }
-
-
-    if (c_value > std::numeric_limits<int8_t>::max())
-    {
-       throw ErrorDetails::OverFlow();
-    }
-    else if (c_value < std::numeric_limits<int8_t>::min())
-    {
-        throw ErrorDetails::UnderFlow();
-    }
-}
-
-//converting to int16
-
-void    ErrorEngine::convertToINT16(std::string value)
-{
-    int c_value;
-
-    try
-    {
-        c_value = std::stoi(value);
-    }
-    catch(std::exception e)
-    {
-        e.what();
-        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
-            ErrorDetails::OverFlow();
-    }
-
-    if (c_value > std::numeric_limits<int16_t>::max())
-    {
-        throw ErrorDetails::OverFlow();
-    }
-    else if (c_value < std::numeric_limits<int16_t>::min())
-    {
-        throw ErrorDetails::UnderFlow();
-    }
-}
-
-//converting to int32
-
-void    ErrorEngine::convertToINT32(std::string value)
-{
-    int32_t c_value;
-
-    try
-    {
-        c_value = std::stoi(value);
-    }
-    catch(std::exception e)
-    {
-        e.what();
-        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
-            ErrorDetails::OverFlow();
-    }
-
-
-    if (c_value > std::numeric_limits<int32_t>::max())
-    {
-        throw ErrorDetails::OverFlow();
-    }
-    else if (c_value < std::numeric_limits<int32_t>::min())
-    {
-        throw ErrorDetails::UnderFlow();
-    }
-}
-
-//converting to float
-
-void    ErrorEngine::convertToFLOAT(std::string value)
-{
-    float r_value;
-
-    try
-    {
-        r_value = std::stof(value);
-    }
-    catch(std::exception e)
-    {
-        e.what();
-        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
-            ErrorDetails::OverFlow();
-    }
-
-    if (r_value > std::numeric_limits<float>::max())
-    {
-        throw ErrorDetails::OverFlow();
-    }
-    else if (r_value < std::numeric_limits<float>::min())
-    {
-        throw ErrorDetails::UnderFlow();
-    }
-}
-
-//converting to double
-
-void    ErrorEngine::convertToDOUBLE(std::string value)
-{
-    double  r_value;
-
-    try
-    {
-        r_value = std::stof(value);
-    }
-    catch(std::exception e)
-    {
-        e.what();
-        (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
-            ErrorDetails::OverFlow();
-    }
-
-    if (r_value > std::numeric_limits<double>::max())
-    {
-        throw ErrorDetails::OverFlow();
-    }
-    else if (r_value < std::numeric_limits<double>::min())
-    {
-        throw ErrorDetails::UnderFlow();
-    }
 }

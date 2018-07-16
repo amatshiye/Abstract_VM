@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/12 10:21:44 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:31:24 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 09:19:55 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ void    CoreEngine::ft_sub()
         IOperand const *operand_1 = this->_Stack[0];
         IOperand const *operand_2 = this->_Stack[1];
 
-        IOperand const *operand_sum = *operand_1 - *operand_2;
+        IOperand const *operand_sum = *operand_2 - *operand_1;
 
         //removing the firts two values from the stack
         this->ft_pop();
@@ -226,7 +226,7 @@ void    CoreEngine::ft_div()
         IOperand const *operand_1 = this->_Stack[0];
         IOperand const *operand_2 = this->_Stack[1];
 
-        IOperand const *operand_sum = *operand_1 / *operand_2;
+        IOperand const *operand_sum = *operand_2 / *operand_1;
 
         //removing the firts two values from the stack
         this->ft_pop();
@@ -270,7 +270,7 @@ void    CoreEngine::ft_mod()
         IOperand const *operand_1 = this->_Stack[0];
         IOperand const *operand_2 = this->_Stack[1];
 
-        IOperand const *operand_sum = *operand_1 % *operand_2;
+        IOperand const *operand_sum = *operand_2 % *operand_1;
 
         //removing the firts two values from the stack
         this->ft_pop();

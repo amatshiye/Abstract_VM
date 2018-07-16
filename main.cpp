@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 07:32:09 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:59:40 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 09:37:26 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int main(int ac, char **av)
                     lines.push_back(line);
             }
             if (isEmpty)
-                std::cout << "Error: No instructions found. Please input instructions" << std::endl;
+                std::cout << "\033[1;31mError\033[0m: No instructions found/Multiple/Invalid instruction were passed. Please input instructions" << std::endl;
             else
             {
                 f_engine.getData(lines);

@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:21:22 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 17:31:14 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 08:14:30 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ CheckFlow & CheckFlow::operator=(CheckFlow const &rhs)
     return *this; 
 }
 
-void    CheckFlow::isFlow(std::string value, eOperandType type)
+void    CheckFlow::isFlow(std::string value, eOperandType type, int line_no)
 {
     //checking value overflow and underflow
     if (type == Int8)
@@ -43,16 +43,19 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         catch(std::exception e)
         {
             e.what();
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
-                throw ErrorDetails::OverFlow();
+                throw ErrorDetails::UnderFlow();
         }
 
         if (c_value > std::numeric_limits<int8_t>::max())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::OverFlow();
         }
         else if (c_value < std::numeric_limits<int8_t>::min())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::UnderFlow();
         }
     }
@@ -67,16 +70,19 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         catch(std::exception e)
         {
             e.what();
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
                 throw ErrorDetails::UnderFlow();
         }
 
         if (c_value > std::numeric_limits<int16_t>::max())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::OverFlow();
         }
         else if (c_value < std::numeric_limits<int16_t>::min())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::UnderFlow();
         }
     }
@@ -91,16 +97,19 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         catch(std::exception e)
         {
             e.what();
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
                 throw ErrorDetails::OverFlow();
         }
 
         if (c_value > std::numeric_limits<int32_t>::max())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::OverFlow();
         }
         else if (c_value < std::numeric_limits<int32_t>::min())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::UnderFlow();
         }
     }
@@ -115,16 +124,19 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         catch(std::exception e)
         {
             e.what();
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
                 throw ErrorDetails::OverFlow();
         }
 
         if (r_value > std::numeric_limits<float>::max())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::OverFlow();
         }
         else if (r_value < std::numeric_limits<float>::min())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::UnderFlow();
         }
     }
@@ -139,16 +151,19 @@ void    CheckFlow::isFlow(std::string value, eOperandType type)
         catch(std::exception e)
         {
             e.what();
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             (value[0] == '-') ? throw ErrorDetails::UnderFlow() :
                 throw ErrorDetails::OverFlow();
         }
 
         if (r_value > std::numeric_limits<double>::max())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::OverFlow();
         }
         else if (r_value < std::numeric_limits<double>::min())
         {
+            std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << value << ")\033[0m" <<  std::endl;
             throw ErrorDetails::UnderFlow();
         }
     }

@@ -1,7 +1,5 @@
-push int8(11)
-dump
-push int8(3)
-dump
-add
+push int8 (32)
+push int8 (0)
+div
 dump
 exit

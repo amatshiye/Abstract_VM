@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/16 06:05:38 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 09:15:44 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,59 +64,45 @@ void FileEngine::getData(std::vector<std::string> stdin_data)
             {
                 if (stdin_data[0].find("exit") != std::string::npos)
                 {
+                    std::cout << "Line: (" << x <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
                     throw ErrorDetails::ZeroInstructions();
                 }
             }
             line = removeComment(line);
             line = removeSpace(line);
             line = patchSpace(line);
-            checkInstruction(line);
-           if (charParser(line))
+            checkInstruction(line, x);
+           if (charParser(line, x))
            {
+               std::cout << "Line: (" << x <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
                throw ErrorDetails::UnkownSyntax();
            }
             if (line != "")
                 this->_fileData.push_back(line);
             if (line.find("exit") != std::string::npos)
                 this->_exit_found = true;
-            x++;
             this->_line = x;
+            
             try
             {
-                try
-                {
-                    ErrorEngine e_engine(line, this->getNumWords(line), x);
-                    data.push_back(e_engine.getIns());
-                }
-                catch(std::out_of_range oor)
-                {
-                    throw ErrorDetails::InvalidInstruction();
-                }
+                ErrorEngine e_engine(line, this->getNumWords(line), x + 1);
+                data.push_back(e_engine.getIns());
             }
-            catch(std::exception e)
+            catch(std::out_of_range oor)
             {
-                e.what();
+                std::cout << "Line: (" << x <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
                 throw ErrorDetails::InvalidInstruction();
             }
+            
+            x++;
        }
        if (!this->_exit_found)
        {
+           std::cout << "Line: (" << x <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
            throw ErrorDetails::MissingExit();
        }
-       try
-       {
-            StackEngine s(data);
-       }
-       catch(std::exception e)
-       {
-           e.what();
-       }
-   }
-   else
-   {
-       //better error imp. needed.
-       throw ErrorDetails::FileNotFound();
-   }
+       StackEngine s(data);   
+    }
 }
 
 void FileEngine::getData()
@@ -138,8 +124,8 @@ void FileEngine::getData()
             line = removeComment(line);
             line = removeSpace(line);
             line = patchSpace(line);
-            checkInstruction(line);
-           if (charParser(line))
+            checkInstruction(line, x);
+           if (charParser(line, x))
            {
                throw ErrorDetails::UnkownSyntax();
            }
@@ -147,37 +133,24 @@ void FileEngine::getData()
                 this->_fileData.push_back(line);
             if (line.find("exit") != std::string::npos)
                 this->_exit_found = true;
-            x++;
             this->_line = x;
             try
             {
-                try
-                {
-                    ErrorEngine e_engine(line, this->getNumWords(line), x);
-                    data.push_back(e_engine.getIns());
-                }
-                catch(std::out_of_range oor)
-                {
-                    throw ErrorDetails::InvalidInstruction();
-                }
+                ErrorEngine e_engine(line, this->getNumWords(line), x);
+                data.push_back(e_engine.getIns());
             }
-            catch(std::exception e)
+            catch(std::out_of_range oor)
             {
-                e.what();
+                std::cout << "Line: (" << x <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
                 throw ErrorDetails::InvalidInstruction();
             }
+            x++;
        }
 
-       try
-       {
-            StackEngine s(data);
-       }
-       catch(std::exception e)
-       {
-           e.what();
-       }
+        StackEngine s(data);
        if (!this->_exit_found)
        {
+           std::cout << "Line: (" << x <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
            throw ErrorDetails::MissingExit();
        }
        file.close();
@@ -253,7 +226,7 @@ int    FileEngine::getNumWords(std::string line)
 }
 
 //checking instructions 
-void    FileEngine::checkInstruction(std::string line)
+void    FileEngine::checkInstruction(std::string line, int line_no)
 {
     //validating instructions
     //get the line
@@ -272,6 +245,7 @@ void    FileEngine::checkInstruction(std::string line)
             {
                 if (!in_array(temp, opCodes_single, 9))
                 {
+                    std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
                     throw ErrorDetails::InvalidInstruction();
                 }
             }
@@ -286,6 +260,7 @@ void    FileEngine::checkInstruction(std::string line)
                 if (!in_array(tokens.at(0), opCode_multi, 2))
                 {
                     //throw an error and destroy the program
+                    std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
                     throw ErrorDetails::InvalidInstruction();
                 }
             }
@@ -294,6 +269,7 @@ void    FileEngine::checkInstruction(std::string line)
         {
             if (line.length())
             {
+                std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
                 throw ErrorDetails::InvalidInstruction();
             }
         }
@@ -327,7 +303,7 @@ std::vector<std::string> FileEngine::ft_strplit(std::string str, std::string del
 }
 
 //searches for unwanted chars in the instructions
-bool    FileEngine::charParser(std::string line)
+bool    FileEngine::charParser(std::string line, int line_no)
 {
     try
     {
@@ -363,6 +339,7 @@ bool    FileEngine::charParser(std::string line)
     catch (std::exception e)
     {
         e.what();
+        std::cout << "Line: (" << line_no <<  "): " << "\033[1;31m(" << line << ")\033[0m" <<  std::endl;
         throw ErrorDetails::InvalidInstruction();
     }
     return false;

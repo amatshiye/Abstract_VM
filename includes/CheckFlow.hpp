@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 17:15:27 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/14 17:59:06 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 08:09:51 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class CheckFlow
         ~CheckFlow(void);
 
         CheckFlow & operator=(CheckFlow const &rhs);
-        void    isFlow(std::string value, eOperandType type);
+        void    isFlow(std::string value, eOperandType type, int line_no = 0);
 };
 
 #endif
