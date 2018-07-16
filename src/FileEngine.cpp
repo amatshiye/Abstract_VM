@@ -6,7 +6,7 @@
 /*   By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/23 10:33:50 by amatshiy          #+#    #+#             */
-/*   Updated: 2018/07/15 18:06:56 by amatshiy         ###   ########.fr       */
+/*   Updated: 2018/07/16 06:05:38 by amatshiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void FileEngine::getData(std::vector<std::string> stdin_data)
    
    if (stdin_data.size() > 0)
    {
-       //Creating log to log errors?
        int x = 1;
        std::vector<std::string>::iterator stdin_line;
        for (stdin_line = stdin_data.begin(); stdin_line != stdin_data.end(); stdin_line++)
