@@ -38,7 +38,7 @@ make re
 
 There are two ways to test the program. Either you pass a file to the program or you use the default mode (STDIN) to test it.
 
-### Break down into end to end tests
+### Testing using the default mode
 
 To use the default mode follow these instructions:
 
@@ -60,44 +60,35 @@ exit;; (Add the double semi-colon and press enter to execute your instructions)
 ```
 
 
-### And coding style tests
+### Testing using the file mode
 
-Explain what these tests test and why
+To use the file mode follow these instructions:
+
+Step 1: Create text file (You can use any editor you want)
 
 ```
-Give an example
+touch test.txt (Creating a file using a terminal)
 ```
 
-## Deployment
+Step 2: Write the following instructions inside the text file
 
-Add additional notes about how to deploy this on a live system
+```
+push int8(100)
+push int32(20)
+dump
+add
+exit (This time around you don't need the double semi-colon)
+```
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [Visual Studio Code](https://code.visualstudio.com/) - The Code editor
+* [iTerm](https://www.iterm2.com/) - A cool terminal for MacOS
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+* **Afrika Matshiye** - [Github](https://github.com/amatshiye)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* **Yan Chernikov** - [YouTube](https://www.youtube.com/channel/UCQ-W1KE9EYfdxhL6S4twUNw)
