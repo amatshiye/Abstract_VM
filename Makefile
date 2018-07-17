@@ -6,7 +6,7 @@
 #    By: amatshiy <amatshiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/23 07:33:09 by amatshiy          #+#    #+#              #
-#    Updated: 2018/07/15 16:11:57 by amatshiy         ###   ########.fr        #
+#    Updated: 2018/07/16 11:56:26 by amatshiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,14 @@ all: to_obj
 
 to_obj:
 	$(CMP) -c $(SRC) $(FLAGS)
-	mv *.o bin/
+	@sh src/create_dir.sh
+	@mv *.o bin/
 
 clean:
 	rm -rf $(OBJ)
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf bin
 
 re: fclean all
